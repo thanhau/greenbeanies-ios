@@ -54,7 +54,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+
+    // Custom initialization
+    self.pageText = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < 10; i ++) {
+        [self.pageText addObject:[NSString stringWithFormat:@"This is page %d for Book %@", i, self.bookTitle ]];
+    }
+    
+    NSDictionary *option = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin] forKey:UIPageViewControllerOptionSpineLocationKey];
+    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:option];
+    [self.pageViewController setDataSource:self];
+    
+    BookPageViewController *book = [self bookPageAtIndex:0];;
+    NSArray *viewControllers = [NSArray arrayWithObject:book];
+    
+    [[self pageViewController] setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    [self.pageViewController.view setFrame: self.view.bounds];
+    [self addChildViewController:self.pageViewController];
+    [self.view addSubview:self.pageViewController.view];
+    [self.pageViewController didMoveToParentViewController:self];
 }
 
 - (void)didReceiveMemoryWarning
