@@ -95,8 +95,9 @@
     if (index == NSNotFound) {
         return nil;
     }
+    //Made it so that you can't flip from page 0 to the last backwards
     if (index == 0) {
-        return [self bookPageAtIndex:9];
+        return nil;
     }
     index--;
     return [self bookPageAtIndex:index];
@@ -109,8 +110,9 @@
     if (index == NSNotFound) {
         return nil;
     }
+    //Made it so that you can't flip from the last to the first page forwards
     if (index == 9) {
-        return [self bookPageAtIndex:0];
+        return nil;
     }
     index++;
     return [self bookPageAtIndex:index];

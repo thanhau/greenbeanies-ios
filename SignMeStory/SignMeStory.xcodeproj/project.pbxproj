@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22AE72FE169E23EC002081F7 /* bookshelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE72FD169E23EC002081F7 /* bookshelf.png */; };
 		8F4116C61671665400B657CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C51671665400B657CE /* UIKit.framework */; };
 		8F4116C81671665400B657CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C71671665400B657CE /* Foundation.framework */; };
 		8F4116CA1671665400B657CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C91671665400B657CE /* CoreGraphics.framework */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22AE72FD169E23EC002081F7 /* bookshelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookshelf.png; sourceTree = "<group>"; };
 		8F4116C11671665400B657CE /* SignMeStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignMeStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4116C51671665400B657CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F4116C71671665400B657CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22AE72FC169E1E86002081F7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				22AE72FD169E23EC002081F7 /* bookshelf.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		8F4116B61671665300B657CE = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +104,7 @@
 		8F4116CB1671665400B657CE /* SignMeStory */ = {
 			isa = PBXGroup;
 			children = (
+				22AE72FC169E1E86002081F7 /* Images */,
 				8F4116D41671665400B657CE /* AppDelegate.h */,
 				8F4116D51671665400B657CE /* AppDelegate.m */,
 				8F4116DD1671665400B657CE /* MainStoryboard_iPhone.storyboard */,
@@ -182,6 +193,7 @@
 				8F4116DC1671665400B657CE /* Default-568h@2x.png in Resources */,
 				8F4116DF1671665400B657CE /* MainStoryboard_iPhone.storyboard in Resources */,
 				8F4116E21671665400B657CE /* MainStoryboard_iPad.storyboard in Resources */,
+				22AE72FE169E23EC002081F7 /* bookshelf.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +336,7 @@
 				8F4116EA1671665400B657CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

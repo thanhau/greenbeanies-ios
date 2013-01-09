@@ -36,18 +36,22 @@
     [self.view addSubview: [self bookShelf]];
 }
 
+/*
+ We might have to recode this section to accomadate a Collection View
+*/
 - (UIView *) bookShelf {
     UIView *shelf = [[UIView alloc] init];
-    [shelf setBackgroundColor: [UIColor blackColor]];
+    //Adds the shelf background image
+    shelf.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bookshelf.png"]];
     [shelf setFrame: self.view.bounds];
     NSMutableArray *bookButtons = [[NSMutableArray alloc] init];
     UIColor *c = [[UIColor alloc] initWithRed:.5 green:.5 blue:.5 alpha:.5];
     int x_space = 15;
-    int y_space = 10;
+    int y_space = 17;
     int book_w = 50;
     int book_h = 65;
     int x_pos = 0;
-    int y_pos = 0;
+    int y_pos = 30;
     
     for (int i = 0; i < [self.bookViewControllers count]; i++) {
         x_pos += x_space;
