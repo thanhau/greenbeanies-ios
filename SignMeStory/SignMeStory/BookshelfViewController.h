@@ -14,5 +14,4 @@
 @property (nonatomic, strong, retain) UIViewController *currentViewController;
 @property (nonatomic, strong, retain) NSMutableArray *bookViewControllers;
 
-- (void) addBook: (StoryBookViewController *) newBook;
 @end

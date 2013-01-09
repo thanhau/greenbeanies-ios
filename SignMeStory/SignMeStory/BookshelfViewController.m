@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -26,26 +26,56 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.bookViewControllers = [[NSMutableArray alloc] init];
+
     for (int i = 0; i < 10; i++) {
-        StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksDB: [NSString stringWithFormat: @"Book %d", i]];
+        StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksDB: [NSString stringWithFormat: @"Test %d", i]];
         [aNewBook.view setFrame: self.view.bounds];
-        [self addBook: aNewBook];
         [self.bookViewControllers addObject:aNewBook];
-        [self addChildViewController: aNewBook];
-        [aNewBook didMoveToParentViewController:self];
     }
+    [self.view addSubview: [self bookShelf]];
+}
+
+- (UIView *) bookShelf {
+    UIView *shelf = [[UIView alloc] init];
+    [shelf setBackgroundColor: [UIColor blackColor]];
+    [shelf setFrame: self.view.bounds];
+    NSMutableArray *bookButtons = [[NSMutableArray alloc] init];
+    UIColor *c = [[UIColor alloc] initWithRed:.5 green:.5 blue:.5 alpha:.5];
+    int x_space = 15;
+    int y_space = 10;
+    int book_w = 50;
+    int book_h = 65;
+    int x_pos = 0;
+    int y_pos = 0;
     
-    self.currentViewController = [self.bookViewControllers objectAtIndex:0];
-    [self.view addSubview: self.currentViewController.view];
+    for (int i = 0; i < [self.bookViewControllers count]; i++) {
+        x_pos += x_space;
+        UIButton *bookButton = [[UIButton alloc] initWithFrame:CGRectMake(x_pos, y_pos, book_w, book_h)];
+        x_pos += (book_w + x_space);
+        [bookButton setTitle: [NSString stringWithFormat: @"%d", i]
+                    forState: UIControlStateNormal];
+
+        if (x_pos + book_w + x_space >= self.view.frame.size.width) {
+            x_pos = 0;
+            y_pos += (book_h + y_space);
+        }
+        
+        [bookButton setBackgroundColor: c];
+        
+        [bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [bookButtons addObject:bookButton];
+        [shelf addSubview:bookButton];
+    }
+    return shelf;
 }
 
-- (void) addBook: (StoryBookViewController *) newBook {
-    [self.bookViewControllers addObject:newBook];
-}
+- (void) goToBook:(UIButton *) sender {
+    int bookID = [[[sender titleLabel] text] integerValue];
+    NSLog(@"Book %@ is selected", [[sender titleLabel] text]);
 
-
--(void) changeViewController: (int) bookID {
-   
+    [self presentViewController:[self.bookViewControllers objectAtIndex:bookID] animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
