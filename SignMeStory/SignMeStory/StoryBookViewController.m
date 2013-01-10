@@ -15,13 +15,20 @@
 @implementation StoryBookViewController
 @synthesize bookTitle;
 
+/*!
+ * @function initWithStoryBooksDB
+ * @abstract custom override initialization method
+ * @discussion It initialize all the instance and creates pages for this book.
+ * @return this view controller
+ */
 - (id) initWithStoryBooksDB: (NSString *) aBookTitle{
     self = [super init];
 
     self.bookTitle = aBookTitle;
-    // Custom initialization
     self.pageText = [[NSMutableArray alloc] init];
     
+    // creates text in the book page.
+    // this loop should be replace when actuall book pages are implemented
     for (int i = 0; i < 10; i ++) {
         [self.pageText addObject:[NSString stringWithFormat:@"This is page %d for Book %@", i, self.bookTitle ]];
     }
@@ -30,6 +37,7 @@
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:option];
     [self.pageViewController setDataSource:self];
     
+    // Begin the book with page index 0
     BookPageViewController *book = [self bookPageAtIndex:0];;
     NSArray *viewControllers = [NSArray arrayWithObject:book];
     
@@ -38,6 +46,8 @@
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
+    
+    // adding the exit button on the top left corner
     [self addExitButton];
     return self;
 }
@@ -51,17 +61,27 @@
     return self;
 }
 
+/*!
+ * @function addExitButton
+ * @abstract adding an exit button in the view so user can go back to bookshelf
+ * @discussion It creates button that exit current book and redirect to the bookshelf
+ */
 - (void) addExitButton {
     UIButton *exitButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
     [exitButton setTitle: [NSString stringWithFormat: @"Q"]
                 forState: UIControlStateNormal];
 
-    [exitButton setBackgroundColor: [UIColor whiteColor]];
+    [exitButton setBackgroundColor: [UIColor grayColor]];
     
     [exitButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: exitButton];
 }
 
+/*!
+ * @function quit
+ * @abstract quit current view
+ * @discussion dismiss current view controller, back to the bookshelf.
+ */
 -(void) quit {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -78,12 +98,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+// return the view controller represents the book at the index.
 - (BookPageViewController *)bookPageAtIndex: (NSUInteger ) index{
     BookPageViewController *bpVC = [[BookPageViewController alloc] init];
     [bpVC setPageText:[self.pageText objectAtIndex:index]];
     return bpVC;
 }
 
+// return the index of desired view controller
 - (NSUInteger) indexOfViewController: (BookPageViewController *) viewController {
     return [self.pageText indexOfObject:viewController.pageText];
 }
@@ -111,11 +133,16 @@
         return nil;
     }
     //Made it so that you can't flip from the last to the first page forwards
-    if (index == 9) {
+    if (index == [self.pageText count] - 1) {
         return nil;
     }
     index++;
     return [self bookPageAtIndex:index];
+}
+
+// force the orientation to landscape
+-(NSInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 @end
