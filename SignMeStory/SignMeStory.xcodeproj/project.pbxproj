@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		22AE72FE169E23EC002081F7 /* bookshelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE72FD169E23EC002081F7 /* bookshelf.png */; };
+		5291EF72169E4FC90081D3DE /* chatbubble2with text.png in Resources */ = {isa = PBXBuildFile; fileRef = 5291EF6A169E4FC90081D3DE /* chatbubble2with text.png */; };
+		5291EF73169E4FC90081D3DE /* greenarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5291EF6B169E4FC90081D3DE /* greenarrow.png */; };
+		5291EF74169E4FC90081D3DE /* story screen 1-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5291EF6D169E4FC90081D3DE /* story screen 1-1.jpg */; };
+		5291EF75169E4FC90081D3DE /* storyscreenshot1-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5291EF6E169E4FC90081D3DE /* storyscreenshot1-1.jpg */; };
+		5291EF76169E4FC90081D3DE /* screen 1 chat bubble and text.png in Resources */ = {isa = PBXBuildFile; fileRef = 5291EF6F169E4FC90081D3DE /* screen 1 chat bubble and text.png */; };
+		5291EF77169E4FC90081D3DE /* screen1chatbubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 5291EF70169E4FC90081D3DE /* screen1chatbubble.png */; };
+		5291EF78169E4FC90081D3DE /* storyboardscreen1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5291EF71169E4FC90081D3DE /* storyboardscreen1.png */; };
 		8F4116C61671665400B657CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C51671665400B657CE /* UIKit.framework */; };
 		8F4116C81671665400B657CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C71671665400B657CE /* Foundation.framework */; };
 		8F4116CA1671665400B657CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C91671665400B657CE /* CoreGraphics.framework */; };
@@ -27,6 +34,13 @@
 
 /* Begin PBXFileReference section */
 		22AE72FD169E23EC002081F7 /* bookshelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookshelf.png; sourceTree = "<group>"; };
+		5291EF6A169E4FC90081D3DE /* chatbubble2with text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatbubble2with text.png"; sourceTree = "<group>"; };
+		5291EF6B169E4FC90081D3DE /* greenarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenarrow.png; sourceTree = "<group>"; };
+		5291EF6D169E4FC90081D3DE /* story screen 1-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "story screen 1-1.jpg"; sourceTree = "<group>"; };
+		5291EF6E169E4FC90081D3DE /* storyscreenshot1-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "storyscreenshot1-1.jpg"; sourceTree = "<group>"; };
+		5291EF6F169E4FC90081D3DE /* screen 1 chat bubble and text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen 1 chat bubble and text.png"; sourceTree = "<group>"; };
+		5291EF70169E4FC90081D3DE /* screen1chatbubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen1chatbubble.png; sourceTree = "<group>"; };
+		5291EF71169E4FC90081D3DE /* storyboardscreen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = storyboardscreen1.png; sourceTree = "<group>"; };
 		8F4116C11671665400B657CE /* SignMeStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignMeStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4116C51671665400B657CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F4116C71671665400B657CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -74,6 +88,28 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		5291EF69169E4FC90081D3DE /* Story screen 1 */ = {
+			isa = PBXGroup;
+			children = (
+				5291EF6A169E4FC90081D3DE /* chatbubble2with text.png */,
+				5291EF6B169E4FC90081D3DE /* greenarrow.png */,
+				5291EF6C169E4FC90081D3DE /* how it should look like */,
+				5291EF6F169E4FC90081D3DE /* screen 1 chat bubble and text.png */,
+				5291EF70169E4FC90081D3DE /* screen1chatbubble.png */,
+				5291EF71169E4FC90081D3DE /* storyboardscreen1.png */,
+			);
+			path = "Story screen 1";
+			sourceTree = "<group>";
+		};
+		5291EF6C169E4FC90081D3DE /* how it should look like */ = {
+			isa = PBXGroup;
+			children = (
+				5291EF6D169E4FC90081D3DE /* story screen 1-1.jpg */,
+				5291EF6E169E4FC90081D3DE /* storyscreenshot1-1.jpg */,
+			);
+			path = "how it should look like";
+			sourceTree = "<group>";
+		};
 		8F4116B61671665300B657CE = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +153,7 @@
 				8F4116EC1671668E00B657CE /* StoryBookViewController.m */,
 				8F4116F11671670500B657CE /* BookPageViewController.h */,
 				8F4116F21671670500B657CE /* BookPageViewController.m */,
+				5291EF69169E4FC90081D3DE /* Story screen 1 */,
 				8F4116CC1671665400B657CE /* Supporting Files */,
 			);
 			path = SignMeStory;
@@ -194,6 +231,13 @@
 				8F4116DF1671665400B657CE /* MainStoryboard_iPhone.storyboard in Resources */,
 				8F4116E21671665400B657CE /* MainStoryboard_iPad.storyboard in Resources */,
 				22AE72FE169E23EC002081F7 /* bookshelf.png in Resources */,
+				5291EF72169E4FC90081D3DE /* chatbubble2with text.png in Resources */,
+				5291EF73169E4FC90081D3DE /* greenarrow.png in Resources */,
+				5291EF74169E4FC90081D3DE /* story screen 1-1.jpg in Resources */,
+				5291EF75169E4FC90081D3DE /* storyscreenshot1-1.jpg in Resources */,
+				5291EF76169E4FC90081D3DE /* screen 1 chat bubble and text.png in Resources */,
+				5291EF77169E4FC90081D3DE /* screen1chatbubble.png in Resources */,
+				5291EF78169E4FC90081D3DE /* storyboardscreen1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

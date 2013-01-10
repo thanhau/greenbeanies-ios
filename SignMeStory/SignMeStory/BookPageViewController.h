@@ -10,6 +10,8 @@
 
 @interface BookPageViewController : UIViewController
 @property (nonatomic) UILabel *pageTextLabel;
+@property (nonatomic) UIImageView * backgroundImage;
+
 
 @property (nonatomic, strong) NSString *pageText;
 
