@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSString *bookTitle;
 @property (nonatomic, retain) UIPageViewController *pageViewController;
 @property (nonatomic, strong) NSMutableArray *pageText;
+@property (nonatomic, strong) NSMutableArray *listOfBackgroundImageName;
+@property (nonatomic, strong) NSMutableArray *listOfBackgroundImage;
 
 - (id) initWithStoryBooksDB: (NSString *)bookTitle;
 

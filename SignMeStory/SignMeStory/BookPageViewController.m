@@ -14,6 +14,7 @@
 
 @implementation BookPageViewController
 @synthesize pageText;
+@synthesize backgroundImageView;
 @synthesize backgroundImage;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,14 +28,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImage *img = [UIImage imageNamed:@"storyboardscreen1.png"];
+    //UIImage *img = [UIImage imageNamed:@"storyboardscreen1.png"];
     UIImage *imgChatBubble = [UIImage imageNamed:@"screen1chatbubble.png"];
 
     // set page background
-    self.backgroundImage = [[UIImageView alloc]init];
-    [self.backgroundImage setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
-    [self.backgroundImage setImage:img];
-    [self.view addSubview:self.backgroundImage];
+    self.backgroundImageView = [[UIImageView alloc]init];
+    [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
+    [self.backgroundImageView setImage:self.backgroundImage];
+    [self.view addSubview:self.backgroundImageView];
     //NSLog(@"width = %f, height = %f",self.view.bounds.size.height,self.view.bounds.size.width);
     
     
@@ -43,7 +44,7 @@
     [self.pageTextLabel setTextAlignment:NSTextAlignmentCenter];
     [self.pageTextLabel setBackgroundColor: [UIColor redColor]];
     [self.pageTextLabel setTextColor:[UIColor whiteColor]];
-    [self.backgroundImage addSubview:self.pageTextLabel];
+    [self.backgroundImageView addSubview:self.pageTextLabel];
     [self.pageTextLabel setText:self.pageText];
     
     // redraw the image to fit |yourView|'s size

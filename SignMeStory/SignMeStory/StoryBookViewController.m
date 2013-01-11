@@ -26,11 +26,21 @@
 
     self.bookTitle = aBookTitle;
     self.pageText = [[NSMutableArray alloc] init];
+    self.listOfBackgroundImageName = [[NSMutableArray alloc] initWithObjects:@"storyboardscreen1.png",@"screen2-1henryandcecewithbackground.png",@"screen3-1background+henryandcece.png",@"storyboard4background.png", nil];
+    NSLog(@"%i",[self.listOfBackgroundImageName count]);
+    self.listOfBackgroundImage = [[NSMutableArray alloc] initWithCapacity:[self.listOfBackgroundImageName count]];
     
     // creates text in the book page.
     // this loop should be replace when actuall book pages are implemented
-    for (int i = 0; i < 10; i ++) {
+    for (int i = 0; i < 4; i ++) {
         [self.pageText addObject:[NSString stringWithFormat:@"This is page %d for Book %@", i, self.bookTitle ]];
+    }
+    
+    // create background image in book page.
+    for (int i = 0 ; i < [self.listOfBackgroundImageName count]; i++) {
+       
+        UIImage *img = [UIImage imageNamed:[self.listOfBackgroundImageName objectAtIndex:i]];
+        [self.listOfBackgroundImage addObject:img];
     }
     
     NSDictionary *option = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin] forKey:UIPageViewControllerOptionSpineLocationKey];
@@ -102,6 +112,9 @@
 - (BookPageViewController *)bookPageAtIndex: (NSUInteger ) index{
     BookPageViewController *bpVC = [[BookPageViewController alloc] init];
     [bpVC setPageText:[self.pageText objectAtIndex:index]];
+    
+    
+    [bpVC setBackgroundImage:[self.listOfBackgroundImage objectAtIndex:index]];
     return bpVC;
 }
 
