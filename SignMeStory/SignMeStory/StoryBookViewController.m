@@ -22,7 +22,12 @@
  * @return this view controller
  */
 - (id) initWithStoryBooksDB: (NSString *) aBookTitle{
-    self = [super init];
+    NSURL *url  = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/GreenbeaniesParagraph1.txt",[[NSBundle mainBundle] resourcePath]]];
+    
+    NSError *err;
+    NSString *urlString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
+    NSLog(@"%@",urlString);
+        self = [super init];
 
     self.bookTitle = aBookTitle;
     self.pageText = [[NSMutableArray alloc] init];
@@ -33,7 +38,8 @@
     // creates text in the book page.
     // this loop should be replace when actuall book pages are implemented
     for (int i = 0; i < 4; i ++) {
-        [self.pageText addObject:[NSString stringWithFormat:@"This is page %d for Book %@", i, self.bookTitle ]];
+        //[self.pageText addObject:[NSString stringWithFormat:@"This is page %d for Book %@", i, self.bookTitle ]];
+        [self.pageText addObject:urlString];
     }
     
     // create background image in book page.

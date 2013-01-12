@@ -41,7 +41,7 @@
     
     [self.view setBackgroundColor:[UIColor redColor]];
     self.pageTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
-    [self.pageTextLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.pageTextLabel setTextAlignment:NSTextAlignmentLeft];
     [self.pageTextLabel setBackgroundColor: [UIColor redColor]];
     [self.pageTextLabel setTextColor:[UIColor whiteColor]];
     [self.backgroundImageView addSubview:self.pageTextLabel];
