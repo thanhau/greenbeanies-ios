@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     
-    // Maybe we need some other way to do this.
+    // First page orientation issue
     // Remove this line of code will cause the first initial page's size (460, 320) different than we expected (480, 300).
     // Because the first page of the book is initialized in protratait, it deduct the width in landscape by the size of status bar.
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
