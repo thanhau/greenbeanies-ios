@@ -9,7 +9,9 @@
 #import "StoryBookViewController.h"
 
 @interface StoryBookViewController ()
-
+{
+    AVAudioPlayer *theAudio;
+}
 @end
 
 @implementation StoryBookViewController
@@ -26,8 +28,8 @@
     
     NSError *err;
     NSString *urlString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
-    NSLog(@"%@",urlString);
-        self = [super init];
+    
+    self = [super init];
 
     self.bookTitle = aBookTitle;
     self.pageText = [[NSMutableArray alloc] init];
@@ -65,6 +67,8 @@
     
     // adding the exit button on the top left corner
     [self addExitButton];
+    //add the play button
+    [self addPlayButton];
     return self;
 }
 
@@ -102,6 +106,52 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+/*!
+ * @function addPlayButton
+ * @abstract adding an play audio button in the view so user can play the audio
+ * @discussion It creates button that play audio
+ */
+- (void) addPlayButton {
+    UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 40, 30, 30)];
+    [playButton setTitle: [NSString stringWithFormat: @"P"]
+                forState: UIControlStateNormal];
+    
+    [playButton setBackgroundColor: [UIColor grayColor]];
+    
+    [playButton addTarget:self action:@selector(playAudio) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: playButton];
+   
+}
+
+/*!
+ * @function playAudio
+ * @abstract play audio for text
+ * @discussion play audio for text
+ */
+-(void)playAudio {
+    
+    //NSURL *url  = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/test1.mp3",[[NSBundle mainBundle] resourcePath]]];
+    
+    NSString *stringPath = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"M4A"];
+    NSURL *url = [NSURL fileURLWithPath:stringPath];
+    //NSURL *url = [ NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/test1.mp3", [[NSBundle mainBundle] resourcePath]]];
+    NSLog(@"%@",url);
+    NSError *error;
+    theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    theAudio.numberOfLoops = 0;
+    if (theAudio == nil)
+    {
+        NSLog(@"%@",[error description]);
+    }
+    else
+    {
+        [theAudio play];
+        NSLog(@"play");
+    }
+    
+    
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

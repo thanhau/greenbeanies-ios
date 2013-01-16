@@ -20,6 +20,10 @@
 		5291EF8C16A0861F0081D3DE /* screen2-1henryandcecewithbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 5291EF8816A0861F0081D3DE /* screen2-1henryandcecewithbackground.png */; };
 		5291EF8D16A0861F0081D3DE /* storyboard4background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5291EF8916A0861F0081D3DE /* storyboard4background.png */; };
 		5291EF9016A11CE90081D3DE /* GreenbeaniesParagraph1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5291EF8F16A11CE90081D3DE /* GreenbeaniesParagraph1.txt */; };
+		529E240B16A62992008D4830 /* test.M4A in Resources */ = {isa = PBXBuildFile; fileRef = 529E240A16A62992008D4830 /* test.M4A */; };
+		529E240D16A629AD008D4830 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529E240C16A629AD008D4830 /* AVFoundation.framework */; };
+		529E241216A62A58008D4830 /* BookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529E240F16A62A58008D4830 /* BookPageViewController.m */; };
+		529E241316A62A58008D4830 /* StoryBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529E241116A62A58008D4830 /* StoryBookViewController.m */; };
 		8F4116C61671665400B657CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C51671665400B657CE /* UIKit.framework */; };
 		8F4116C81671665400B657CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C71671665400B657CE /* Foundation.framework */; };
 		8F4116CA1671665400B657CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C91671665400B657CE /* CoreGraphics.framework */; };
@@ -32,9 +36,7 @@
 		8F4116DF1671665400B657CE /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F4116DD1671665400B657CE /* MainStoryboard_iPhone.storyboard */; };
 		8F4116E21671665400B657CE /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F4116E01671665400B657CE /* MainStoryboard_iPad.storyboard */; };
 		8F4116E51671665400B657CE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4116E41671665400B657CE /* ViewController.m */; };
-		8F4116ED1671668E00B657CE /* StoryBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4116EC1671668E00B657CE /* StoryBookViewController.m */; };
 		8F4116F0167166B100B657CE /* BookshelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4116EF167166B100B657CE /* BookshelfViewController.m */; };
-		8F4116F31671670600B657CE /* BookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4116F21671670500B657CE /* BookPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,12 @@
 		5291EF8816A0861F0081D3DE /* screen2-1henryandcecewithbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen2-1henryandcecewithbackground.png"; sourceTree = "<group>"; };
 		5291EF8916A0861F0081D3DE /* storyboard4background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = storyboard4background.png; sourceTree = "<group>"; };
 		5291EF8F16A11CE90081D3DE /* GreenbeaniesParagraph1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GreenbeaniesParagraph1.txt; sourceTree = "<group>"; };
+		529E240A16A62992008D4830 /* test.M4A */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.M4A; sourceTree = "<group>"; };
+		529E240C16A629AD008D4830 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		529E240E16A62A58008D4830 /* BookPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookPageViewController.h; sourceTree = "<group>"; };
+		529E240F16A62A58008D4830 /* BookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookPageViewController.m; sourceTree = "<group>"; };
+		529E241016A62A58008D4830 /* StoryBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryBookViewController.h; sourceTree = "<group>"; };
+		529E241116A62A58008D4830 /* StoryBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryBookViewController.m; sourceTree = "<group>"; };
 		8F4116C11671665400B657CE /* SignMeStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignMeStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4116C51671665400B657CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F4116C71671665400B657CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,12 +76,8 @@
 		8F4116E11671665400B657CE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		8F4116E31671665400B657CE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8F4116E41671665400B657CE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8F4116EB1671668E00B657CE /* StoryBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryBookViewController.h; sourceTree = "<group>"; };
-		8F4116EC1671668E00B657CE /* StoryBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryBookViewController.m; sourceTree = "<group>"; };
 		8F4116EE167166B100B657CE /* BookshelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookshelfViewController.h; sourceTree = "<group>"; };
 		8F4116EF167166B100B657CE /* BookshelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookshelfViewController.m; sourceTree = "<group>"; };
-		8F4116F11671670500B657CE /* BookPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookPageViewController.h; sourceTree = "<group>"; };
-		8F4116F21671670500B657CE /* BookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				529E240D16A629AD008D4830 /* AVFoundation.framework in Frameworks */,
 				8F4116C61671665400B657CE /* UIKit.framework in Frameworks */,
 				8F4116C81671665400B657CE /* Foundation.framework in Frameworks */,
 				8F4116CA1671665400B657CE /* CoreGraphics.framework in Frameworks */,
@@ -140,6 +145,14 @@
 			path = StoryText;
 			sourceTree = "<group>";
 		};
+		529E240916A62992008D4830 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				529E240A16A62992008D4830 /* test.M4A */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		8F4116B61671665300B657CE = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +173,7 @@
 		8F4116C41671665400B657CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				529E240C16A629AD008D4830 /* AVFoundation.framework */,
 				8F4116C51671665400B657CE /* UIKit.framework */,
 				8F4116C71671665400B657CE /* Foundation.framework */,
 				8F4116C91671665400B657CE /* CoreGraphics.framework */,
@@ -179,10 +193,11 @@
 				8F4116E41671665400B657CE /* ViewController.m */,
 				8F4116EE167166B100B657CE /* BookshelfViewController.h */,
 				8F4116EF167166B100B657CE /* BookshelfViewController.m */,
-				8F4116EB1671668E00B657CE /* StoryBookViewController.h */,
-				8F4116EC1671668E00B657CE /* StoryBookViewController.m */,
-				8F4116F11671670500B657CE /* BookPageViewController.h */,
-				8F4116F21671670500B657CE /* BookPageViewController.m */,
+				529E240E16A62A58008D4830 /* BookPageViewController.h */,
+				529E240F16A62A58008D4830 /* BookPageViewController.m */,
+				529E241016A62A58008D4830 /* StoryBookViewController.h */,
+				529E241116A62A58008D4830 /* StoryBookViewController.m */,
+				529E240916A62992008D4830 /* Audio */,
 				5291EF8E16A11CE90081D3DE /* StoryText */,
 				5291EF8516A0861F0081D3DE /* BackgroundImage */,
 				5291EF69169E4FC90081D3DE /* Story screen 1 */,
@@ -275,6 +290,7 @@
 				5291EF8C16A0861F0081D3DE /* screen2-1henryandcecewithbackground.png in Resources */,
 				5291EF8D16A0861F0081D3DE /* storyboard4background.png in Resources */,
 				5291EF9016A11CE90081D3DE /* GreenbeaniesParagraph1.txt in Resources */,
+				529E240B16A62992008D4830 /* test.M4A in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,9 +304,9 @@
 				8F4116D21671665400B657CE /* main.m in Sources */,
 				8F4116D61671665400B657CE /* AppDelegate.m in Sources */,
 				8F4116E51671665400B657CE /* ViewController.m in Sources */,
-				8F4116ED1671668E00B657CE /* StoryBookViewController.m in Sources */,
 				8F4116F0167166B100B657CE /* BookshelfViewController.m in Sources */,
-				8F4116F31671670600B657CE /* BookPageViewController.m in Sources */,
+				529E241216A62A58008D4830 /* BookPageViewController.m in Sources */,
+				529E241316A62A58008D4830 /* StoryBookViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

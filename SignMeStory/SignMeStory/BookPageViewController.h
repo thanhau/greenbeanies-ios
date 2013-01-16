@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface BookPageViewController : UIViewController
 @property (nonatomic) UILabel *pageTextLabel;
 @property (nonatomic) UIImageView * backgroundImageView;
 @property (nonatomic) UIImage *backgroundImage;
-
+@property (nonatomic) UITextView *textView;
 
 @property (nonatomic, strong) NSString *pageText;
+
 
 
 
