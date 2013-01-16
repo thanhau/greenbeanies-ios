@@ -9,9 +9,7 @@
 #import "StoryBookViewController.h"
 
 @interface StoryBookViewController ()
-{
-    AVAudioPlayer *theAudio;
-}
+
 @end
 
 @implementation StoryBookViewController
@@ -24,23 +22,29 @@
  * @return this view controller
  */
 - (id) initWithStoryBooksDB: (NSString *) aBookTitle{
-    NSURL *url  = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/GreenbeaniesParagraph1.txt",[[NSBundle mainBundle] resourcePath]]];
-    
-    NSError *err;
-    NSString *urlString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
+   
     
     self = [super init];
 
     self.bookTitle = aBookTitle;
     self.pageText = [[NSMutableArray alloc] init];
     self.listOfBackgroundImageName = [[NSMutableArray alloc] initWithObjects:@"storyboardscreen1.png",@"screen2-1henryandcecewithbackground.png",@"screen3-1background+henryandcece.png",@"storyboard4background.png", nil];
-    NSLog(@"%i",[self.listOfBackgroundImageName count]);
+    
+    self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1.txt",@"GreenbeaniesParagraph2.txt",@"GreenbeaniesParagraph3.txt",@"GreenbeaniesParagraph4.txt", nil];
+    
     self.listOfBackgroundImage = [[NSMutableArray alloc] initWithCapacity:[self.listOfBackgroundImageName count]];
     
     // creates text in the book page.
     // this loop should be replace when actuall book pages are implemented
     for (int i = 0; i < 4; i ++) {
+        
         //[self.pageText addObject:[NSString stringWithFormat:@"This is page %d for Book %@", i, self.bookTitle ]];
+        
+        NSURL *url  = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] resourcePath],[self.listOfStoryText objectAtIndex:i]]];
+        
+        NSError *err;
+        NSString *urlString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
+        
         [self.pageText addObject:urlString];
     }
     
@@ -67,8 +71,8 @@
     
     // adding the exit button on the top left corner
     [self addExitButton];
-    //add the play button
-    [self addPlayButton];
+    
+    
     return self;
 }
 
@@ -103,55 +107,10 @@
  * @discussion dismiss current view controller, back to the bookshelf.
  */
 -(void) quit {
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*!
- * @function addPlayButton
- * @abstract adding an play audio button in the view so user can play the audio
- * @discussion It creates button that play audio
- */
-- (void) addPlayButton {
-    UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 40, 30, 30)];
-    [playButton setTitle: [NSString stringWithFormat: @"P"]
-                forState: UIControlStateNormal];
-    
-    [playButton setBackgroundColor: [UIColor grayColor]];
-    
-    [playButton addTarget:self action:@selector(playAudio) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: playButton];
-   
-}
-
-/*!
- * @function playAudio
- * @abstract play audio for text
- * @discussion play audio for text
- */
--(void)playAudio {
-    
-    //NSURL *url  = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/test1.mp3",[[NSBundle mainBundle] resourcePath]]];
-    
-    NSString *stringPath = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"M4A"];
-    NSURL *url = [NSURL fileURLWithPath:stringPath];
-    //NSURL *url = [ NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/test1.mp3", [[NSBundle mainBundle] resourcePath]]];
-    NSLog(@"%@",url);
-    NSError *error;
-    theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-    theAudio.numberOfLoops = 0;
-    if (theAudio == nil)
-    {
-        NSLog(@"%@",[error description]);
-    }
-    else
-    {
-        [theAudio play];
-        NSLog(@"play");
-    }
-    
-    
-    
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -177,6 +136,7 @@
 // return the index of desired view controller
 - (NSUInteger) indexOfViewController: (BookPageViewController *) viewController {
     return [self.pageText indexOfObject:viewController.pageText];
+    
 }
 
 // flip the page to the previous page
@@ -198,6 +158,7 @@
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
     NSUInteger index = [self indexOfViewController:(BookPageViewController *)viewController];
+    
     if (index == NSNotFound) {
         return nil;
     }

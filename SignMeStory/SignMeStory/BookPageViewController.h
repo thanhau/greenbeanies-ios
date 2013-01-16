@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <AVFoundation/AVFoundation.h>
 
 @interface BookPageViewController : UIViewController
 @property (nonatomic) UILabel *pageTextLabel;

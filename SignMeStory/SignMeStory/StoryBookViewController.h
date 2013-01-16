@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
 #import "BookPageViewController.h"
 
 @interface StoryBookViewController : UIViewController <UIPageViewControllerDataSource> {
@@ -17,6 +16,7 @@
 @property (nonatomic, retain) UIPageViewController *pageViewController;
 @property (nonatomic, strong) NSMutableArray *pageText;
 @property (nonatomic, strong) NSMutableArray *listOfBackgroundImageName;
+@property (nonatomic, strong) NSMutableArray *listOfStoryText;
 @property (nonatomic, strong) NSMutableArray *listOfBackgroundImage;
 
 - (id) initWithStoryBooksDB: (NSString *)bookTitle;

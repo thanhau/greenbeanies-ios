@@ -24,6 +24,11 @@
 		529E240D16A629AD008D4830 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529E240C16A629AD008D4830 /* AVFoundation.framework */; };
 		529E241216A62A58008D4830 /* BookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529E240F16A62A58008D4830 /* BookPageViewController.m */; };
 		529E241316A62A58008D4830 /* StoryBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529E241116A62A58008D4830 /* StoryBookViewController.m */; };
+		529E241716A62B99008D4830 /* SignMeStoryDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 529E241616A62B99008D4830 /* SignMeStoryDB.m */; };
+		529E241916A74CF1008D4830 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 529E241816A74CF1008D4830 /* libsqlite3.dylib */; };
+		529E241E16A75BF5008D4830 /* GreenbeaniesParagraph3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 529E241B16A75BF5008D4830 /* GreenbeaniesParagraph3.txt */; };
+		529E241F16A75BF5008D4830 /* GreenbeaniesParagraph4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 529E241C16A75BF5008D4830 /* GreenbeaniesParagraph4.txt */; };
+		529E242316A763B0008D4830 /* GreenbeaniesParagraph2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 529E242216A763B0008D4830 /* GreenbeaniesParagraph2.txt */; };
 		8F4116C61671665400B657CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C51671665400B657CE /* UIKit.framework */; };
 		8F4116C81671665400B657CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C71671665400B657CE /* Foundation.framework */; };
 		8F4116CA1671665400B657CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C91671665400B657CE /* CoreGraphics.framework */; };
@@ -59,6 +64,12 @@
 		529E240F16A62A58008D4830 /* BookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookPageViewController.m; sourceTree = "<group>"; };
 		529E241016A62A58008D4830 /* StoryBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryBookViewController.h; sourceTree = "<group>"; };
 		529E241116A62A58008D4830 /* StoryBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryBookViewController.m; sourceTree = "<group>"; };
+		529E241516A62B99008D4830 /* SignMeStoryDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignMeStoryDB.h; sourceTree = "<group>"; };
+		529E241616A62B99008D4830 /* SignMeStoryDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignMeStoryDB.m; sourceTree = "<group>"; };
+		529E241816A74CF1008D4830 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		529E241B16A75BF5008D4830 /* GreenbeaniesParagraph3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GreenbeaniesParagraph3.txt; sourceTree = "<group>"; };
+		529E241C16A75BF5008D4830 /* GreenbeaniesParagraph4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GreenbeaniesParagraph4.txt; sourceTree = "<group>"; };
+		529E242216A763B0008D4830 /* GreenbeaniesParagraph2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GreenbeaniesParagraph2.txt; sourceTree = "<group>"; };
 		8F4116C11671665400B657CE /* SignMeStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignMeStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4116C51671665400B657CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F4116C71671665400B657CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				529E241916A74CF1008D4830 /* libsqlite3.dylib in Frameworks */,
 				529E240D16A629AD008D4830 /* AVFoundation.framework in Frameworks */,
 				8F4116C61671665400B657CE /* UIKit.framework in Frameworks */,
 				8F4116C81671665400B657CE /* Foundation.framework in Frameworks */,
@@ -140,6 +152,9 @@
 		5291EF8E16A11CE90081D3DE /* StoryText */ = {
 			isa = PBXGroup;
 			children = (
+				529E242216A763B0008D4830 /* GreenbeaniesParagraph2.txt */,
+				529E241B16A75BF5008D4830 /* GreenbeaniesParagraph3.txt */,
+				529E241C16A75BF5008D4830 /* GreenbeaniesParagraph4.txt */,
 				5291EF8F16A11CE90081D3DE /* GreenbeaniesParagraph1.txt */,
 			);
 			path = StoryText;
@@ -151,6 +166,15 @@
 				529E240A16A62992008D4830 /* test.M4A */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		529E241416A62B99008D4830 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				529E241516A62B99008D4830 /* SignMeStoryDB.h */,
+				529E241616A62B99008D4830 /* SignMeStoryDB.m */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		8F4116B61671665300B657CE = {
@@ -173,6 +197,7 @@
 		8F4116C41671665400B657CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				529E241816A74CF1008D4830 /* libsqlite3.dylib */,
 				529E240C16A629AD008D4830 /* AVFoundation.framework */,
 				8F4116C51671665400B657CE /* UIKit.framework */,
 				8F4116C71671665400B657CE /* Foundation.framework */,
@@ -184,6 +209,7 @@
 		8F4116CB1671665400B657CE /* SignMeStory */ = {
 			isa = PBXGroup;
 			children = (
+				529E241416A62B99008D4830 /* Database */,
 				22AE72FC169E1E86002081F7 /* Images */,
 				8F4116D41671665400B657CE /* AppDelegate.h */,
 				8F4116D51671665400B657CE /* AppDelegate.m */,
@@ -291,6 +317,9 @@
 				5291EF8D16A0861F0081D3DE /* storyboard4background.png in Resources */,
 				5291EF9016A11CE90081D3DE /* GreenbeaniesParagraph1.txt in Resources */,
 				529E240B16A62992008D4830 /* test.M4A in Resources */,
+				529E241E16A75BF5008D4830 /* GreenbeaniesParagraph3.txt in Resources */,
+				529E241F16A75BF5008D4830 /* GreenbeaniesParagraph4.txt in Resources */,
+				529E242316A763B0008D4830 /* GreenbeaniesParagraph2.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +336,7 @@
 				8F4116F0167166B100B657CE /* BookshelfViewController.m in Sources */,
 				529E241216A62A58008D4830 /* BookPageViewController.m in Sources */,
 				529E241316A62A58008D4830 /* StoryBookViewController.m in Sources */,
+				529E241716A62B99008D4830 /* SignMeStoryDB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
