@@ -179,12 +179,13 @@
 // handling interruption at beginning
 -(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player
 {
-    [player stop];
+    [player pause];
 }
 
 // handling interruption at the end
 -(void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags
 {
+    
     [player play];
 
 }

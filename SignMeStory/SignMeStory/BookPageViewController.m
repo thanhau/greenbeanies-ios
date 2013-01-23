@@ -107,12 +107,12 @@
  * @discussion It creates button that pause audio
  */
 - (void) addPauseButton {
-    UIButton *pauseButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 75, 30, 30)];
-    [pauseButton setTitle: [NSString stringWithFormat: @"PA"]
-                forState: UIControlStateNormal];
+    UIImage *pauseImage = [UIImage imageNamed:@"pause.png"];
+    UIButton *pauseButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 + 35, self.backgroundImageView.frame.size.height - 45, 30, 30)];
+  
     
-    [pauseButton setBackgroundColor: [UIColor grayColor]];
     
+    [pauseButton setImage:pauseImage forState:UIControlStateNormal];
     
     [pauseButton addTarget:self action:@selector(pauseAudio) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: pauseButton];
@@ -138,12 +138,12 @@
  * @discussion It creates button that play audio
  */
 - (void) addPlayButton {
-    UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 40, 30, 30)];
-    [playButton setTitle: [NSString stringWithFormat: @"P"]
-                forState: UIControlStateNormal];
+    UIImage *playImage = [UIImage imageNamed:@"play.png"];
+    UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2, self.backgroundImageView.frame.size.height - 45, 30, 30)];
     
-    [playButton setBackgroundColor: [UIColor grayColor]];
     
+    
+    [playButton setImage:playImage forState:UIControlStateNormal];
     [playButton addTarget:self action:@selector(playAudio) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: playButton];
     
@@ -156,6 +156,7 @@
  */
 -(void)playAudio
 {
+    
     [theAudio play];
     NSLog(@"play");
 }
@@ -168,12 +169,11 @@
  * @discussion It creates button that play audio
  */
 - (void) addStopButton {
-    UIButton *stopButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 110, 30, 30)];
-    [stopButton setTitle: [NSString stringWithFormat: @"S"]
-                forState: UIControlStateNormal];
     
-    [stopButton setBackgroundColor: [UIColor grayColor]];
+    UIImage *stopImage = [UIImage imageNamed:@"stop.png"];
+    UIButton *stopButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 - 35, self.backgroundImageView.frame.size.height - 45, 30, 30)];
     
+    [stopButton setImage:stopImage forState:UIControlStateNormal];
     [stopButton addTarget:self action:@selector(stopAudio) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: stopButton];
     
