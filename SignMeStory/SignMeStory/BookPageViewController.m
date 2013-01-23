@@ -42,9 +42,10 @@
     [self.backgroundImageView setImage:self.backgroundImage];
     [self.view addSubview:self.backgroundImageView];
     
-    textBackground.frame = CGRectMake(self.view.frame.origin.x + 20, self.view.frame.origin.y + 10, 400, 400);
+    // set text frame
+    textBackground.frame = CGRectMake(self.view.frame.origin.x + 20, self.view.frame.origin.y - 50, 400, 700);
         
-    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(textBackground.frame.origin.x, textBackground.frame.origin.y, textBackground.frame.size.width, textBackground.frame.size.height)];
+    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x + 20, self.view.frame.origin.y + 60, textBackground.frame.size.width - 50, textBackground.frame.size.height - 100)];
     [self.textView setBackgroundColor:[UIColor clearColor]];
     [self.textView setTextColor:[UIColor whiteColor]];
     [self.textView setText:self.pageText];
@@ -89,6 +90,8 @@
     [self addPauseButton];
     [self addPlayButton];
     [self addStopButton];
+    
+    
 }
 
 
@@ -109,6 +112,7 @@
                 forState: UIControlStateNormal];
     
     [pauseButton setBackgroundColor: [UIColor grayColor]];
+    
     
     [pauseButton addTarget:self action:@selector(pauseAudio) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: pauseButton];

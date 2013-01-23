@@ -175,4 +175,28 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
+
+// handling interruption at beginning
+-(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player
+{
+    [player stop];
+}
+
+// handling interruption at the end
+-(void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags
+{
+    [player play];
+
+}
+
+// handling when audio fininsh playing
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    if (flag == TRUE)
+    {
+        int count = [self indexOfViewController: (BookPageViewController *)self.parentViewController];
+        NSLog(@"This page is %i", count);
+    }
+}
+
 @end

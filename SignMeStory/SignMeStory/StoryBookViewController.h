@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BookPageViewController.h"
 
-@interface StoryBookViewController : UIViewController <UIPageViewControllerDataSource> {
+@interface StoryBookViewController : UIViewController <UIPageViewControllerDataSource, AVAudioPlayerDelegate> {
     NSString *bookTitle;
 }
 @property (nonatomic, retain) NSString *bookTitle;
