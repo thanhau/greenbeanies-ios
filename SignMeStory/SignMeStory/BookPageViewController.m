@@ -32,8 +32,8 @@
 {
     [super viewDidLoad];
     //UIImage *img = [UIImage imageNamed:@"storyboardscreen1.png"];
-    UIImage *imgChatBubble = [UIImage imageNamed:@"screen1chatbubble.png"];
-    UIImageView *textBackground = [[UIImageView alloc]initWithImage:imgChatBubble];
+    //UIImage *imgChatBubble = [UIImage imageNamed:@"screen1chatbubble.png"];
+     UIImageView *textBackground = [[UIImageView alloc]init];
     
 
     // set page background
@@ -42,43 +42,46 @@
     [self.backgroundImageView setImage:self.backgroundImage];
     [self.view addSubview:self.backgroundImageView];
     
+    
+    // set text background
+    textBackground.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 400, 300);
+    
     // set text frame
-    textBackground.frame = CGRectMake(self.view.frame.origin.x + 20, self.view.frame.origin.y - 50, 400, 700);
-        
-    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x + 20, self.view.frame.origin.y + 60, textBackground.frame.size.width - 50, textBackground.frame.size.height - 100)];
+    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 300)];
+    [self.textView setFont: [UIFont fontWithName:@"System" size:14]];
     [self.textView setBackgroundColor:[UIColor clearColor]];
     [self.textView setTextColor:[UIColor whiteColor]];
     [self.textView setText:self.pageText];
+        
+    //NSUInteger numberOfLine = self.textView.contentSize.height / self.textView.font.lineHeight;
+
+    //NSLog(@"Lines %u",numberOfLine);
+    //[textBackground setFrame:CGRectMake(self.view.frame.origin.x + 40, self.view.frame.origin.y, 300, numberOfLine * 10)];
+    
+    //UIImage *img = [UIImage imageNamed:@"storyboardscreen1.png"];
+    UIImage *imgChatBubble = [UIImage imageNamed:@"Untitled-4.png"];
+    
+    
     [self.backgroundImageView addSubview:textBackground];
+    //[self.backgroundImageView addSubview:self.textView];
     
     [textBackground addSubview:self.textView];
-
-    /*
-    [self.view setBackgroundColor:[UIColor redColor]];
-    self.pageTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
-    [self.pageTextLabel setTextAlignment:NSTextAlignmentLeft];
-    [self.pageTextLabel setBackgroundColor: [UIColor redColor]];
-    [self.pageTextLabel setTextColor:[UIColor whiteColor]];
-    [self.backgroundImageView addSubview:self.pageTextLabel];
-    [self.pageTextLabel setText:self.pageText];
-     */
+    //[self.textView addSubview: textBackground];
     
+    //Change the size frame according to height of text
     CGRect frame = self.textView.frame;
     frame.size.height = self.textView.contentSize.height;
+    frame.size.width = self.textView.contentSize.width;
     self.textView.frame = frame;
     
     
-    /*
-    // redraw the image to fit |yourView|'s size
-    UIGraphicsBeginImageContextWithOptions(self.textView.frame.size, NO, 0);
-    [imgChatBubble drawInRect:CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width, self.textView.frame.size.height)]; //hardcoding for location will fix it later
+    CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
+    [textBackground setFrame: textBackgroundFrame];
     
-    UIImage * resultImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
     
-    [self.textView setBackgroundColor:[UIColor colorWithPatternImage:resultImage]];
-     */
+    [textBackground setImage:[self imageWithImage:imgChatBubble convertToSize:self.textView.frame.size]];
     
+        
     //Create the path contain location of audio file 
     NSString *stringPath = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"M4A"];
     NSURL *url = [NSURL fileURLWithPath:stringPath];
@@ -87,6 +90,7 @@
     //Create AVAudio Player with 
     theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     
+    //Add audio control button to the view
     [self addPauseButton];
     [self addPlayButton];
     [self addStopButton];
@@ -149,6 +153,18 @@
     
 }
 
+/*!
+ * @function resize the image
+ * @abstract resize the image
+ * @discussion resize the image
+ */
+- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
+}
 /*!
  * @function playAudio
  * @abstract play audio for text
