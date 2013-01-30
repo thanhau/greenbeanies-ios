@@ -19,6 +19,7 @@
 @synthesize backgroundImageView;
 @synthesize backgroundImage;
 @synthesize textView;
+@synthesize animationImage;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,7 +40,15 @@
     // set page background
     self.backgroundImageView = [[UIImageView alloc]init];
     [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
-    [self.backgroundImageView setImage:self.backgroundImage];
+    //[self.backgroundImageView setImage:self.backgroundImage];
+    [self.backgroundImageView setImage:[self.animationImage objectAtIndex:0]];
+    
+    self.backgroundImageView.animationImages = self.animationImage;
+    self.backgroundImageView.animationDuration = 1;
+    
+    self.backgroundImageView.animationRepeatCount = 1;
+    //[self.backgroundImageView startAnimating];
+    //NSLog(@"%@",self.animationImage);
     [self.view addSubview:self.backgroundImageView];
     
     
@@ -48,11 +57,17 @@
     
     // set text frame
     self.textView = [[UITextView alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 300)];
-    [self.textView setFont: [UIFont fontWithName:@"System" size:14]];
+    [self.textView setFont: [UIFont fontWithName:@"System" size:30]];
     [self.textView setBackgroundColor:[UIColor clearColor]];
-    [self.textView setTextColor:[UIColor whiteColor]];
+    [self.textView setTextColor:[UIColor blackColor]];
     [self.textView setText:self.pageText];
-        
+    
+    
+    [NSTimer scheduledTimerWithTimeInterval:5
+                                     target:self
+                                   selector:@selector(animation)
+                                   userInfo:nil
+                                    repeats:NO];
     //NSUInteger numberOfLine = self.textView.contentSize.height / self.textView.font.lineHeight;
 
     //NSLog(@"Lines %u",numberOfLine);
@@ -91,9 +106,9 @@
     theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     
     //Add audio control button to the view
-    [self addPauseButton];
-    [self addPlayButton];
-    [self addStopButton];
+    //[self addPauseButton];
+    //[self addPlayButton];
+    //[self addStopButton];
     
     
 }
@@ -105,6 +120,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*!
+ * @function animation
+ * @abstract animation 
+ * @discussion It creates animation from group of imgage 
+ */
+-(void) animation{
+    self.backgroundImageView.animationImages = self.animationImage;
+    self.backgroundImageView.animationDuration = 1;
+    
+    self.backgroundImageView.animationRepeatCount = 1;
+    [self.backgroundImageView startAnimating];
+    
+}
 /*!
  * @function addPauseButton
  * @abstract adding an pause audio button in the view so user can pause the audio
@@ -205,5 +233,6 @@
     [theAudio stop];
     NSLog(@"stop");
 }
+
 
 @end

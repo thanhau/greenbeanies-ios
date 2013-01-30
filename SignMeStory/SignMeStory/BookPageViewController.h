@@ -14,7 +14,7 @@
 @property (nonatomic) UIImageView * backgroundImageView;
 @property (nonatomic) UIImage *backgroundImage;
 @property (nonatomic) UITextView *textView;
-
+@property (nonatomic, strong) NSMutableArray *animationImage;
 @property (nonatomic, strong) NSString *pageText;
 
 

@@ -25,18 +25,74 @@
    
     
     self = [super init];
-
+    self.listOfAllAnimation = [[NSMutableArray alloc] init];
+    self.listOfAnimation = [[NSMutableArray alloc] init];
+    
+    //NSArray *listNameOfImage = [[NSArray alloc] initWithObjects:@"BusMoving",@"BusStopLeaving",@"CatJumping",@"CityView", nil];
+    NSArray *listNameOfImage = [[NSArray alloc] initWithObjects:@"CatJumping",@"CityView", nil];
+    for (int y = 0; y < 2; y++) {
+        NSMutableArray *listImage = [[NSMutableArray alloc] initWithCapacity:4];
+        for (int i = 1; i <= 4; i++)
+        {
+            
+            NSString *imgageName = [NSString stringWithFormat:@"%@%i.jpg",[listNameOfImage objectAtIndex:y],i];
+            
+            UIImage *img = [UIImage imageNamed:imgageName];
+            [listImage addObject:img];
+            
+        }
+        [self.listOfAllAnimation addObject:listImage];
+        
+    }
+    
+    /*
+    for (int y = 0; y < 2; y++) {
+        for (int i = 1; i <= 4; i++)
+        {
+            
+            NSString *imgageName = [NSString stringWithFormat:@"%@%i.png",[listNameOfImage objectAtIndex:y],i];
+            UIImage *img = [UIImage imageNamed:imgageName];
+            
+            if (img == nil)
+            {
+                NSLog(@"No image");
+            }
+            else
+            {
+                [self.listOfAnimation addObject:img];
+                NSLog(@"Have image");
+            }
+            
+        }
+        
+        //[self.listOfAllAnimation addObject:self.listOfAnimation];
+    }
+    for (int y = 2; y < 4; y++) {
+        for (int i = 1; i <= 4; i++)
+        {
+            
+            NSString *imgageName = [NSString stringWithFormat:@"%@%i.jpg",[listNameOfImage objectAtIndex:y],i];
+            
+            UIImage *img = [UIImage imageNamed:imgageName];
+            [self.listOfAnimation addObject:img];
+            
+        }
+        [self.listOfAllAnimation addObject:self.listOfAnimation];
+    }
+    //NSLog(@"%i",[self.listOfAllAnimation count]);
+    */
+    
     self.bookTitle = aBookTitle;
     self.pageText = [[NSMutableArray alloc] init];
     self.listOfBackgroundImageName = [[NSMutableArray alloc] initWithObjects:@"storyboardscreen1.png",@"screen2-1henryandcecewithbackground.png",@"screen3-1background+henryandcece.png",@"storyboard4background.png", nil];
     
-    self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1.txt",@"GreenbeaniesParagraph2.txt",@"GreenbeaniesParagraph3.txt",@"GreenbeaniesParagraph4.txt", nil];
-    
+    //self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1.txt",@"GreenbeaniesParagraph2.txt",@"GreenbeaniesParagraph3.txt",@"GreenbeaniesParagraph4.txt", nil];
+    self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1.txt",@"GreenbeaniesParagraph2.txt", nil];
     self.listOfBackgroundImage = [[NSMutableArray alloc] initWithCapacity:[self.listOfBackgroundImageName count]];
     
     // creates text in the book page.
     // this loop should be replace when actuall book pages are implemented
-    for (int i = 0; i < 4; i ++) {
+    for (int i = 0; i < 2; i ++) {
         
         //[self.pageText addObject:[NSString stringWithFormat:@"This is page %d for Book %@", i, self.bookTitle ]];
         
@@ -72,6 +128,12 @@
     // adding the exit button on the top left corner
     [self addExitButton];
     
+    // adding toolbar at bottom
+    [self addToolBar];
+            
+    
+        
+    
     
     return self;
 }
@@ -83,6 +145,55 @@
         
     }
     return self;
+}
+/*!
+ * @function create toolbar
+ * @abstract create toolbar for control the audio
+ * @discussion It creates toolbar that use can play, stop, pause the audio
+ */
+-(void) addToolBar
+{
+    // add tool bar
+    self.toolBar = [[UIToolbar alloc] init];
+    self.toolBar.frame = CGRectMake(0, self.view.frame.size.width - 44, self.view.frame.size.height, 44); // need to change the width according to orientation
+    // init the singe tap gesture
+    self.singeTap =  [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showToolbar)];
+    
+    self.singeTap.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:self.singeTap];
+    self.view.userInteractionEnabled = YES;
+    
+    [self.view addSubview:self.toolBar];
+   
+    //create space to aligment the toolbar item
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    //create play button
+    UIBarButtonItem *playButton =
+    [[UIBarButtonItem alloc]
+     initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+     target:self
+     action:@selector(play)];
+    
+    //create pause button
+    UIBarButtonItem *pauseButton =
+    [[UIBarButtonItem alloc]
+     initWithBarButtonSystemItem:UIBarButtonSystemItemPause
+     target: self
+     action:@selector(pause)];
+    
+    //create bar button
+    UIBarButtonItem *stopButton =
+    [[UIBarButtonItem alloc]
+     initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+     target: self
+     action:@selector(stop)];
+    
+    NSArray *buttons = [[NSArray alloc]
+                        initWithObjects:flexibleSpace,playButton, pauseButton,stopButton,flexibleSpace, nil];
+    
+    self.toolBar.items = buttons;
+
 }
 
 /*!
@@ -128,6 +239,7 @@
     BookPageViewController *bpVC = [[BookPageViewController alloc] init];
     [bpVC setPageText:[self.pageText objectAtIndex:index]];
     
+    [bpVC setAnimationImage:[self.listOfAllAnimation objectAtIndex:index]];
     
     [bpVC setBackgroundImage:[self.listOfBackgroundImage objectAtIndex:index]];
     return bpVC;
@@ -199,5 +311,76 @@
         NSLog(@"This page is %i", count);
     }
 }
+
+- (void)showToolbar
+{
+    NSLog(@"tap");
+    if (self.toolBar.hidden == YES) {
+        self.toolBar.hidden = NO;
+        /*
+        // Move the frame out of sight
+        CGRect frame = self.toolBar.frame;
+        frame.origin.y = -frame.size.height;
+        self.toolBar.frame = frame;
+        
+        // Display it nicely
+        self.toolBar.hidden = NO;
+        frame.origin.y = 0.0;
+        [self.view bringSubviewToFront:self.toolBar];
+        
+        [UIView animateWithDuration:0.3
+                         animations:^(void) {
+                             self.toolBar.frame = frame;
+                         }
+         ];
+         */
+        [self.toolBar setAlpha:1];
+    }
+    else if (self.toolBar.hidden == NO) {
+        
+        [UIView animateWithDuration:0.5
+                         animations:^(void) {
+                             [self.toolBar setAlpha:0];
+                         }
+                         completion:^(BOOL finished) {
+                             self.toolBar.hidden = YES;
+                         }
+         ];
+        
+    }
+}
+
+- (CGRect)frameForOrientation:(UIInterfaceOrientation)theOrientation
+{
+    UIScreen *screen = [UIScreen mainScreen];
+    CGRect fullScreenRect = screen.bounds;      // always implicitly in Portrait orientation.
+    CGRect appFrame = screen.applicationFrame;
+    
+    // Find status bar height by checking which dimension of the applicationFrame is narrower than screen bounds.
+    // Little bit ugly looking, but it'll still work even if they change the status bar height in future.
+    float statusBarHeight = MAX((fullScreenRect.size.width - appFrame.size.width), (fullScreenRect.size.height - appFrame.size.height));
+    
+    // Initially assume portrait orientation.
+    float width = fullScreenRect.size.width;
+    float height = fullScreenRect.size.height;
+    
+    // Correct for orientation.
+    if (UIInterfaceOrientationIsPortrait(theOrientation)) {
+        width = fullScreenRect.size.height;
+        height = fullScreenRect.size.width;
+    }
+    
+    // Account for status bar, which always subtracts from the height (since it's always at the top of the screen).
+    //height -= statusBarHeight;
+    
+    return CGRectMake(0, statusBarHeight, width, height);
+}
+
+- (CGSize)viewSizeForOrientation:(UIInterfaceOrientation)theOrientation
+{
+    CGRect frame = [self frameForOrientation:theOrientation];
+    return CGSizeMake(frame.size.width, frame.size.height);
+}
+
 
 @end
