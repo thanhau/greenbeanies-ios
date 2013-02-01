@@ -63,6 +63,7 @@
 		52ADCB1416B20BAD00868B08 /* BusMoving2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52ADCAF616B20BAB00868B08 /* BusMoving2.png */; };
 		52ADCB1516B20BAD00868B08 /* BusMoving3.png in Resources */ = {isa = PBXBuildFile; fileRef = 52ADCAF716B20BAC00868B08 /* BusMoving3.png */; };
 		52ADCB1616B20BAD00868B08 /* BusMoving1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52ADCAF816B20BAC00868B08 /* BusMoving1.png */; };
+		52DA636F16BB13F50079273E /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 52DA636E16BB13F50079273E /* test.html */; };
 		8F4116C61671665400B657CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C51671665400B657CE /* UIKit.framework */; };
 		8F4116C81671665400B657CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C71671665400B657CE /* Foundation.framework */; };
 		8F4116CA1671665400B657CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C91671665400B657CE /* CoreGraphics.framework */; };
@@ -138,6 +139,7 @@
 		52ADCAF616B20BAB00868B08 /* BusMoving2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BusMoving2.png; sourceTree = "<group>"; };
 		52ADCAF716B20BAC00868B08 /* BusMoving3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BusMoving3.png; sourceTree = "<group>"; };
 		52ADCAF816B20BAC00868B08 /* BusMoving1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BusMoving1.png; sourceTree = "<group>"; };
+		52DA636E16BB13F50079273E /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		8F4116C11671665400B657CE /* SignMeStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignMeStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4116C51671665400B657CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F4116C71671665400B657CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -311,6 +313,7 @@
 		8F4116CB1671665400B657CE /* SignMeStory */ = {
 			isa = PBXGroup;
 			children = (
+				52DA636E16BB13F50079273E /* test.html */,
 				529E241416A62B99008D4830 /* Database */,
 				22AE72FC169E1E86002081F7 /* Images */,
 				8F4116D41671665400B657CE /* AppDelegate.h */,
@@ -456,6 +459,7 @@
 				52ADCB1416B20BAD00868B08 /* BusMoving2.png in Resources */,
 				52ADCB1516B20BAD00868B08 /* BusMoving3.png in Resources */,
 				52ADCB1616B20BAD00868B08 /* BusMoving1.png in Resources */,
+				52DA636F16BB13F50079273E /* test.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

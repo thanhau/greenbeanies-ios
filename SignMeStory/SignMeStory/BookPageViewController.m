@@ -20,6 +20,7 @@
 @synthesize backgroundImage;
 @synthesize textView;
 @synthesize animationImage;
+@synthesize webView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -52,12 +53,23 @@
     [self.view addSubview:self.backgroundImageView];
     
     
+    
+    
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 300)];
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
+    NSString *htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    [self.webView loadHTMLString:htmlString baseURL:nil];
+    [self.webView setBackgroundColor:[UIColor clearColor]];
+    self.webView.opaque = NO;
+    
+    
+    
     // set text background
     textBackground.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 400, 300);
     
     // set text frame
     self.textView = [[UITextView alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 300)];
-    [self.textView setFont: [UIFont fontWithName:@"System" size:30]];
+    [self.textView setFont: [UIFont fontWithName:@"Arial" size:14]];
     [self.textView setBackgroundColor:[UIColor clearColor]];
     [self.textView setTextColor:[UIColor blackColor]];
     [self.textView setText:self.pageText];
@@ -81,9 +93,10 @@
     //[self.backgroundImageView addSubview:self.textView];
     
     [textBackground addSubview:self.textView];
-    //[self.textView addSubview: textBackground];
+    //[textBackground addSubview:self.webView];
     
     //Change the size frame according to height of text
+    
     CGRect frame = self.textView.frame;
     frame.size.height = self.textView.contentSize.height;
     frame.size.width = self.textView.contentSize.width;
@@ -102,7 +115,7 @@
     NSURL *url = [NSURL fileURLWithPath:stringPath];
     
     NSError *error;
-    //Create AVAudio Player with 
+    //Create AVAudio Player with
     theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     
     //Add audio control button to the view
@@ -110,7 +123,8 @@
     //[self addPlayButton];
     //[self addStopButton];
     
-    
+    // adding toolbar at bottom
+    [self addToolBar];
 }
 
 
@@ -233,6 +247,94 @@
     [theAudio stop];
     NSLog(@"stop");
 }
+/*!
+ * @function showToolBar
+ * @abstract show or hide the tool bar
+ * @discussion show or hide the tool bar when user click on it
+ */
+- (void)showToolbar
+{
+    NSLog(@"tap");
+    if (self.toolBar.hidden == YES) {
+        [UIView animateWithDuration:1
+                         animations:^(void) {
+                             [self.toolBar setAlpha:1];
+                         }
+                         completion:^(BOOL finished) {
+                             self.toolBar.hidden = NO;
+                             [self.view bringSubviewToFront:self.toolBar];
+                         }
+        ];
+                //[self.view bringSubviewToFront:self.toolBar];
+        
+    }
+    else if (self.toolBar.hidden == NO) {
+        
+        [UIView animateWithDuration:1
+                         animations:^(void) {
+                             [self.toolBar setAlpha:0];
+                         }
+                         completion:^(BOOL finished) {
+                             self.toolBar.hidden = YES;
+                         }
+         ];
+        
+    }
+}
 
+/*!
+ * @function create toolbar
+ * @abstract create toolbar for control the audio
+ * @discussion It creates toolbar that use can play, stop, pause the audio
+ */
+-(void) addToolBar
+{
+    // add tool bar
+    self.toolBar = [[UIToolbar alloc] init];
+    self.toolBar.frame = CGRectMake(0, self.view.frame.size.width - 44, self.view.frame.size.height, 44); // need to change the width according to orientation
+    // make toolbar transparent
+    [self.toolBar setBarStyle:UIBarStyleBlack];
+    self.toolBar.translucent = YES;
+    // init the singe tap gesture
+    self.singeTap =  [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showToolbar)];
+    
+    self.singeTap.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:self.singeTap];
+    self.view.userInteractionEnabled = YES;
+    //Canlce interference on click baritembutton
+    self.singeTap.cancelsTouchesInView = NO;
+    
+    [self.view addSubview:self.toolBar];
+    //create space to aligment the toolbar item
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    //create play button
+    UIBarButtonItem *playButton =
+    [[UIBarButtonItem alloc]
+     initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+     target:self
+     action:@selector(playAudio)];
+    
+    //create pause button
+    UIBarButtonItem *pauseButton =
+    [[UIBarButtonItem alloc]
+     initWithBarButtonSystemItem:UIBarButtonSystemItemPause
+     target: self
+     action:@selector(pauseAudio)];
+    
+    //create bar button
+    UIBarButtonItem *stopButton =
+    [[UIBarButtonItem alloc]
+     initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+     target: self
+     action:@selector(stopAudio)];
+    
+    NSArray *buttons = [[NSArray alloc]
+                        initWithObjects:flexibleSpace,playButton, pauseButton,stopButton,flexibleSpace, nil];
+    
+    self.toolBar.items = buttons;
+    
+    
+}
 
 @end

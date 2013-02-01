@@ -14,15 +14,15 @@
 }
 @property (nonatomic, retain) NSString *bookTitle;
 @property (nonatomic, retain) UIPageViewController *pageViewController;
-@property (strong, nonatomic) UIToolbar *toolBar;
+
 @property (nonatomic, strong) NSMutableArray *pageText;
 @property (nonatomic, strong) NSMutableArray *listOfBackgroundImageName;
 @property (nonatomic, strong) NSMutableArray *listOfStoryText;
 @property (nonatomic, strong) NSMutableArray *listOfBackgroundImage;
 @property (nonatomic, strong) NSMutableArray *listOfAllAnimation;
 @property (nonatomic, strong) NSMutableArray *listOfAnimation;
-@property (nonatomic, strong) UITapGestureRecognizer *singeTap;
-
+@property (nonatomic, weak) UITapGestureRecognizer *singeTap;
+@property (weak, nonatomic) UIToolbar *toolBar;
 - (id) initWithStoryBooksDB: (NSString *)bookTitle;
 
 @end
