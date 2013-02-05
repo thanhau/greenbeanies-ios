@@ -127,7 +127,7 @@
     [self.pageViewController didMoveToParentViewController:self];
     
     // adding the exit button on the top left corner
-    [self addExitButton];
+    //[self addExitButton];
     
     
             

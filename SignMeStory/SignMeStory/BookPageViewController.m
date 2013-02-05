@@ -69,7 +69,7 @@
     
     // set text frame
     self.textView = [[UITextView alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 300)];
-    [self.textView setFont: [UIFont fontWithName:@"Arial" size:14]];
+    [self.textView setFont: [UIFont fontWithName:@"Arial" size:20]];
     [self.textView setBackgroundColor:[UIColor clearColor]];
     [self.textView setTextColor:[UIColor blackColor]];
     [self.textView setText:self.pageText];
@@ -80,6 +80,8 @@
                                    selector:@selector(animation)
                                    userInfo:nil
                                     repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
+    
     //NSUInteger numberOfLine = self.textView.contentSize.height / self.textView.font.lineHeight;
 
     //NSLog(@"Lines %u",numberOfLine);
@@ -108,8 +110,9 @@
     
     
     [textBackground setImage:[self imageWithImage:imgChatBubble convertToSize:self.textView.frame.size]];
+    //[textBackground setBackgroundColor:[UIColor whiteColor]];
+    //textBackground.opaque = NO;
     
-        
     //Create the path contain location of audio file 
     NSString *stringPath = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"M4A"];
     NSURL *url = [NSURL fileURLWithPath:stringPath];
@@ -262,7 +265,7 @@
                          }
                          completion:^(BOOL finished) {
                              self.toolBar.hidden = NO;
-                             [self.view bringSubviewToFront:self.toolBar];
+                             [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
                          }
         ];
                 //[self.view bringSubviewToFront:self.toolBar];
@@ -280,6 +283,28 @@
          ];
         
     }
+}
+
+/*!
+ * @function auto hide toolbar
+ * @abstract auto hide toolbar for control the audio
+ * @discussion It hide toolbar automaticly 
+ */
+-(void) autoHideToolBar
+{
+    if (self.toolBar.hidden == NO) {
+        
+        [UIView animateWithDuration:1
+                         animations:^(void) {
+                             [self.toolBar setAlpha:0];
+                         }
+                         completion:^(BOOL finished) {
+                             self.toolBar.hidden = YES;
+                         }
+         ];
+        
+    }
+
 }
 
 /*!
@@ -329,12 +354,25 @@
      target: self
      action:@selector(stopAudio)];
     
+    //create quit button
+    UIBarButtonItem *quitButton = [[UIBarButtonItem alloc] initWithTitle:@"Q" style:UIBarButtonItemStylePlain target:self action:@selector(quit)];
     NSArray *buttons = [[NSArray alloc]
-                        initWithObjects:flexibleSpace,playButton, pauseButton,stopButton,flexibleSpace, nil];
+                        initWithObjects:quitButton,flexibleSpace,playButton, pauseButton,stopButton,flexibleSpace, nil];
     
     self.toolBar.items = buttons;
     
     
+}
+
+
+/*!
+ * @function quit
+ * @abstract quit current view
+ * @discussion dismiss current view controller, back to the bookshelf.
+ */
+-(void) quit {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
