@@ -64,6 +64,13 @@
 		52ADCB1516B20BAD00868B08 /* BusMoving3.png in Resources */ = {isa = PBXBuildFile; fileRef = 52ADCAF716B20BAC00868B08 /* BusMoving3.png */; };
 		52ADCB1616B20BAD00868B08 /* BusMoving1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52ADCAF816B20BAC00868B08 /* BusMoving1.png */; };
 		52DA636F16BB13F50079273E /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 52DA636E16BB13F50079273E /* test.html */; };
+		52DA637316C1D7970079273E /* GreenbeaniesParagraph1-1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52DA637116C1D7970079273E /* GreenbeaniesParagraph1-1.txt */; };
+		52DA637416C1D7970079273E /* GreenbeaniesParagraph1-2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52DA637216C1D7970079273E /* GreenbeaniesParagraph1-2.txt */; };
+		52DA637816C1DF020079273E /* GreenbeaniesParagraph2-1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52DA637516C1DF020079273E /* GreenbeaniesParagraph2-1.txt */; };
+		52DA637916C1DF020079273E /* GreenbeaniesParagraph2-2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52DA637616C1DF020079273E /* GreenbeaniesParagraph2-2.txt */; };
+		52DA637A16C1DF020079273E /* GreenbeaniesParagraph2-3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52DA637716C1DF020079273E /* GreenbeaniesParagraph2-3.txt */; };
+		52DA637D16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52DA637B16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt */; };
+		52DA637E16C1E3DA0079273E /* GreenbeaniesParagraph1-4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52DA637C16C1E3DA0079273E /* GreenbeaniesParagraph1-4.txt */; };
 		8F4116C61671665400B657CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C51671665400B657CE /* UIKit.framework */; };
 		8F4116C81671665400B657CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C71671665400B657CE /* Foundation.framework */; };
 		8F4116CA1671665400B657CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C91671665400B657CE /* CoreGraphics.framework */; };
@@ -140,6 +147,13 @@
 		52ADCAF716B20BAC00868B08 /* BusMoving3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BusMoving3.png; sourceTree = "<group>"; };
 		52ADCAF816B20BAC00868B08 /* BusMoving1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BusMoving1.png; sourceTree = "<group>"; };
 		52DA636E16BB13F50079273E /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
+		52DA637116C1D7970079273E /* GreenbeaniesParagraph1-1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GreenbeaniesParagraph1-1.txt"; sourceTree = "<group>"; };
+		52DA637216C1D7970079273E /* GreenbeaniesParagraph1-2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GreenbeaniesParagraph1-2.txt"; sourceTree = "<group>"; };
+		52DA637516C1DF020079273E /* GreenbeaniesParagraph2-1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GreenbeaniesParagraph2-1.txt"; sourceTree = "<group>"; };
+		52DA637616C1DF020079273E /* GreenbeaniesParagraph2-2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GreenbeaniesParagraph2-2.txt"; sourceTree = "<group>"; };
+		52DA637716C1DF020079273E /* GreenbeaniesParagraph2-3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GreenbeaniesParagraph2-3.txt"; sourceTree = "<group>"; };
+		52DA637B16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GreenbeaniesParagraph1-3.txt"; sourceTree = "<group>"; };
+		52DA637C16C1E3DA0079273E /* GreenbeaniesParagraph1-4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GreenbeaniesParagraph1-4.txt"; sourceTree = "<group>"; };
 		8F4116C11671665400B657CE /* SignMeStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignMeStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4116C51671665400B657CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F4116C71671665400B657CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -256,6 +270,13 @@
 		5291EF8E16A11CE90081D3DE /* StoryText */ = {
 			isa = PBXGroup;
 			children = (
+				52DA637B16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt */,
+				52DA637C16C1E3DA0079273E /* GreenbeaniesParagraph1-4.txt */,
+				52DA637516C1DF020079273E /* GreenbeaniesParagraph2-1.txt */,
+				52DA637616C1DF020079273E /* GreenbeaniesParagraph2-2.txt */,
+				52DA637716C1DF020079273E /* GreenbeaniesParagraph2-3.txt */,
+				52DA637116C1D7970079273E /* GreenbeaniesParagraph1-1.txt */,
+				52DA637216C1D7970079273E /* GreenbeaniesParagraph1-2.txt */,
 				529E242216A763B0008D4830 /* GreenbeaniesParagraph2.txt */,
 				529E241B16A75BF5008D4830 /* GreenbeaniesParagraph3.txt */,
 				529E241C16A75BF5008D4830 /* GreenbeaniesParagraph4.txt */,
@@ -460,6 +481,13 @@
 				52ADCB1516B20BAD00868B08 /* BusMoving3.png in Resources */,
 				52ADCB1616B20BAD00868B08 /* BusMoving1.png in Resources */,
 				52DA636F16BB13F50079273E /* test.html in Resources */,
+				52DA637316C1D7970079273E /* GreenbeaniesParagraph1-1.txt in Resources */,
+				52DA637416C1D7970079273E /* GreenbeaniesParagraph1-2.txt in Resources */,
+				52DA637816C1DF020079273E /* GreenbeaniesParagraph2-1.txt in Resources */,
+				52DA637916C1DF020079273E /* GreenbeaniesParagraph2-2.txt in Resources */,
+				52DA637A16C1DF020079273E /* GreenbeaniesParagraph2-3.txt in Resources */,
+				52DA637D16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt in Resources */,
+				52DA637E16C1E3DA0079273E /* GreenbeaniesParagraph1-4.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

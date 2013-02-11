@@ -27,7 +27,8 @@
     self = [super init];
     self.listOfAllAnimation = [[NSMutableArray alloc] init];
     self.listOfAnimation = [[NSMutableArray alloc] init];
-    
+    self.listOfNameForAllPage = [[NSMutableArray alloc]init];
+    self.listOfTextForAllPage = [[NSMutableArray alloc]init];
     
     //NSArray *listNameOfImage = [[NSArray alloc] initWithObjects:@"BusMoving",@"BusStopLeaving",@"CatJumping",@"CityView", nil];
     NSArray *listNameOfImage = [[NSArray alloc] initWithObjects:@"CatJumping",@"CityView", nil];
@@ -45,8 +46,8 @@
         [self.listOfAllAnimation addObject:listImage];
         
     }
-    
-    /*
+    [self createListNameForPage];
+        /*
     for (int y = 0; y < 2; y++) {
         for (int i = 1; i <= 4; i++)
         {
@@ -88,23 +89,31 @@
     self.listOfBackgroundImageName = [[NSMutableArray alloc] initWithObjects:@"storyboardscreen1.png",@"screen2-1henryandcecewithbackground.png",@"screen3-1background+henryandcece.png",@"storyboard4background.png", nil];
     
     //self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1.txt",@"GreenbeaniesParagraph2.txt",@"GreenbeaniesParagraph3.txt",@"GreenbeaniesParagraph4.txt", nil];
-    self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1.txt",@"GreenbeaniesParagraph2.txt", nil];
+    self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1-1.txt",@"GreenbeaniesParagraph2-1.txt", nil];
     self.listOfBackgroundImage = [[NSMutableArray alloc] initWithCapacity:[self.listOfBackgroundImageName count]];
     
     // creates text in the book page.
     // this loop should be replace when actuall book pages are implemented
-    for (int i = 0; i < 2; i ++) {
-        
+    for (int i = 0; i < [self.listOfNameForAllPage count]; i ++) {
+        NSMutableArray *listOfTextForPage = [[NSMutableArray alloc]init];
         //[self.pageText addObject:[NSString stringWithFormat:@"This is page %d for Book %@", i, self.bookTitle ]];
-        
-        NSURL *url  = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] resourcePath],[self.listOfStoryText objectAtIndex:i]]];
-        
-        NSError *err;
-        NSString *urlString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
-        
-        [self.pageText addObject:urlString];
+        for (int x = 0; x < [[self.listOfNameForAllPage objectAtIndex:i ] count]; x++) {
+            //NSLog(@"%@",[[self.listOfNameForAllPage objectAtIndex:i] objectAtIndex:x]);
+            NSURL *url  = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] resourcePath],[[self.listOfNameForAllPage objectAtIndex:i] objectAtIndex:x]]];
+            
+            NSError *err;
+            NSString *contentString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
+            //NSLog(@"%@",urlString);
+            [listOfTextForPage addObject:contentString];
+            //[self.pageText addObject:urlString];
+        }
+            [self.listOfTextForAllPage addObject:listOfTextForPage];
+
     }
-    
+    for (int i = 0; i < [self.listOfTextForAllPage count];i++)
+    {
+        [self.pageText addObject:[[self.listOfTextForAllPage objectAtIndex:i] objectAtIndex:0]];
+    }
     // create background image in book page.
     for (int i = 0 ; i < [self.listOfBackgroundImageName count]; i++) {
        
@@ -146,7 +155,27 @@
     }
     return self;
 }
+/*!
+ * @function createListNameForPage
+ * @abstract create list of name of text for getting content
+ * @discussion It creates a list name of text which we get content from
+ */
+-(void)createListNameForPage
+{
+    
+    NSArray *numberOfTextForEachPage = [[NSArray alloc]initWithObjects:[NSNumber numberWithInt:4],[NSNumber numberWithInt:3], nil];
+    
+    for (int y = 0; y < [numberOfTextForEachPage count]; y++) {
+        int numberOfTextForPage = [[numberOfTextForEachPage objectAtIndex:y]intValue];
+        NSMutableArray *listOfTextNameForEachPage = [[NSMutableArray alloc]initWithCapacity:numberOfTextForPage];
+        for (int i = 1; i <= numberOfTextForPage; i++) {
+            NSString *stringName = [NSString stringWithFormat:@"GreenbeaniesParagraph%i-%i.txt",y+1,i];
+            [listOfTextNameForEachPage addObject:stringName];
+        }
+        [self.listOfNameForAllPage addObject:listOfTextNameForEachPage];
+    }
 
+}
 /*!
  * @function addExitButton
  * @abstract adding an exit button in the view so user can go back to bookshelf
@@ -191,14 +220,19 @@
     [bpVC setPageText:[self.pageText objectAtIndex:index]];
     
     [bpVC setAnimationImage:[self.listOfAllAnimation objectAtIndex:index]];
-    
+    //NSLog(@"%i",index);
+    //NSLog(@"%@",[self.listOfTextForAllPage objectAtIndex:index]);
+    [bpVC setListOfText:[self.listOfTextForAllPage objectAtIndex:index]];
     [bpVC setBackgroundImage:[self.listOfBackgroundImage objectAtIndex:index]];
     return bpVC;
 }
 
 // return the index of desired view controller
 - (NSUInteger) indexOfViewController: (BookPageViewController *) viewController {
+    //[viewController.listOfText objectAtIndex:0]
+    
     return [self.pageText indexOfObject:viewController.pageText];
+    
     
 }
 

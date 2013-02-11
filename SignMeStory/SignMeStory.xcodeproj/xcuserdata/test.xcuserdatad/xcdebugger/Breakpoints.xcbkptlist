@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/StoryBookViewController.m"
-         timestampString = "381359832.056987"
+         timestampString = "381963197.592869"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "98"
-         endingLineNumber = "98"
+         startingLineNumber = "99"
+         endingLineNumber = "99"
          landmarkName = "-initWithStoryBooksDB:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,13 +21,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/StoryBookViewController.m"
-         timestampString = "381359832.056987"
+         timestampString = "381963197.592869"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "100"
-         endingLineNumber = "100"
-         landmarkName = "-initWithStoryBooksDB:"
-         landmarkType = "5">
+         startingLineNumber = "111"
+         endingLineNumber = "111"
+         landmarkName = "@implementation StoryBookViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -41,6 +41,19 @@
          endingLineNumber = "25"
          landmarkName = "@implementation SignMeStoryDB"
          landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SignMeStory/StoryBookViewController.m"
+         timestampString = "381963197.592869"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "101"
+         endingLineNumber = "101"
+         landmarkName = "-initWithStoryBooksDB:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

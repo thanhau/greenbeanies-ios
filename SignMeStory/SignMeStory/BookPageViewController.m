@@ -11,6 +11,7 @@
 @interface BookPageViewController ()
 {
     AVAudioPlayer *theAudio;
+    
 }
 @end
 
@@ -21,6 +22,8 @@
 @synthesize textView;
 @synthesize animationImage;
 @synthesize webView;
+@synthesize positionOfText;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,19 +38,27 @@
     [super viewDidLoad];
     //UIImage *img = [UIImage imageNamed:@"storyboardscreen1.png"];
     //UIImage *imgChatBubble = [UIImage imageNamed:@"screen1chatbubble.png"];
-     UIImageView *textBackground = [[UIImageView alloc]init];
+     self.textBackground = [[UIImageView alloc]init];
     
 
+    self.positionOfText = 0;
+    
     // set page background
     self.backgroundImageView = [[UIImageView alloc]init];
     [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
     //[self.backgroundImageView setImage:self.backgroundImage];
+    
+    
     [self.backgroundImageView setImage:[self.animationImage objectAtIndex:0]];
+    if (self.animationImage != nil) {
+        self.backgroundImageView.animationImages = self.animationImage;
+        self.backgroundImageView.animationDuration = 1;
+        
+        self.backgroundImageView.animationRepeatCount = 1;
+    }
     
-    self.backgroundImageView.animationImages = self.animationImage;
-    self.backgroundImageView.animationDuration = 1;
     
-    self.backgroundImageView.animationRepeatCount = 1;
+   
     //[self.backgroundImageView startAnimating];
     //NSLog(@"%@",self.animationImage);
     [self.view addSubview:self.backgroundImageView];
@@ -65,14 +76,16 @@
     
     
     // set text background
-    textBackground.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 400, 300);
+    self.textBackground.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 400, 300);
     
     // set text frame
     self.textView = [[UITextView alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 300)];
     [self.textView setFont: [UIFont fontWithName:@"Arial" size:20]];
     [self.textView setBackgroundColor:[UIColor clearColor]];
     [self.textView setTextColor:[UIColor blackColor]];
+    //[self.textView setText:[self.listOfText objectAtIndex:0]];
     [self.textView setText:self.pageText];
+    [self.textView setDelegate:self];
     
     
     [NSTimer scheduledTimerWithTimeInterval:5
@@ -84,17 +97,14 @@
     
     //NSUInteger numberOfLine = self.textView.contentSize.height / self.textView.font.lineHeight;
 
-    //NSLog(@"Lines %u",numberOfLine);
-    //[textBackground setFrame:CGRectMake(self.view.frame.origin.x + 40, self.view.frame.origin.y, 300, numberOfLine * 10)];
     
-    //UIImage *img = [UIImage imageNamed:@"storyboardscreen1.png"];
     UIImage *imgChatBubble = [UIImage imageNamed:@"Untitled-4.png"];
     
     
-    [self.backgroundImageView addSubview:textBackground];
+    [self.backgroundImageView addSubview:self.textBackground];
     //[self.backgroundImageView addSubview:self.textView];
     
-    [textBackground addSubview:self.textView];
+    [self.textBackground addSubview:self.textView];
     //[textBackground addSubview:self.webView];
     
     //Change the size frame according to height of text
@@ -106,28 +116,27 @@
     
     
     CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
-    [textBackground setFrame: textBackgroundFrame];
+    [self.textBackground setFrame: textBackgroundFrame];
     
     
-    [textBackground setImage:[self imageWithImage:imgChatBubble convertToSize:self.textView.frame.size]];
+    [self.textBackground setImage:[self imageWithImage:imgChatBubble convertToSize:self.textView.frame.size]];
     //[textBackground setBackgroundColor:[UIColor whiteColor]];
     //textBackground.opaque = NO;
     
-    //Create the path contain location of audio file 
+    //Create the path contain location of audio file
     NSString *stringPath = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"M4A"];
     NSURL *url = [NSURL fileURLWithPath:stringPath];
     
     NSError *error;
     //Create AVAudio Player with
     theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-    
-    //Add audio control button to the view
-    //[self addPauseButton];
-    //[self addPlayButton];
-    //[self addStopButton];
-    
+    [theAudio setDelegate:self];
+    //adding arrow
+    [self addLeftButton];
+    [self addRightButton];
     // adding toolbar at bottom
     [self addToolBar];
+    
 }
 
 
@@ -150,6 +159,123 @@
     [self.backgroundImageView startAnimating];
     
 }
+
+/*!
+ * @function addLeftButton
+ * @abstract adding an left button in the view so user can go back to previous text
+ * @discussion It creates button that let user go back to previous text
+ */
+- (void) addLeftButton {
+    self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
+    UIImage *leftArrow = [UIImage imageNamed:@"greenarrow.png"];
+    
+    [self.leftButton setImage:leftArrow forState:UIControlStateNormal];
+    
+    
+    [self.leftButton addTarget:self action:@selector(goToPreviousText) forControlEvents:UIControlEventTouchUpInside];
+    self.singeTap.cancelsTouchesInView = NO;
+    self.leftButton.hidden = YES;
+    [self.view addSubview: self.leftButton];
+}
+
+
+/*!
+ * @function addRightButton
+ * @abstract adding an right button in the view so user can go back to previous text
+ * @discussion It creates button that let user go back to previous text
+ */
+- (void) addRightButton {
+    self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.height - 30, 5, 30, 30)];
+    UIImage *rightArrow = [UIImage imageNamed:@"greenarrow.png"];
+    
+    [self.rightButton setImage:rightArrow forState:UIControlStateNormal];
+    
+    
+    [self.rightButton addTarget:self action:@selector(goToNextText) forControlEvents:UIControlEventTouchUpInside];
+    self.singeTap.cancelsTouchesInView = NO;
+    [self.view addSubview: self.rightButton];
+}
+
+
+/*!
+ * @function goToNextText
+ * @abstract go to next text when user click on right button
+ * @discussion It go to next text when user click on right button
+ */
+-(void)goToNextText {
+    self.positionOfText = self.positionOfText + 1;
+    NSLog(@"%i",self.positionOfText);
+    NSLog(@"%i",[self.listOfText count]);
+    if (self.positionOfText < [self.listOfText count])
+    {
+       
+        
+        if (self.leftButton.hidden == YES)
+        {
+            self.leftButton.hidden = NO;
+        }
+        if (self.positionOfText == [self.listOfText count] - 1)
+        {
+            self.rightButton.hidden = YES;
+        }
+        [self.textView setText:[self.listOfText objectAtIndex:self.positionOfText]];
+        
+        CGRect frame = self.textView.frame;
+        frame.size.height = self.textView.contentSize.height;
+        frame.size.width = self.textView.contentSize.width;
+        self.textView.frame = frame;
+        
+        
+        CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
+        [self.textBackground setFrame: textBackgroundFrame];
+    }
+    else
+    {
+        self.rightButton.hidden = YES;
+    }
+}
+
+/*!
+ * @function goToPreviousText
+ * @abstract go to previous text when user click on left button
+ * @discussion It go to previous text when user click on left button
+ */
+-(void)goToPreviousText {
+    self.positionOfText = self.positionOfText - 1;
+    NSLog(@"%i",self.positionOfText);
+    NSLog(@"%i",[self.listOfText count]);
+    if (self.positionOfText >= 0)
+    {
+        if (self.rightButton.hidden == YES)
+        {
+            self.rightButton.hidden = NO;
+        }
+        if (self.positionOfText == 0)
+        {
+            self.leftButton.hidden = YES;
+        }
+        [self.textView setText:[self.listOfText objectAtIndex:self.positionOfText]];
+        //Change the size frame according to height of text
+        
+        CGRect frame = self.textView.frame;
+        frame.size.height = self.textView.contentSize.height;
+        frame.size.width = self.textView.contentSize.width;
+        self.textView.frame = frame;
+        
+        
+        CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
+        [self.textBackground setFrame: textBackgroundFrame];
+        
+        
+        
+    }
+    else
+    {
+        self.leftButton.hidden = YES;
+    }
+}
+
+
 /*!
  * @function addPauseButton
  * @abstract adding an pause audio button in the view so user can pause the audio
@@ -188,6 +314,7 @@
  */
 - (void) addPlayButton {
     UIImage *playImage = [UIImage imageNamed:@"play.png"];
+    
     UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2, self.backgroundImageView.frame.size.height - 45, 30, 30)];
     
     
@@ -373,6 +500,13 @@
 -(void) quit {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+       shouldReceiveTouch:(UITouch *)touch {
+    // Don't recognize taps in the buttons
+    return ((! [self.leftButton pointInside:[touch locationInView:self.leftButton] withEvent:nil]) &&
+            (! [self.rightButton pointInside:[touch locationInView:self.rightButton] withEvent:nil]));
 }
 
 @end
