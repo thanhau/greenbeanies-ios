@@ -71,6 +71,11 @@
 		52DA637A16C1DF020079273E /* GreenbeaniesParagraph2-3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52DA637716C1DF020079273E /* GreenbeaniesParagraph2-3.txt */; };
 		52DA637D16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52DA637B16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt */; };
 		52DA637E16C1E3DA0079273E /* GreenbeaniesParagraph1-4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52DA637C16C1E3DA0079273E /* GreenbeaniesParagraph1-4.txt */; };
+		52DA638516C976C80079273E /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 52DA638316C976C80079273E /* bubble.png */; };
+		52DA638616C976C80079273E /* greenarrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 52DA638416C976C80079273E /* greenarrowLeft.png */; };
+		52DA638816C9781D0079273E /* bubble2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52DA638716C9781D0079273E /* bubble2.png */; };
+		52DA638E16CADE270079273E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DA638D16CADE270079273E /* MediaPlayer.framework */; };
+		52DA639016CAE02B0079273E /* hat.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 52DA638F16CAE02A0079273E /* hat.mp4 */; };
 		8F4116C61671665400B657CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C51671665400B657CE /* UIKit.framework */; };
 		8F4116C81671665400B657CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C71671665400B657CE /* Foundation.framework */; };
 		8F4116CA1671665400B657CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C91671665400B657CE /* CoreGraphics.framework */; };
@@ -154,6 +159,11 @@
 		52DA637716C1DF020079273E /* GreenbeaniesParagraph2-3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GreenbeaniesParagraph2-3.txt"; sourceTree = "<group>"; };
 		52DA637B16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GreenbeaniesParagraph1-3.txt"; sourceTree = "<group>"; };
 		52DA637C16C1E3DA0079273E /* GreenbeaniesParagraph1-4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GreenbeaniesParagraph1-4.txt"; sourceTree = "<group>"; };
+		52DA638316C976C80079273E /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
+		52DA638416C976C80079273E /* greenarrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenarrowLeft.png; sourceTree = "<group>"; };
+		52DA638716C9781D0079273E /* bubble2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble2.png; sourceTree = "<group>"; };
+		52DA638D16CADE270079273E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		52DA638F16CAE02A0079273E /* hat.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hat.mp4; sourceTree = "<group>"; };
 		8F4116C11671665400B657CE /* SignMeStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignMeStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4116C51671665400B657CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F4116C71671665400B657CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -180,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52DA638E16CADE270079273E /* MediaPlayer.framework in Frameworks */,
 				529E241916A74CF1008D4830 /* libsqlite3.dylib in Frameworks */,
 				529E240D16A629AD008D4830 /* AVFoundation.framework in Frameworks */,
 				8F4116C61671665400B657CE /* UIKit.framework in Frameworks */,
@@ -236,6 +247,9 @@
 		5291EF69169E4FC90081D3DE /* Story screen 1 */ = {
 			isa = PBXGroup;
 			children = (
+				52DA638716C9781D0079273E /* bubble2.png */,
+				52DA638316C976C80079273E /* bubble.png */,
+				52DA638416C976C80079273E /* greenarrowLeft.png */,
 				5291EF6A169E4FC90081D3DE /* chatbubble2with text.png */,
 				5291EF6B169E4FC90081D3DE /* greenarrow.png */,
 				5291EF6C169E4FC90081D3DE /* how it should look like */,
@@ -270,10 +284,10 @@
 		5291EF8E16A11CE90081D3DE /* StoryText */ = {
 			isa = PBXGroup;
 			children = (
-				52DA637B16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt */,
 				52DA637C16C1E3DA0079273E /* GreenbeaniesParagraph1-4.txt */,
 				52DA637516C1DF020079273E /* GreenbeaniesParagraph2-1.txt */,
 				52DA637616C1DF020079273E /* GreenbeaniesParagraph2-2.txt */,
+				52DA637B16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt */,
 				52DA637716C1DF020079273E /* GreenbeaniesParagraph2-3.txt */,
 				52DA637116C1D7970079273E /* GreenbeaniesParagraph1-1.txt */,
 				52DA637216C1D7970079273E /* GreenbeaniesParagraph1-2.txt */,
@@ -322,6 +336,7 @@
 		8F4116C41671665400B657CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52DA638D16CADE270079273E /* MediaPlayer.framework */,
 				529E241816A74CF1008D4830 /* libsqlite3.dylib */,
 				529E240C16A629AD008D4830 /* AVFoundation.framework */,
 				8F4116C51671665400B657CE /* UIKit.framework */,
@@ -335,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				52DA636E16BB13F50079273E /* test.html */,
+				52DA638F16CAE02A0079273E /* hat.mp4 */,
 				529E241416A62B99008D4830 /* Database */,
 				22AE72FC169E1E86002081F7 /* Images */,
 				8F4116D41671665400B657CE /* AppDelegate.h */,
@@ -488,6 +504,10 @@
 				52DA637A16C1DF020079273E /* GreenbeaniesParagraph2-3.txt in Resources */,
 				52DA637D16C1E3DA0079273E /* GreenbeaniesParagraph1-3.txt in Resources */,
 				52DA637E16C1E3DA0079273E /* GreenbeaniesParagraph1-4.txt in Resources */,
+				52DA638516C976C80079273E /* bubble.png in Resources */,
+				52DA638616C976C80079273E /* greenarrowLeft.png in Resources */,
+				52DA638816C9781D0079273E /* bubble2.png in Resources */,
+				52DA639016CAE02B0079273E /* hat.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

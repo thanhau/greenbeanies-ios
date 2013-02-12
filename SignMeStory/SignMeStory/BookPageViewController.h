@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface BookPageViewController : UIViewController<AVAudioPlayerDelegate,UITextViewDelegate>
+@interface BookPageViewController : UIViewController<AVAudioPlayerDelegate,UITextViewDelegate,UIWebViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic) UILabel *pageTextLabel;
 @property (nonatomic) UIImageView * backgroundImageView;
 @property (nonatomic) UIImageView *textBackground;

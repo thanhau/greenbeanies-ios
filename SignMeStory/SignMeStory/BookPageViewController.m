@@ -11,6 +11,7 @@
 @interface BookPageViewController ()
 {
     AVAudioPlayer *theAudio;
+    MPMoviePlayerController *mpc;
     
 }
 @end
@@ -66,12 +67,15 @@
     
     
     
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 300)];
-    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
-    NSString *htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 50)];
+    //NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
+    //NSString *htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:0] ];
     [self.webView loadHTMLString:htmlString baseURL:nil];
     [self.webView setBackgroundColor:[UIColor clearColor]];
+    
     self.webView.opaque = NO;
+    [self.webView setDelegate:self];
     
     
     
@@ -98,24 +102,30 @@
     //NSUInteger numberOfLine = self.textView.contentSize.height / self.textView.font.lineHeight;
 
     
-    UIImage *imgChatBubble = [UIImage imageNamed:@"Untitled-4.png"];
+    UIImage *imgChatBubble = [UIImage imageNamed:@"bubble2.png"];
     
     
     [self.backgroundImageView addSubview:self.textBackground];
-    //[self.backgroundImageView addSubview:self.textView];
     
-    [self.textBackground addSubview:self.textView];
-    //[textBackground addSubview:self.webView];
+    
+    //[self.textBackground addSubview:self.textView];
+    [self.textBackground addSubview:self.webView];
     
     //Change the size frame according to height of text
-    
+    /*
     CGRect frame = self.textView.frame;
     frame.size.height = self.textView.contentSize.height;
     frame.size.width = self.textView.contentSize.width;
     self.textView.frame = frame;
+    */
     
+    CGRect frame = self.webView.frame;
+    frame.size.height = self.textView.contentSize.height;
+    frame.size.width = self.textView.contentSize.width;
+    self.textView.frame = frame;
     
-    CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
+    //CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
+    CGRect textBackgroundFrame = CGRectMake(40, 0, self.webView.frame.size.width, self.webView.frame.size.height);
     [self.textBackground setFrame: textBackgroundFrame];
     
     
@@ -136,6 +146,10 @@
     [self addRightButton];
     // adding toolbar at bottom
     [self addToolBar];
+    [self addPlayVideoButton];
+    
+    
+    
     
 }
 
@@ -167,7 +181,7 @@
  */
 - (void) addLeftButton {
     self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
-    UIImage *leftArrow = [UIImage imageNamed:@"greenarrow.png"];
+    UIImage *leftArrow = [UIImage imageNamed:@"greenarrowLeft.png"];
     
     [self.leftButton setImage:leftArrow forState:UIControlStateNormal];
     
@@ -228,6 +242,8 @@
         
         CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
         [self.textBackground setFrame: textBackgroundFrame];
+        NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
+        [self.webView loadHTMLString:htmlString baseURL:nil];
     }
     else
     {
@@ -255,6 +271,7 @@
             self.leftButton.hidden = YES;
         }
         [self.textView setText:[self.listOfText objectAtIndex:self.positionOfText]];
+        
         //Change the size frame according to height of text
         
         CGRect frame = self.textView.frame;
@@ -266,7 +283,8 @@
         CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
         [self.textBackground setFrame: textBackgroundFrame];
         
-        
+        NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
+        [self.webView loadHTMLString:htmlString baseURL:nil];
         
     }
     else
@@ -275,6 +293,34 @@
     }
 }
 
+
+- (void) addPlayVideoButton {
+    UIImage *playImage = [UIImage imageNamed:@"play.png"];
+    UIButton *playVideoButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, 30, 30)];
+    
+    
+    
+    [playVideoButton setImage:playImage forState:UIControlStateNormal];
+    
+    [playVideoButton addTarget:self action:@selector(playVideo) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: playVideoButton];
+    
+}
+/*!
+ * @function playVideo
+ * @abstract play video
+ * @discussion It play certain video
+ */
+-(void) playVideo
+{
+    NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"hat" ofType:@"mp4"];
+    NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
+    mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
+    [mpc setMovieSourceType:MPMovieSourceTypeFile];
+    [[self view]addSubview:mpc.view];
+    [mpc setFullscreen:YES];
+    [mpc play];
+}
 
 /*!
  * @function addPauseButton
@@ -455,7 +501,7 @@
     self.view.userInteractionEnabled = YES;
     //Canlce interference on click baritembutton
     self.singeTap.cancelsTouchesInView = NO;
-    
+    [self.singeTap setDelegate:self];
     [self.view addSubview:self.toolBar];
     //create space to aligment the toolbar item
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -508,5 +554,38 @@
     return ((! [self.leftButton pointInside:[touch locationInView:self.leftButton] withEvent:nil]) &&
             (! [self.rightButton pointInside:[touch locationInView:self.rightButton] withEvent:nil]));
 }
+/*!
+ * @function webViewDidFinishLoad
+ * @abstract resize the web view after it finishes loading
+ * @discussion resize the web view after it finishes loading
+ */
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView
+{
+    CGFloat height = [[aWebView stringByEvaluatingJavaScriptFromString:@"document.height"] floatValue];
+    CGFloat width = [[aWebView stringByEvaluatingJavaScriptFromString:@"document.width"] floatValue];
+    CGRect frame = aWebView.frame;
+    frame.size.height = height;
+    frame.size.width = width;
+    aWebView.frame = frame;
+    CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
+    self.textBackground.frame = textBackgroundFrame;
+}
 
+/*!
+ * @function createWebString
+ * @abstract create string of web for content
+ * @discussion create string of web for content
+ */
+-(NSString*)createWebString:(NSString*)content
+{
+    NSString *myDescriptionHTML = [NSString stringWithFormat:@"<html> \n"
+                                   "<head> \n"
+                                   "<style type=\"text/css\"> \n"
+                                   "body {font-family: \"%@\"; font-size: %@;}\n"
+                                   "</style> \n"
+                                   "</head> \n"
+                                   "<body><p>%@</p></body> \n"
+                                   "</html>", @"helvetica", [NSNumber numberWithInt:20], content];
+    return myDescriptionHTML;
+}
 @end
