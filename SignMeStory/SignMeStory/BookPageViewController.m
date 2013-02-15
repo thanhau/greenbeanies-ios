@@ -24,6 +24,7 @@
 @synthesize animationImage;
 @synthesize webView;
 @synthesize positionOfText;
+@synthesize listOfAudio;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,8 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //UIImage *img = [UIImage imageNamed:@"storyboardscreen1.png"];
-    //UIImage *imgChatBubble = [UIImage imageNamed:@"screen1chatbubble.png"];
+    
      self.textBackground = [[UIImageView alloc]init];
     
 
@@ -119,7 +119,7 @@
     self.textView.frame = frame;
     */
     
-    CGRect frame = self.webView.frame;
+    CGRect frame = self.textView.frame;
     frame.size.height = self.textView.contentSize.height;
     frame.size.width = self.textView.contentSize.width;
     self.textView.frame = frame;
@@ -134,19 +134,20 @@
     //textBackground.opaque = NO;
     
     //Create the path contain location of audio file
-    NSString *stringPath = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"M4A"];
+    NSString *stringPath = [[NSBundle mainBundle]pathForResource:[listOfAudio objectAtIndex:positionOfText]  ofType:@"mp3"];
     NSURL *url = [NSURL fileURLWithPath:stringPath];
     
     NSError *error;
     //Create AVAudio Player with
     theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     [theAudio setDelegate:self];
+    //[theAudio play];
     //adding arrow
     [self addLeftButton];
     [self addRightButton];
     // adding toolbar at bottom
     [self addToolBar];
-    [self addPlayVideoButton];
+    //[self addPlayVideoButton];
     
     
     
@@ -244,6 +245,13 @@
         [self.textBackground setFrame: textBackgroundFrame];
         NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
         [self.webView loadHTMLString:htmlString baseURL:nil];
+        NSString *stringPath = [[NSBundle mainBundle]pathForResource:[listOfAudio objectAtIndex:positionOfText]  ofType:@"mp3"];
+        NSURL *url = [NSURL fileURLWithPath:stringPath];
+        
+        NSError *error;
+        //Create AVAudio Player with
+        theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+        [theAudio play];
     }
     else
     {
@@ -285,6 +293,13 @@
         
         NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
         [self.webView loadHTMLString:htmlString baseURL:nil];
+        NSString *stringPath = [[NSBundle mainBundle]pathForResource:[listOfAudio objectAtIndex:positionOfText]  ofType:@"mp3"];
+        NSURL *url = [NSURL fileURLWithPath:stringPath];
+        
+        NSError *error;
+        //Create AVAudio Player with
+        theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+        [theAudio play];
         
     }
     else

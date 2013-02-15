@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/StoryBookViewController.m"
-         timestampString = "381963197.592869"
+         timestampString = "382640846.072373"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "99"
-         endingLineNumber = "99"
+         startingLineNumber = "105"
+         endingLineNumber = "105"
          landmarkName = "-initWithStoryBooksDB:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,13 +21,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/StoryBookViewController.m"
-         timestampString = "381963197.592869"
+         timestampString = "382640846.072373"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "111"
-         endingLineNumber = "111"
-         landmarkName = "@implementation StoryBookViewController"
-         landmarkType = "3">
+         startingLineNumber = "117"
+         endingLineNumber = "117"
+         landmarkName = "-initWithStoryBooksDB:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/StoryBookViewController.m"
-         timestampString = "381963197.592869"
+         timestampString = "382640846.072373"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "101"
-         endingLineNumber = "101"
+         startingLineNumber = "107"
+         endingLineNumber = "107"
          landmarkName = "-initWithStoryBooksDB:"
          landmarkType = "5">
       </FileBreakpoint>

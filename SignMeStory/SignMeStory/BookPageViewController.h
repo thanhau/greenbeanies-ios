@@ -19,6 +19,7 @@
 @property (nonatomic) UIWebView *webView;
 @property (nonatomic, strong) NSMutableArray *animationImage;
 @property (nonatomic, strong) NSMutableArray *listOfText;
+@property (nonatomic, strong) NSMutableArray *listOfAudio;
 @property (nonatomic, strong) NSString *pageText;
 @property (nonatomic, strong) UITapGestureRecognizer *singeTap;
 @property (strong, nonatomic) UIToolbar *toolBar;

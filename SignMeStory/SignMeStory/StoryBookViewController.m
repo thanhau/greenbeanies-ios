@@ -86,6 +86,12 @@
     
     self.bookTitle = aBookTitle;
     self.pageText = [[NSMutableArray alloc] init];
+    self.listOfAudio = [[NSMutableArray alloc] init];
+    NSMutableArray *arrayOfAudioName1 = [[NSMutableArray alloc]initWithObjects:@"sentence1",@"sentence2",@"sentence3",@"sentence4", nil];
+    [self.listOfAudio addObject:arrayOfAudioName1];
+    NSMutableArray *arrayOfAudioName2 = [[NSMutableArray alloc] initWithObjects:@"sentence5",@"sentence6",@"sentence7", nil];
+    [self.listOfAudio addObject:arrayOfAudioName2];
+    
     self.listOfBackgroundImageName = [[NSMutableArray alloc] initWithObjects:@"storyboardscreen1.png",@"screen2-1henryandcecewithbackground.png",@"screen3-1background+henryandcece.png",@"storyboard4background.png", nil];
     
     //self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1.txt",@"GreenbeaniesParagraph2.txt",@"GreenbeaniesParagraph3.txt",@"GreenbeaniesParagraph4.txt", nil];
@@ -220,8 +226,7 @@
     [bpVC setPageText:[self.pageText objectAtIndex:index]];
     
     [bpVC setAnimationImage:[self.listOfAllAnimation objectAtIndex:index]];
-    //NSLog(@"%i",index);
-    //NSLog(@"%@",[self.listOfTextForAllPage objectAtIndex:index]);
+    [bpVC setListOfAudio:[self.listOfAudio objectAtIndex:index]];
     [bpVC setListOfText:[self.listOfTextForAllPage objectAtIndex:index]];
     [bpVC setBackgroundImage:[self.listOfBackgroundImage objectAtIndex:index]];
     return bpVC;

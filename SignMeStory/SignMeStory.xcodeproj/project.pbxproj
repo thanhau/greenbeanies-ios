@@ -76,6 +76,15 @@
 		52DA638816C9781D0079273E /* bubble2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52DA638716C9781D0079273E /* bubble2.png */; };
 		52DA638E16CADE270079273E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DA638D16CADE270079273E /* MediaPlayer.framework */; };
 		52DA639016CAE02B0079273E /* hat.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 52DA638F16CAE02A0079273E /* hat.mp4 */; };
+		52DA639316CB04970079273E /* p1.aif in Resources */ = {isa = PBXBuildFile; fileRef = 52DA639116CB04970079273E /* p1.aif */; };
+		52DA639416CB04970079273E /* p2.aif in Resources */ = {isa = PBXBuildFile; fileRef = 52DA639216CB04970079273E /* p2.aif */; };
+		52DA639C16CEA0110079273E /* sentence1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52DA639516CEA0100079273E /* sentence1.mp3 */; };
+		52DA639D16CEA0110079273E /* sentence2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52DA639616CEA0100079273E /* sentence2.mp3 */; };
+		52DA639E16CEA0110079273E /* sentence3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52DA639716CEA0100079273E /* sentence3.mp3 */; };
+		52DA639F16CEA0110079273E /* sentence4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52DA639816CEA0100079273E /* sentence4.mp3 */; };
+		52DA63A016CEA0110079273E /* sentence5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52DA639916CEA0100079273E /* sentence5.mp3 */; };
+		52DA63A116CEA0110079273E /* sentence6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52DA639A16CEA0100079273E /* sentence6.mp3 */; };
+		52DA63A216CEA0110079273E /* sentence7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52DA639B16CEA0110079273E /* sentence7.mp3 */; };
 		8F4116C61671665400B657CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C51671665400B657CE /* UIKit.framework */; };
 		8F4116C81671665400B657CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C71671665400B657CE /* Foundation.framework */; };
 		8F4116CA1671665400B657CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4116C91671665400B657CE /* CoreGraphics.framework */; };
@@ -164,6 +173,15 @@
 		52DA638716C9781D0079273E /* bubble2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble2.png; sourceTree = "<group>"; };
 		52DA638D16CADE270079273E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		52DA638F16CAE02A0079273E /* hat.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hat.mp4; sourceTree = "<group>"; };
+		52DA639116CB04970079273E /* p1.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = p1.aif; sourceTree = "<group>"; };
+		52DA639216CB04970079273E /* p2.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = p2.aif; sourceTree = "<group>"; };
+		52DA639516CEA0100079273E /* sentence1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sentence1.mp3; sourceTree = "<group>"; };
+		52DA639616CEA0100079273E /* sentence2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sentence2.mp3; sourceTree = "<group>"; };
+		52DA639716CEA0100079273E /* sentence3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sentence3.mp3; sourceTree = "<group>"; };
+		52DA639816CEA0100079273E /* sentence4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sentence4.mp3; sourceTree = "<group>"; };
+		52DA639916CEA0100079273E /* sentence5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sentence5.mp3; sourceTree = "<group>"; };
+		52DA639A16CEA0100079273E /* sentence6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sentence6.mp3; sourceTree = "<group>"; };
+		52DA639B16CEA0110079273E /* sentence7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sentence7.mp3; sourceTree = "<group>"; };
 		8F4116C11671665400B657CE /* SignMeStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignMeStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4116C51671665400B657CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F4116C71671665400B657CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -302,6 +320,15 @@
 		529E240916A62992008D4830 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				52DA639516CEA0100079273E /* sentence1.mp3 */,
+				52DA639616CEA0100079273E /* sentence2.mp3 */,
+				52DA639716CEA0100079273E /* sentence3.mp3 */,
+				52DA639816CEA0100079273E /* sentence4.mp3 */,
+				52DA639916CEA0100079273E /* sentence5.mp3 */,
+				52DA639A16CEA0100079273E /* sentence6.mp3 */,
+				52DA639B16CEA0110079273E /* sentence7.mp3 */,
+				52DA639116CB04970079273E /* p1.aif */,
+				52DA639216CB04970079273E /* p2.aif */,
 				529E240A16A62992008D4830 /* test.M4A */,
 			);
 			path = Audio;
@@ -508,6 +535,15 @@
 				52DA638616C976C80079273E /* greenarrowLeft.png in Resources */,
 				52DA638816C9781D0079273E /* bubble2.png in Resources */,
 				52DA639016CAE02B0079273E /* hat.mp4 in Resources */,
+				52DA639316CB04970079273E /* p1.aif in Resources */,
+				52DA639416CB04970079273E /* p2.aif in Resources */,
+				52DA639C16CEA0110079273E /* sentence1.mp3 in Resources */,
+				52DA639D16CEA0110079273E /* sentence2.mp3 in Resources */,
+				52DA639E16CEA0110079273E /* sentence3.mp3 in Resources */,
+				52DA639F16CEA0110079273E /* sentence4.mp3 in Resources */,
+				52DA63A016CEA0110079273E /* sentence5.mp3 in Resources */,
+				52DA63A116CEA0110079273E /* sentence6.mp3 in Resources */,
+				52DA63A216CEA0110079273E /* sentence7.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *listOfAllAnimation;
 @property (nonatomic, strong) NSMutableArray *listOfAnimation;
 @property (nonatomic, strong) NSMutableArray *listOfTextForAllPage;
+@property (nonatomic, strong) NSMutableArray *listOfAudio;
 @property (nonatomic, weak) UITapGestureRecognizer *singeTap;
 @property (weak, nonatomic) UIToolbar *toolBar;
 - (id) initWithStoryBooksDB: (NSString *)bookTitle;
