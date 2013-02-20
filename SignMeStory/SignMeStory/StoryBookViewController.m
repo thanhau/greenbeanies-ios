@@ -25,107 +25,31 @@
    
     
     self = [super init];
+    
     self.listOfAllAnimation = [[NSMutableArray alloc] init];
     self.listOfAnimation = [[NSMutableArray alloc] init];
     self.listOfNameForAllPage = [[NSMutableArray alloc]init];
     self.listOfTextForAllPage = [[NSMutableArray alloc]init];
-    
-    //NSArray *listNameOfImage = [[NSArray alloc] initWithObjects:@"BusMoving",@"BusStopLeaving",@"CatJumping",@"CityView", nil];
-    NSArray *listNameOfImage = [[NSArray alloc] initWithObjects:@"CatJumping",@"CityView", nil];
-    for (int y = 0; y < 2; y++) {
-        NSMutableArray *listImage = [[NSMutableArray alloc] initWithCapacity:4];
-        for (int i = 1; i <= 4; i++)
-        {
-            
-            NSString *imgageName = [NSString stringWithFormat:@"%@%i.jpg",[listNameOfImage objectAtIndex:y],i];
-            
-            UIImage *img = [UIImage imageNamed:imgageName];
-            [listImage addObject:img];
-            
-        }
-        [self.listOfAllAnimation addObject:listImage];
-        
-    }
-    [self createListNameForPage];
-        /*
-    for (int y = 0; y < 2; y++) {
-        for (int i = 1; i <= 4; i++)
-        {
-            
-            NSString *imgageName = [NSString stringWithFormat:@"%@%i.png",[listNameOfImage objectAtIndex:y],i];
-            UIImage *img = [UIImage imageNamed:imgageName];
-            
-            if (img == nil)
-            {
-                NSLog(@"No image");
-            }
-            else
-            {
-                [self.listOfAnimation addObject:img];
-                NSLog(@"Have image");
-            }
-            
-        }
-        
-        //[self.listOfAllAnimation addObject:self.listOfAnimation];
-    }
-    for (int y = 2; y < 4; y++) {
-        for (int i = 1; i <= 4; i++)
-        {
-            
-            NSString *imgageName = [NSString stringWithFormat:@"%@%i.jpg",[listNameOfImage objectAtIndex:y],i];
-            
-            UIImage *img = [UIImage imageNamed:imgageName];
-            [self.listOfAnimation addObject:img];
-            
-        }
-        [self.listOfAllAnimation addObject:self.listOfAnimation];
-    }
-    //NSLog(@"%i",[self.listOfAllAnimation count]);
-    */
-    
     self.bookTitle = aBookTitle;
     self.pageText = [[NSMutableArray alloc] init];
     self.listOfAudio = [[NSMutableArray alloc] init];
-    NSMutableArray *arrayOfAudioName1 = [[NSMutableArray alloc]initWithObjects:@"sentence1",@"sentence2",@"sentence3",@"sentence4", nil];
-    [self.listOfAudio addObject:arrayOfAudioName1];
-    NSMutableArray *arrayOfAudioName2 = [[NSMutableArray alloc] initWithObjects:@"sentence5",@"sentence6",@"sentence7", nil];
-    [self.listOfAudio addObject:arrayOfAudioName2];
+   
+     
+    [self createListOfImage];
+    [self createListNameForPage];
+    [self createListOfAudio];
+    [self createTextPage];
+    self.listOfBackgroundImage = [[NSMutableArray alloc] initWithCapacity:[self.listOfBackgroundImageName count]];
+
     
     self.listOfBackgroundImageName = [[NSMutableArray alloc] initWithObjects:@"storyboardscreen1.png",@"screen2-1henryandcecewithbackground.png",@"screen3-1background+henryandcece.png",@"storyboard4background.png", nil];
     
     //self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1.txt",@"GreenbeaniesParagraph2.txt",@"GreenbeaniesParagraph3.txt",@"GreenbeaniesParagraph4.txt", nil];
-    self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1-1.txt",@"GreenbeaniesParagraph2-1.txt", nil];
-    self.listOfBackgroundImage = [[NSMutableArray alloc] initWithCapacity:[self.listOfBackgroundImageName count]];
-    
-    // creates text in the book page.
-    // this loop should be replace when actuall book pages are implemented
-    for (int i = 0; i < [self.listOfNameForAllPage count]; i ++) {
-        NSMutableArray *listOfTextForPage = [[NSMutableArray alloc]init];
-        //[self.pageText addObject:[NSString stringWithFormat:@"This is page %d for Book %@", i, self.bookTitle ]];
-        for (int x = 0; x < [[self.listOfNameForAllPage objectAtIndex:i ] count]; x++) {
-            //NSLog(@"%@",[[self.listOfNameForAllPage objectAtIndex:i] objectAtIndex:x]);
-            NSURL *url  = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] resourcePath],[[self.listOfNameForAllPage objectAtIndex:i] objectAtIndex:x]]];
-            
-            NSError *err;
-            NSString *contentString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
-            //NSLog(@"%@",urlString);
-            [listOfTextForPage addObject:contentString];
-            //[self.pageText addObject:urlString];
-        }
-            [self.listOfTextForAllPage addObject:listOfTextForPage];
-
-    }
-    for (int i = 0; i < [self.listOfTextForAllPage count];i++)
-    {
-        [self.pageText addObject:[[self.listOfTextForAllPage objectAtIndex:i] objectAtIndex:0]];
-    }
-    // create background image in book page.
-    for (int i = 0 ; i < [self.listOfBackgroundImageName count]; i++) {
+    //self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1-1.txt",@"GreenbeaniesParagraph2-1.txt", nil];
        
-        UIImage *img = [UIImage imageNamed:[self.listOfBackgroundImageName objectAtIndex:i]];
-        [self.listOfBackgroundImage addObject:img];
-    }
+    [self createListOfBackgroundImage];
+    
+   
     
     NSDictionary *option = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin] forKey:UIPageViewControllerOptionSpineLocationKey];
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:option];
@@ -162,6 +86,57 @@
     return self;
 }
 /*!
+ * @function createListOfAnimation
+ * @abstract create list of animation
+ * @discussion It creates a list of animation
+ */
+-(void)createListOfImage
+{
+    NSArray *listNameOfImage = [[NSArray alloc] initWithObjects:@"Street",@"CityView",@"HernyWalkingToCeCe", nil];
+    NSArray *numberOfImageForEachPage = [[NSArray alloc]initWithObjects:[NSNumber numberWithInt:1],[NSNumber numberWithInt:11],[NSNumber numberWithInt:6], nil];
+    
+    for (int y = 0; y < [listNameOfImage count]; y++) {
+        NSMutableArray *listImage = [[NSMutableArray alloc] initWithCapacity:[[numberOfImageForEachPage objectAtIndex:0] integerValue]];
+        if ([[numberOfImageForEachPage objectAtIndex:y] integerValue] == 1)
+        {
+            NSString *imgageName = [NSString stringWithFormat:@"%@.jpg",[listNameOfImage objectAtIndex:y]];
+            UIImage *img = [UIImage imageNamed:imgageName];
+            [listImage addObject:img];
+        }
+        else
+        {
+            for (int i = 1; i <= [[numberOfImageForEachPage objectAtIndex:y] integerValue]; i++)
+            {
+                
+                NSString *imgageName = [NSString stringWithFormat:@"%@%i.jpg",[listNameOfImage objectAtIndex:y],i];
+                
+                UIImage *img = [UIImage imageNamed:imgageName];
+                [listImage addObject:img];
+                
+            }
+            
+        }
+        [self.listOfAllAnimation addObject:listImage];
+        
+    }
+
+}
+
+/*!
+ * @function createListOfAudio
+ * @abstract create list of audio
+ * @discussion It creates a list of audio
+ */
+-(void)createListOfAudio
+{
+    NSMutableArray *arrayOfAudioName1 = [[NSMutableArray alloc]initWithObjects:@"sentence1",@"sentence2",@"sentence3",@"sentence4", nil];
+    [self.listOfAudio addObject:arrayOfAudioName1];
+    NSMutableArray *arrayOfAudioName2 = [[NSMutableArray alloc] initWithObjects:@"sentence5",@"sentence6",@"sentence7", nil];
+    [self.listOfAudio addObject:arrayOfAudioName2];
+    NSMutableArray *arrayOfAudioName3 = [[NSMutableArray alloc] initWithObjects:@"sentence8", nil];
+    [self.listOfAudio addObject:arrayOfAudioName3];
+}
+/*!
  * @function createListNameForPage
  * @abstract create list of name of text for getting content
  * @discussion It creates a list name of text which we get content from
@@ -169,7 +144,7 @@
 -(void)createListNameForPage
 {
     
-    NSArray *numberOfTextForEachPage = [[NSArray alloc]initWithObjects:[NSNumber numberWithInt:4],[NSNumber numberWithInt:3], nil];
+    NSArray *numberOfTextForEachPage = [[NSArray alloc]initWithObjects:[NSNumber numberWithInt:4],[NSNumber numberWithInt:3],[NSNumber numberWithInt:1], nil];
     
     for (int y = 0; y < [numberOfTextForEachPage count]; y++) {
         int numberOfTextForPage = [[numberOfTextForEachPage objectAtIndex:y]intValue];
@@ -180,23 +155,51 @@
         }
         [self.listOfNameForAllPage addObject:listOfTextNameForEachPage];
     }
-
-}
-/*!
- * @function addExitButton
- * @abstract adding an exit button in the view so user can go back to bookshelf
- * @discussion It creates button that exit current book and redirect to the bookshelf
- */
-- (void) addExitButton {
-    UIButton *exitButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
-    [exitButton setTitle: [NSString stringWithFormat: @"Q"]
-                forState: UIControlStateNormal];
-
-    [exitButton setBackgroundColor: [UIColor grayColor]];
     
-    [exitButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: exitButton];
 }
+
+/*!
+ * @function createListOfBackgroundImage
+ * @abstract create list of background image 
+ * @discussion It creates a list of background image
+ */
+-(void)createListOfBackgroundImage
+{
+    // create background image in book page.
+    for (int i = 0 ; i < [self.listOfBackgroundImageName count]; i++) {
+        
+        UIImage *img = [UIImage imageNamed:[self.listOfBackgroundImageName objectAtIndex:i]];
+        [self.listOfBackgroundImage addObject:img];
+    }
+}
+
+-(void)createTextPage
+{
+    // creates text in the book page.
+    // this loop should be replace when actuall book pages are implemented
+    for (int i = 0; i < [self.listOfNameForAllPage count]; i ++) {
+        NSMutableArray *listOfTextForPage = [[NSMutableArray alloc]init];
+        //[self.pageText addObject:[NSString stringWithFormat:@"This is page %d for Book %@", i, self.bookTitle ]];
+        for (int x = 0; x < [[self.listOfNameForAllPage objectAtIndex:i ] count]; x++) {
+            //NSLog(@"%@",[[self.listOfNameForAllPage objectAtIndex:i] objectAtIndex:x]);
+            NSURL *url  = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] resourcePath],[[self.listOfNameForAllPage objectAtIndex:i] objectAtIndex:x]]];
+            
+            NSError *err;
+            NSString *contentString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
+            //NSLog(@"%@",contentString);
+            [listOfTextForPage addObject:contentString];
+            //[self.pageText addObject:urlString];
+        }
+        [self.listOfTextForAllPage addObject:listOfTextForPage];
+        
+    }
+    
+    for (int i = 0; i < [self.listOfTextForAllPage count];i++)
+    {
+        [self.pageText addObject:[[self.listOfTextForAllPage objectAtIndex:i] objectAtIndex:0]];
+    }
+}
+
 
 /*!
  * @function quit
@@ -278,28 +281,6 @@
 }
 
 
-// handling interruption at beginning
--(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player
-{
-    [player pause];
-}
-
-// handling interruption at the end
--(void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags
-{
-    
-    [player play];
-
-}
-
-// handling when audio fininsh playing
--(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
-{
-    if (flag == TRUE)
-    {
-        NSLog(@"True");
-    }
-}
 
 
 

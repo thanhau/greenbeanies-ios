@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "StoryBookViewController.h"
+#import "CoverPageViewController.h"
 
 @interface BookshelfViewController : UIViewController
 
 @property (nonatomic, strong, retain) UIViewController *currentViewController;
 @property (nonatomic, strong, retain) NSMutableArray *bookViewControllers;
-
+@property (nonatomic, strong, retain) CoverPageViewController *coverPage;
 @end

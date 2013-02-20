@@ -7,32 +7,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "SignMeStory/StoryBookViewController.m"
-         timestampString = "382640846.072373"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "105"
-         endingLineNumber = "105"
-         landmarkName = "-initWithStoryBooksDB:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "SignMeStory/StoryBookViewController.m"
-         timestampString = "382640846.072373"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "117"
-         endingLineNumber = "117"
-         landmarkName = "-initWithStoryBooksDB:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "SignMeStory/Database/SignMeStoryDB.m"
          timestampString = "380658157.604803"
          startingColumnNumber = "9223372036854775807"
@@ -47,12 +21,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/StoryBookViewController.m"
-         timestampString = "382640846.072373"
+         timestampString = "383075087.494512"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "107"
-         endingLineNumber = "107"
-         landmarkName = "-initWithStoryBooksDB:"
+         startingLineNumber = "101"
+         endingLineNumber = "101"
+         landmarkName = "-createListOfImage"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

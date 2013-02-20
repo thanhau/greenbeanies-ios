@@ -66,21 +66,20 @@
     int x_pos = 0;
     int y_pos = 30;
     
-    // creats buttons for every book.
     for (int i = 0; i < [self.bookViewControllers count]; i++) {
         x_pos += x_space;
         UIButton *bookButton = [[UIButton alloc] initWithFrame:CGRectMake(x_pos, y_pos, book_w, book_h)];
         x_pos += (book_w + x_space);
         [bookButton setTitle: [NSString stringWithFormat: @"%d", i]
                     forState: UIControlStateNormal];
-
+        
         if (x_pos + book_w + x_space >= self.view.frame.size.width) {
             x_pos = 0;
             y_pos += (book_h + y_space);
         }
         
         [bookButton setBackgroundColor: c];
-        // when a book is selected it calls goToBook to switch the view controller. 
+        // when a book is selected it calls goToBook to switch the view controller.
         [bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
         [shelf addSubview:bookButton];
     }
@@ -97,8 +96,9 @@
 - (void) goToBook:(UIButton *) sender {
     int bookID = [[[sender titleLabel] text] integerValue];
     NSLog(@"Book %@ is selected", [[sender titleLabel] text]);
-    
-    [self presentViewController:[self.bookViewControllers objectAtIndex:bookID] animated:YES completion:nil];
+    CoverPageViewController *coverPage = [[CoverPageViewController alloc]init];
+    //[self presentViewController:[self.bookViewControllers objectAtIndex:bookID] animated:YES completion:nil];
+    [self presentViewController:coverPage animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
