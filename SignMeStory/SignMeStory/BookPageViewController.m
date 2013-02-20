@@ -58,14 +58,9 @@
         self.backgroundImageView.animationRepeatCount = 1;
     }
     
-    
-   
     //[self.backgroundImageView startAnimating];
     //NSLog(@"%@",self.animationImage);
     [self.view addSubview:self.backgroundImageView];
-    
-    
-    
     
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 50)];
     //NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
@@ -148,10 +143,6 @@
     // adding toolbar at bottom
     [self addToolBar];
     //[self addPlayVideoButton];
-    
-    
-    
-    
 }
 
 
