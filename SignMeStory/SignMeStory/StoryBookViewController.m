@@ -92,8 +92,26 @@
  */
 -(void)createListOfImage
 {
-    NSArray *listNameOfImage = [[NSArray alloc] initWithObjects:@"Street",@"CityView",@"HernyWalkingToCeCe", nil];
-    NSArray *numberOfImageForEachPage = [[NSArray alloc]initWithObjects:[NSNumber numberWithInt:1],[NSNumber numberWithInt:11],[NSNumber numberWithInt:6], nil];
+    NSArray *listNameOfImage = [[NSArray alloc] initWithObjects:@"CityView",@"WeirdLooks",@"StreetZoomed",@"CityView",@"HernyWalkingToCeCe", @"PuttingHatOn",@"SparklingHat",@"PickingUpBackbacks",@"CatJumping",@"BusStopWaiting",@"BusMotion",@"BusStopLeaving" ,@"BoatOnWater",@"BoatOnWater", @"MatildaWorried", @"BoatLeavin", @"DockPicnic", @"Path", @"Wounderland",@"Wounderland",@"Wounder", @"PineNeedleForrest", @"CrossRoad", @"Campsite", @"Campsite(about2sleep)", @"Campsite(sleeping)",nil];
+    NSLog(@"Count of listNameOfImage is %i",[listNameOfImage count]);
+    
+    
+    NSArray *numberOfImageForEachPage = [[NSArray alloc]initWithObjects:[NSNumber numberWithInt:9],[NSNumber numberWithInt:4],[NSNumber numberWithInt:3], [NSNumber numberWithInt:9],[NSNumber numberWithInt:8],[NSNumber numberWithInt:13],[NSNumber numberWithInt:3],[NSNumber numberWithInt:1],[NSNumber numberWithInt:1],[NSNumber numberWithInt:11],[NSNumber numberWithInt:1],[NSNumber numberWithInt:1],[NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:4],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:1],
+                                         [NSNumber numberWithInt:2],nil];
+    
+    NSLog(@"Count of listImageForEachPag is %i",[numberOfImageForEachPage count]);
     
     for (int y = 0; y < [listNameOfImage count]; y++) {
         NSMutableArray *listImage = [[NSMutableArray alloc] initWithCapacity:[[numberOfImageForEachPage objectAtIndex:0] integerValue]];
@@ -119,7 +137,7 @@
         [self.listOfAllAnimation addObject:listImage];
         
     }
-
+    NSLog(@"Number of animation is %i",[self.listOfAllAnimation count]);
 }
 
 /*!
@@ -135,6 +153,10 @@
     [self.listOfAudio addObject:arrayOfAudioName2];
     NSMutableArray *arrayOfAudioName3 = [[NSMutableArray alloc] initWithObjects:@"sentence8", nil];
     [self.listOfAudio addObject:arrayOfAudioName3];
+    [self.listOfAudio addObject:arrayOfAudioName3];
+    [self.listOfAudio addObject:arrayOfAudioName3];
+    //[self.listOfAudio addObject:arrayOfAudioName3];
+    NSLog(@"Number of audio is %i",[self.listOfAudio count]);
 }
 /*!
  * @function createListNameForPage
@@ -144,7 +166,8 @@
 -(void)createListNameForPage
 {
     
-    NSArray *numberOfTextForEachPage = [[NSArray alloc]initWithObjects:[NSNumber numberWithInt:4],[NSNumber numberWithInt:3],[NSNumber numberWithInt:1], nil];
+    NSArray *numberOfTextForEachPage = [[NSArray alloc]initWithObjects:[NSNumber numberWithInt:2],[NSNumber numberWithInt:2],[NSNumber numberWithInt:4],[NSNumber numberWithInt:5],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2], [NSNumber numberWithInt:2], [NSNumber numberWithInt:1],[NSNumber numberWithInt:3],[NSNumber numberWithInt:2],[NSNumber numberWithInt:9],[NSNumber numberWithInt:1],[NSNumber numberWithInt:3],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:4],[NSNumber numberWithInt:2],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:7],[NSNumber numberWithInt:3],[NSNumber numberWithInt:5],[NSNumber numberWithInt:5],[NSNumber numberWithInt:4], nil];
+    
     
     for (int y = 0; y < [numberOfTextForEachPage count]; y++) {
         int numberOfTextForPage = [[numberOfTextForEachPage objectAtIndex:y]intValue];
@@ -155,7 +178,7 @@
         }
         [self.listOfNameForAllPage addObject:listOfTextNameForEachPage];
     }
-    
+    NSLog(@"Number of name is %i",[self.listOfNameForAllPage count]);
 }
 
 /*!
@@ -198,6 +221,7 @@
     {
         [self.pageText addObject:[[self.listOfTextForAllPage objectAtIndex:i] objectAtIndex:0]];
     }
+    NSLog(@"Number of content text is %i",[self.listOfTextForAllPage count]);
 }
 
 
@@ -229,9 +253,9 @@
     [bpVC setPageText:[self.pageText objectAtIndex:index]];
     
     [bpVC setAnimationImage:[self.listOfAllAnimation objectAtIndex:index]];
-    [bpVC setListOfAudio:[self.listOfAudio objectAtIndex:index]];
+    //[bpVC setListOfAudio:[self.listOfAudio objectAtIndex:index]];
     [bpVC setListOfText:[self.listOfTextForAllPage objectAtIndex:index]];
-    [bpVC setBackgroundImage:[self.listOfBackgroundImage objectAtIndex:index]];
+    //[bpVC setBackgroundImage:[self.listOfBackgroundImage objectAtIndex:index]];
     return bpVC;
 }
 

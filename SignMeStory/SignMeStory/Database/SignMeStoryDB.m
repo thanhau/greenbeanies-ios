@@ -158,8 +158,8 @@
 
 //for debugging
 -(void) display {
-    sqlite3_stmt *select = nil;
-    NSString *select_stmt = [NSString stringWithFormat:@"SELECT * FROM INVENTORY"];
+    //sqlite3_stmt *select = nil;
+    //NSString *select_stmt = [NSString stringWithFormat:@"SELECT * FROM INVENTORY"];
 }
 
 // show error message from the database. 
