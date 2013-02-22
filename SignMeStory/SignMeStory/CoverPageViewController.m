@@ -65,6 +65,7 @@
     
     
 }
+
 /*!
  * @function addReadToMe
  * @abstract allow the audio work
@@ -76,6 +77,7 @@
     //[aNewBook.view setFrame: self.view.bounds];
     [self presentViewController:aNewBook animated:YES completion:nil];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
