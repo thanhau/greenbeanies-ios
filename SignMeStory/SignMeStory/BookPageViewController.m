@@ -39,13 +39,16 @@
 {
     [super viewDidLoad];
     
-     self.textBackground = [[UIImageView alloc]init];
+    self.textBackground = [[UIImageView alloc]init];
     
-
+    
     self.positionOfText = 0;
     
     // set page background
     self.backgroundImageView = [[UIImageView alloc]init];
+    
+    
+    
     [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
     //[self.backgroundImageView setImage:self.backgroundImage];
     
@@ -59,9 +62,14 @@
         self.backgroundImageView.animationRepeatCount = 1;
     }
     
+    
+    
     //[self.backgroundImageView startAnimating];
     //NSLog(@"%@",self.animationImage);
     [self.view addSubview:self.backgroundImageView];
+    
+    
+    
     
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 50)];
     //NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
@@ -88,15 +96,14 @@
     [self.textView setDelegate:self];
     
     
-    [NSTimer scheduledTimerWithTimeInterval:5
-                                     target:self
-                                   selector:@selector(animation)
-                                   userInfo:nil
-                                    repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(animation) userInfo:nil repeats:NO];
+                               
+    //[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(changeBackground) userInfo:nil repeats:NO];
+    
     [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
     
     //NSUInteger numberOfLine = self.textView.contentSize.height / self.textView.font.lineHeight;
-
+    
     
     UIImage *imgChatBubble = [UIImage imageNamed:@"bubble80.png"];
     
@@ -109,11 +116,11 @@
     
     //Change the size frame according to height of text
     /*
-    CGRect frame = self.textView.frame;
-    frame.size.height = self.textView.contentSize.height;
-    frame.size.width = self.textView.contentSize.width;
-    self.textView.frame = frame;
-    */
+     CGRect frame = self.textView.frame;
+     frame.size.height = self.textView.contentSize.height;
+     frame.size.width = self.textView.contentSize.width;
+     self.textView.frame = frame;
+     */
     
     CGRect frame = self.textView.frame;
     frame.size.height = self.textView.contentSize.height;
@@ -129,15 +136,15 @@
     //[textBackground setBackgroundColor:[UIColor whiteColor]];
     //textBackground.opaque = NO;
     /*
-    //Create the path contain location of audio file
-    NSString *stringPath = [[NSBundle mainBundle]pathForResource:[listOfAudio objectAtIndex:positionOfText]  ofType:@"mp3"];
-    NSURL *url = [NSURL fileURLWithPath:stringPath];
-    
-    NSError *error;
-    //Create AVAudio Player with
-    theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-    [theAudio setDelegate:self];
-    //[theAudio play];
+     //Create the path contain location of audio file
+     NSString *stringPath = [[NSBundle mainBundle]pathForResource:[listOfAudio objectAtIndex:positionOfText]  ofType:@"mp3"];
+     NSURL *url = [NSURL fileURLWithPath:stringPath];
+     
+     NSError *error;
+     //Create AVAudio Player with
+     theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+     [theAudio setDelegate:self];
+     //[theAudio play];
      */
     //adding arrow
     [self addLeftButton];
@@ -145,8 +152,6 @@
     // adding toolbar at bottom
     [self addToolBar];
     //[self addPlayVideoButton];
-<<<<<<< HEAD
-=======
     
     //hide arrow if only have one item in array
     if ([self.listOfText count] == 1)
@@ -156,12 +161,11 @@
     }
     
     
-
     
     
     
     
->>>>>>> Add all the page
+    
 }
 
 
@@ -173,10 +177,11 @@
 
 /*!
  * @function animation
- * @abstract animation 
- * @discussion It creates animation from group of imgage 
+ * @abstract animation
+ * @discussion It creates animation from group of imgage
  */
 -(void) animation{
+    
     self.backgroundImageView.animationImages = self.animationImage;
     self.backgroundImageView.animationDuration = 1;
     
@@ -184,11 +189,19 @@
     [self.backgroundImageView startAnimating];
     //[self.backgroundImageView setImage:[self.animationImage objectAtIndex:[self.animationImage count] - 1]];
     
+    //int count = [self.animationImage count] - 1;
+    [self performSelector:@selector(changeBackground) withObject:nil afterDelay:1.1];
     
+                        
+    
+    
+}
 
-    
 
-    
+-(void)changeBackground{
+    NSLog(@"change the view");
+    self.backgroundImageView.animationImages = nil;
+    self.backgroundImageView.image = [self.animationImage lastObject];
 }
 
 /*!
@@ -197,7 +210,7 @@
  * @discussion It creates button that let user go back to previous text
  */
 - (void) addLeftButton {
-    self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 50, 50, 50)];
+    self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, self.backgroundImageView.frame.size.height/2, 30, 30)];
     UIImage *leftArrow = [UIImage imageNamed:@"greenarrowLeft.png"];
     
     [self.leftButton setImage:leftArrow forState:UIControlStateNormal];
@@ -216,7 +229,7 @@
  * @discussion It creates button that let user go back to previous text
  */
 - (void) addRightButton {
-    self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.height - 30, 5, 30, 30)];
+    self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.height - 30, self.backgroundImageView.frame.size.height/2, 30, 30)];
     UIImage *rightArrow = [UIImage imageNamed:@"greenarrow.png"];
     
     [self.rightButton setImage:rightArrow forState:UIControlStateNormal];
@@ -235,10 +248,10 @@
  */
 -(void)goToNextText {
     self.positionOfText = self.positionOfText + 1;
-   
+    
     if (self.positionOfText < [self.listOfText count])
     {
-       
+        
         
         if (self.leftButton.hidden == YES)
         {
@@ -252,14 +265,14 @@
         
         
         /*
-        CGRect frame = self.textView.frame;
-        frame.size.height = self.textView.contentSize.height;
-        frame.size.width = self.textView.contentSize.width;
-        self.textView.frame = frame;
-        
-        
-        CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
-        [self.textBackground setFrame: textBackgroundFrame];
+         CGRect frame = self.textView.frame;
+         frame.size.height = self.textView.contentSize.height;
+         frame.size.width = self.textView.contentSize.width;
+         self.textView.frame = frame;
+         
+         
+         CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
+         [self.textBackground setFrame: textBackgroundFrame];
          */
         NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
         [self.webView loadHTMLString:htmlString baseURL:nil];
@@ -271,15 +284,15 @@
         self.webView.frame = frame;
         CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
         self.textBackground.frame = textBackgroundFrame;
-
-        /*
-        NSString *stringPath = [[NSBundle mainBundle]pathForResource:[listOfAudio objectAtIndex:positionOfText]  ofType:@"mp3"];
-        NSURL *url = [NSURL fileURLWithPath:stringPath];
         
-        NSError *error;
-        //Create AVAudio Player with
-        theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-        [theAudio play];
+        /*
+         NSString *stringPath = [[NSBundle mainBundle]pathForResource:[listOfAudio objectAtIndex:positionOfText]  ofType:@"mp3"];
+         NSURL *url = [NSURL fileURLWithPath:stringPath];
+         
+         NSError *error;
+         //Create AVAudio Player with
+         theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+         [theAudio play];
          */
     }
     else
@@ -308,17 +321,17 @@
         }
         [self.textView setText:[self.listOfText objectAtIndex:self.positionOfText]];
         /*
-        //Change the size frame according to height of text
-        
-        CGRect frame = self.textView.frame;
-        frame.size.height = self.textView.contentSize.height;
-        frame.size.width = self.textView.contentSize.width;
-        self.textView.frame = frame;
-        
-        
-        CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
-        [self.textBackground setFrame: textBackgroundFrame];
-        */
+         //Change the size frame according to height of text
+         
+         CGRect frame = self.textView.frame;
+         frame.size.height = self.textView.contentSize.height;
+         frame.size.width = self.textView.contentSize.width;
+         self.textView.frame = frame;
+         
+         
+         CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
+         [self.textBackground setFrame: textBackgroundFrame];
+         */
         NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
         [self.webView loadHTMLString:htmlString baseURL:nil];
         
@@ -333,14 +346,17 @@
         CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
         self.textBackground.frame = textBackgroundFrame;
         /*
-        NSString *stringPath = [[NSBundle mainBundle]pathForResource:[listOfAudio objectAtIndex:positionOfText]  ofType:@"mp3"];
-        NSURL *url = [NSURL fileURLWithPath:stringPath];
+         NSString *stringPath = [[NSBundle mainBundle]pathForResource:[listOfAudio objectAtIndex:positionOfText]  ofType:@"mp3"];
+         NSURL *url = [NSURL fileURLWithPath:stringPath];
+         
+         NSError *error;
+         //Create AVAudio Player with
+         theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+         [theAudio play];
+         */
         
-        NSError *error;
-        //Create AVAudio Player with
-        theAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-        [theAudio play];
-        */
+        
+
     }
     else
     {
@@ -385,7 +401,7 @@
 - (void) addPauseButton {
     UIImage *pauseImage = [UIImage imageNamed:@"pause.png"];
     UIButton *pauseButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 + 35, self.backgroundImageView.frame.size.height - 45, 30, 30)];
-  
+    
     
     
     [pauseButton setImage:pauseImage forState:UIControlStateNormal];
@@ -404,7 +420,7 @@
     
     [theAudio pause];
     NSLog(@"pause");
-        
+    
     
     
 }
@@ -495,8 +511,8 @@
                              self.toolBar.hidden = NO;
                              [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
                          }
-        ];
-                //[self.view bringSubviewToFront:self.toolBar];
+         ];
+        //[self.view bringSubviewToFront:self.toolBar];
         
     }
     else if (self.toolBar.hidden == NO) {
@@ -516,7 +532,7 @@
 /*!
  * @function auto hide toolbar
  * @abstract auto hide toolbar for control the audio
- * @discussion It hide toolbar automaticly 
+ * @discussion It hide toolbar automaticly
  */
 -(void) autoHideToolBar
 {
@@ -532,7 +548,7 @@
          ];
         
     }
-
+    
 }
 
 /*!
@@ -618,6 +634,8 @@
 {
     CGFloat height = [[aWebView stringByEvaluatingJavaScriptFromString:@"document.height"] floatValue];
     CGFloat width = [[aWebView stringByEvaluatingJavaScriptFromString:@"document.width"] floatValue];
+    
+    
     CGRect frame = aWebView.frame;
     frame.size.height = height;
     frame.size.width = width;
@@ -636,7 +654,7 @@
     NSString *myDescriptionHTML = [NSString stringWithFormat:@"<html> \n"
                                    "<head> \n"
                                    "<style type=\"text/css\"> \n"
-                                   "body {font-family: \"%@\"; font-size: %@;}\n"
+                                   "body {font-family: \"%@\"; font-size: %@; text-align: center;}\n"
                                    "</style> \n"
                                    "</head> \n"
                                    "<body><p>%@</p></body> \n"
@@ -644,5 +662,9 @@
     return myDescriptionHTML;
 }
 
+// force the orientation to landscape
+-(NSInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
 
 @end

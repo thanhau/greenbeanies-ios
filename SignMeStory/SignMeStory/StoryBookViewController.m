@@ -22,7 +22,7 @@
  * @return this view controller
  */
 - (id) initWithStoryBooksDB: (NSString *) aBookTitle{
-   
+    
     
     self = [super init];
     
@@ -33,23 +33,23 @@
     self.bookTitle = aBookTitle;
     self.pageText = [[NSMutableArray alloc] init];
     self.listOfAudio = [[NSMutableArray alloc] init];
-   
-     
+    
+    
     [self createListOfImage];
     [self createListNameForPage];
     [self createListOfAudio];
     [self createTextPage];
     self.listOfBackgroundImage = [[NSMutableArray alloc] initWithCapacity:[self.listOfBackgroundImageName count]];
-
+    
     
     self.listOfBackgroundImageName = [[NSMutableArray alloc] initWithObjects:@"storyboardscreen1.png",@"screen2-1henryandcecewithbackground.png",@"screen3-1background+henryandcece.png",@"storyboard4background.png", nil];
     
     //self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1.txt",@"GreenbeaniesParagraph2.txt",@"GreenbeaniesParagraph3.txt",@"GreenbeaniesParagraph4.txt", nil];
     //self.listOfStoryText = [[NSMutableArray alloc] initWithObjects:@"GreenbeaniesParagraph1-1.txt",@"GreenbeaniesParagraph2-1.txt", nil];
-       
+    
     [self createListOfBackgroundImage];
     
-   
+    
     
     NSDictionary *option = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin] forKey:UIPageViewControllerOptionSpineLocationKey];
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:option];
@@ -69,9 +69,9 @@
     //[self addExitButton];
     
     
-            
     
-        
+    
+    
     
     
     return self;
@@ -166,7 +166,7 @@
 -(void)createListNameForPage
 {
     
-    NSArray *numberOfTextForEachPage = [[NSArray alloc]initWithObjects:[NSNumber numberWithInt:2],[NSNumber numberWithInt:2],[NSNumber numberWithInt:4],[NSNumber numberWithInt:5],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2], [NSNumber numberWithInt:2], [NSNumber numberWithInt:1],[NSNumber numberWithInt:3],[NSNumber numberWithInt:2],[NSNumber numberWithInt:9],[NSNumber numberWithInt:1],[NSNumber numberWithInt:3],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:4],[NSNumber numberWithInt:2],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:7],[NSNumber numberWithInt:3],[NSNumber numberWithInt:5],[NSNumber numberWithInt:5],[NSNumber numberWithInt:4], nil];
+    NSArray *numberOfTextForEachPage = [[NSArray alloc]initWithObjects:[NSNumber numberWithInt:2],[NSNumber numberWithInt:4],[NSNumber numberWithInt:4],[NSNumber numberWithInt:5],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2], [NSNumber numberWithInt:2], [NSNumber numberWithInt:1],[NSNumber numberWithInt:3],[NSNumber numberWithInt:2],[NSNumber numberWithInt:9],[NSNumber numberWithInt:1],[NSNumber numberWithInt:3],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:4],[NSNumber numberWithInt:2],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:7],[NSNumber numberWithInt:3],[NSNumber numberWithInt:5],[NSNumber numberWithInt:5],[NSNumber numberWithInt:4], nil];
     
     
     for (int y = 0; y < [numberOfTextForEachPage count]; y++) {
@@ -183,7 +183,7 @@
 
 /*!
  * @function createListOfBackgroundImage
- * @abstract create list of background image 
+ * @abstract create list of background image
  * @discussion It creates a list of background image
  */
 -(void)createListOfBackgroundImage
