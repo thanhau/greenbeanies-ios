@@ -22,18 +22,11 @@
 @property (nonatomic, retain) NSString *bookPath;
 @property (nonatomic, retain) UIPageViewController *pageViewController;
 @property (nonatomic, strong) NSMutableArray *pageNumber;
-@property (nonatomic, strong) NSMutableArray *listOfBackgroundImageName;
-@property (nonatomic, strong) NSMutableArray *listOfStoryText;
-@property (nonatomic, strong) NSMutableArray *listOfNameForAllPage;
-@property (nonatomic, strong) NSMutableArray *listOfBackgroundImage;
-@property (nonatomic, strong) NSMutableArray *listOfAllAnimation;
-@property (nonatomic, strong) NSMutableArray *listOfAnimation;
-@property (nonatomic, strong) NSMutableArray *listOfTextForAllPage;
-@property (nonatomic, strong) NSMutableArray *listOfAudio;
 @property (nonatomic, weak) UITapGestureRecognizer *singeTap;
 @property (weak, nonatomic) UIToolbar *toolBar;
 
 - (id) initWithStoryBooksDB: (NSString *)bookTitle;
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle;
+- (void) setReadToMe: (bool) onOrOff;
 
 @end

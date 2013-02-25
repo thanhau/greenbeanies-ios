@@ -26,8 +26,6 @@
 @synthesize webView;
 @synthesize positionOfText;
 @synthesize listOfAudio;
-
-
 @synthesize backgroundImages;
 
 
@@ -49,6 +47,7 @@
                                    selector:@selector(playAnimation)
                                    userInfo:nil
                                     repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
 }
 
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path {
@@ -63,7 +62,7 @@
         // init background animation and chat bubble
         [self initBackgroundAnimation];
         [self initChatBublle];
-        
+    
         //adding arrow
         [self addLeftButton];
         [self addRightButton];
@@ -99,7 +98,7 @@
 }
 
 - (void) initChatBublle {
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 50)];
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 60)];
     NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:0]];
     
     [self.webView loadHTMLString:htmlString baseURL:nil];
@@ -285,9 +284,7 @@
 - (void) addPauseButton {
     UIImage *pauseImage = [UIImage imageNamed:@"pause.png"];
     UIButton *pauseButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 + 35, self.backgroundImageView.frame.size.height - 45, 30, 30)];
-  
-    
-    
+
     [pauseButton setImage:pauseImage forState:UIControlStateNormal];
     
     [pauseButton addTarget:self action:@selector(pauseAudio) forControlEvents:UIControlEventTouchUpInside];
@@ -345,7 +342,6 @@
  */
 -(void)playAudio
 {
-    
     [theAudio play];
     NSLog(@"play");
 }
