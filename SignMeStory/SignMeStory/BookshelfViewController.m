@@ -26,12 +26,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    aStoryFS = [[SignMeStoryFS alloc] initFS];
+    inventory = [aStoryFS generateBookPaths];
+    self.coverViewControllers = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [inventory count]; i++) {
+        CoverPageViewController *aNewBook = [[CoverPageViewController alloc] initWithStoryBooksFS:aStoryFS andTitle: [NSString stringWithFormat: @"%@", [inventory objectAtIndex:i]]];
+        [aNewBook.view setFrame: self.view.bounds];
+        if ([aNewBook isAValidBook]) {
+            [self.coverViewControllers addObject:aNewBook];
+
+        }
+        //StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS: aStoryFS andTitle:[NSString stringWithFormat: @"%@", [inventory objectAtIndex:i]]];
+        //[aNewBook.view setFrame: self.view.bounds];
+        //if ([aNewBook isAValidBook])
+        //    [self.bookViewControllers addObject:aNewBook];
+    }
     
     // First page orientation issue
     // Remove this line of code will cause the first initial page's size (460, 320) different than we expected (480, 300).
     // Because the first page of the book is initialized in protratait, it deduct the width in landscape by the size of status bar.
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
     
+    /*
     self.bookViewControllers = [[NSMutableArray alloc] init];
 
     // creates 10 testing book.
@@ -41,6 +59,7 @@
         [aNewBook.view setFrame: self.view.bounds];
         [self.bookViewControllers addObject:aNewBook];
     }
+    */
     [self.view addSubview: [self bookShelf]];
 }
 
@@ -56,7 +75,8 @@
 - (UIView *) bookShelf {
     UIView *shelf = [[UIView alloc] init];
     //Adds the shelf background image
-    shelf.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bookshelf.png"]];
+    shelf.backgroundColor = [[UIColor alloc] initWithPatternImage:[aStoryFS getBookShelfBackground]];
+    
     [shelf setFrame: self.view.bounds];
     UIColor *c = [[UIColor alloc] initWithRed:.5 green:.5 blue:.5 alpha:.5];
     int x_space = 15;
@@ -66,7 +86,7 @@
     int x_pos = 0;
     int y_pos = 30;
     
-    for (int i = 0; i < [self.bookViewControllers count]; i++) {
+    for (int i = 0; i < [self.coverViewControllers count]; i++) {
         x_pos += x_space;
         UIButton *bookButton = [[UIButton alloc] initWithFrame:CGRectMake(x_pos, y_pos, book_w, book_h)];
         x_pos += (book_w + x_space);
@@ -96,9 +116,10 @@
 - (void) goToBook:(UIButton *) sender {
     int bookID = [[[sender titleLabel] text] integerValue];
     NSLog(@"Book %@ is selected", [[sender titleLabel] text]);
-    CoverPageViewController *coverPage = [[CoverPageViewController alloc]init];
-    //[self presentViewController:[self.bookViewControllers objectAtIndex:bookID] animated:YES completion:nil];
-    [self presentViewController:coverPage animated:YES completion:nil];
+//    CoverPageViewController *coverPage = [[CoverPageViewController alloc]init];
+    
+    [self presentViewController:[self.coverViewControllers objectAtIndex:bookID] animated:YES completion:nil];
+    //[self presentViewController:coverPage animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

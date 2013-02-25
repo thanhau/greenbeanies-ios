@@ -2,8 +2,8 @@
 //  main.m
 //  SignMeStory
 //
-//  Created by YenHsiang Wang on 12/6/12.
-//  Copyright (c) 2012 YenHsiang Wang. All rights reserved.
+//  Created by YenHsiang Wang on 2/22/13.
+//  Copyright (c) 2013 YenHsiang Wang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

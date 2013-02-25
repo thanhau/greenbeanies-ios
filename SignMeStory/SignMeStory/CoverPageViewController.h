@@ -9,7 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "StoryBookViewController.h"
 
-@interface CoverPageViewController : UIViewController
+@interface CoverPageViewController : UIViewController {
+    SignMeStoryFS *storyFS;
+    NSString *title;
+    bool valid;
+}
+
 @property (nonatomic) UIImageView * backgroundImageView;
 @property (nonatomic) StoryBookViewController *storyBookViewController;
+
+- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle;
+- (bool) isAValidBook;
+
 @end

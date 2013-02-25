@@ -17,6 +17,7 @@
 @end
 
 @implementation BookPageViewController
+@synthesize pagePath;
 @synthesize pageText;
 @synthesize backgroundImageView;
 @synthesize backgroundImage;
@@ -25,6 +26,10 @@
 @synthesize webView;
 @synthesize positionOfText;
 @synthesize listOfAudio;
+
+
+@synthesize backgroundImages;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,12 +43,117 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path {
+    self = [super init];
+    if (self) {
+        storyFS = aStoryFS;
+        
+        // init backgroundImages
+        [self setBackgroundImages: [storyFS getPageBackgrounds:path]];
+        [self setListOfText: [storyFS getListOfText:path]];
+ 
+        // init background animation and chat bubble
+        [self initBackgroundAnimation];
+        [self initChatBublle];
+        
+        //adding arrow
+        [self addLeftButton];
+        [self addRightButton];
+        
+        // adding toolbar at bottom
+        [self addToolBar];
+        
+        //[self addPlayVideoButton];
+        
+        //hide arrow if only have one item in array
+        if ([self.listOfText count] == 1)
+        {
+            self.leftButton.hidden = YES;
+            self.rightButton.hidden = YES;
+        }
+        
+        //[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
+    }
+    return self;
+}
+
+- (void) initBackgroundAnimation {
+    self.backgroundImageView = [[UIImageView alloc]init];
+    [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
+    [self.backgroundImageView setImage: [[self backgroundImages ]objectAtIndex:0]];
     
+<<<<<<< HEAD
     self.textBackground = [[UIImageView alloc]init];
     
     
     self.positionOfText = 0;
+=======
+    if (self.backgroundImages != nil) {
+        self.backgroundImageView.animationImages = self.backgroundImages;
+        self.backgroundImageView.animationDuration = 1;
+        self.backgroundImageView.animationRepeatCount = 1;
+    }
+
+    [NSTimer scheduledTimerWithTimeInterval:5
+                                     target:self
+                                   selector:@selector(playAnimation)
+                                   userInfo:nil
+                                    repeats:NO];
     
+    [self.view addSubview:self.backgroundImageView];
+}
+
+- (void) initChatBublle {
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 50)];
+    NSString *htmlString = [self.listOfText objectAtIndex:0];
+    
+    [self.webView loadHTMLString:htmlString baseURL:nil];
+    [self.webView setBackgroundColor:[UIColor clearColor]];
+    self.webView.opaque = NO;
+    [self.webView setDelegate:self];
+    
+    // set text frame
+    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 300)];
+    [self.textView setFont: [UIFont fontWithName:@"Arial" size:20]];
+    [self.textView setBackgroundColor:[UIColor whiteColor]];
+    [self.textView setTextColor:[UIColor blackColor]];
+    [self.textView setText:self.pageText];
+    [self.textView setDelegate:self];
+    
+    //Change the size frame according to height of text
+    
+    CGRect frame = self.textView.frame;
+    frame.size.height = self.textView.contentSize.height;
+    frame.size.width = self.textView.contentSize.width;
+    self.textView.frame = frame;
+    
+    //CGRect textBackgroundFrame = CGRectMake(40, 0, self.textView.frame.size.width, self.textView.frame.size.height);
+    CGRect textBackgroundFrame = CGRectMake(40, 0, self.webView.frame.size.width, self.webView.frame.size.height);
+    
+    UIImage *imgChatBubble = [storyFS getChatBubbleImg];
+    [self.textBackground setFrame: textBackgroundFrame];
+    [self.textBackground setImage:[self imageWithImage:imgChatBubble convertToSize:self.textView.frame.size]];
+>>>>>>> Update FS
+    
+    //NSUInteger numberOfLine = self.textView.contentSize.height / self.textView.font.lineHeight;
+    [self.backgroundImageView addSubview:self.textBackground];
+
+    //[self.textBackground addSubview:self.textView];
+    [self.textBackground addSubview:self.webView];
+}
+
+
+/**
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+ 
+     self.textBackground = [[UIImageView alloc]init];
+ 
+    self.positionOfText = 0;
+ 
     // set page background
     self.backgroundImageView = [[UIImageView alloc]init];
     
@@ -115,6 +225,7 @@
     [self.textBackground addSubview:self.webView];
     
     //Change the size frame according to height of text
+<<<<<<< HEAD
     /*
      CGRect frame = self.textView.frame;
      frame.size.height = self.textView.contentSize.height;
@@ -122,6 +233,9 @@
      self.textView.frame = frame;
      */
     
+=======
+
+>>>>>>> Update FS
     CGRect frame = self.textView.frame;
     frame.size.height = self.textView.contentSize.height;
     frame.size.width = self.textView.contentSize.width;
@@ -135,6 +249,7 @@
     [self.textBackground setImage:[self imageWithImage:imgChatBubble convertToSize:self.textView.frame.size]];
     //[textBackground setBackgroundColor:[UIColor whiteColor]];
     //textBackground.opaque = NO;
+<<<<<<< HEAD
     /*
      //Create the path contain location of audio file
      NSString *stringPath = [[NSBundle mainBundle]pathForResource:[listOfAudio objectAtIndex:positionOfText]  ofType:@"mp3"];
@@ -146,6 +261,9 @@
      [theAudio setDelegate:self];
      //[theAudio play];
      */
+=======
+
+>>>>>>> Update FS
     //adding arrow
     [self addLeftButton];
     [self addRightButton];
@@ -159,6 +277,7 @@
         self.leftButton.hidden = YES;
         self.rightButton.hidden = YES;
     }
+<<<<<<< HEAD
     
     
     
@@ -166,8 +285,10 @@
     
     
     
+=======
+>>>>>>> Update FS
 }
-
+*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -180,6 +301,7 @@
  * @abstract animation
  * @discussion It creates animation from group of imgage
  */
+<<<<<<< HEAD
 -(void) animation{
     
     self.backgroundImageView.animationImages = self.animationImage;
@@ -195,6 +317,11 @@
                         
     
     
+=======
+-(void) playAnimation{
+    self.backgroundImageView.image = [[self backgroundImages ]objectAtIndex: [[self backgroundImages] count] - 1];
+    [self.backgroundImageView startAnimating];
+>>>>>>> Update FS
 }
 
 
@@ -210,8 +337,13 @@
  * @discussion It creates button that let user go back to previous text
  */
 - (void) addLeftButton {
+<<<<<<< HEAD
     self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, self.backgroundImageView.frame.size.height/2, 30, 30)];
     UIImage *leftArrow = [UIImage imageNamed:@"greenarrowLeft.png"];
+=======
+    self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 50, 50, 50)];
+    UIImage *leftArrow = [storyFS getLeftButtonImg];
+>>>>>>> Update FS
     
     [self.leftButton setImage:leftArrow forState:UIControlStateNormal];
     
@@ -229,11 +361,15 @@
  * @discussion It creates button that let user go back to previous text
  */
 - (void) addRightButton {
+<<<<<<< HEAD
     self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.height - 30, self.backgroundImageView.frame.size.height/2, 30, 30)];
     UIImage *rightArrow = [UIImage imageNamed:@"greenarrow.png"];
+=======
+    self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.height - 30, 5, 30, 30)];
+    UIImage *rightArrow = [storyFS getRightButtonImg];
+>>>>>>> Update FS
     
     [self.rightButton setImage:rightArrow forState:UIControlStateNormal];
-    
     
     [self.rightButton addTarget:self action:@selector(goToNextText) forControlEvents:UIControlEventTouchUpInside];
     self.singeTap.cancelsTouchesInView = NO;
