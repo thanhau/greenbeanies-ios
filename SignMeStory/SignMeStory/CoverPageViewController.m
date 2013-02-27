@@ -42,6 +42,7 @@
             [self.view addSubview:self.backgroundImageView];
             [self addReadToMeButton];
             [self addReadByMyselfButton];
+            [self addHomeButton];
         }
     }
     return self;
@@ -64,7 +65,7 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadToMeButton {
-    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 100, 30, 30)];
+    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2, 200, 100, 100)];
     UIImage *readToMeImage = [storyFS getReadToMeImg:title];
     
     [readToMeButton setImage:readToMeImage forState:UIControlStateNormal];
@@ -79,7 +80,7 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadByMyselfButton {
-    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 140, 30, 30)];
+    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2 + 110, 200, 100, 100)];
     UIImage *readByMyselfImage = [storyFS getReadByMyselfImg:title];
     
     [readByMyselfButton setImage:readByMyselfImage forState:UIControlStateNormal];
@@ -125,6 +126,32 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+/*!
+ * @function addHomeButton
+ * @abstract adding an exit button in the view so user can go back to bookshelf
+ * @discussion It creates button that exit current book and redirect to the bookshelf
+ */
+- (void) addHomeButton {
+    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
+    
+    UIImage *homeImg = [storyFS getHomeImg:title];
+    
+    [homeButton setImage:homeImg forState:UIControlStateNormal];
+    
+    
+    [homeButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: homeButton];
+}
+
+/*!
+ * @function quit
+ * @abstract quit current view
+ * @discussion dismiss current view controller, back to the bookshelf.
+ */
+-(void) quit {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

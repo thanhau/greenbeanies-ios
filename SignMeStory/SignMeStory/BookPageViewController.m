@@ -485,7 +485,9 @@
      action:@selector(stopAudio)];
     
     //create quit button
-    UIBarButtonItem *quitButton = [[UIBarButtonItem alloc] initWithTitle:@"Q" style:UIBarButtonItemStylePlain target:self action:@selector(quit)];
+    
+    UIImage *quitIconImg = [storyFS getQuitImg];
+    UIBarButtonItem *quitButton = [[UIBarButtonItem alloc] initWithImage:quitIconImg style:UIBarButtonItemStylePlain target:self action:@selector(quit)];
     NSArray *buttons = [[NSArray alloc]
                         initWithObjects:quitButton,flexibleSpace,playButton, pauseButton,stopButton,flexibleSpace, nil];
     

@@ -111,7 +111,7 @@
 }
 
 - (UIImage *) getReadToMeImg: (NSString *) bookTitle {
-    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/readToMe.png",fsPath, InventoryDir, bookTitle];
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/readwithaudio.png",fsPath, InventoryDir, bookTitle];
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
         return nil;
@@ -145,7 +145,7 @@
 }
 
 - (UIImage *) getLeftButtonImg {
-    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/greenarrowLeft.png",fsPath, InventoryDir, [self currentBookTitle]];
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/leftarrow.png",fsPath, InventoryDir, [self currentBookTitle]];
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
         return [UIImage imageNamed:@"Default.png"];
@@ -156,7 +156,7 @@
 }
 
 - (UIImage *) getRightButtonImg {
-    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/greenarrowRight.png",fsPath, InventoryDir, [self currentBookTitle]];
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/rightarrow.png",fsPath, InventoryDir, [self currentBookTitle]];
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
         return [UIImage imageNamed:@"Default.png"];
@@ -165,7 +165,28 @@
         return [UIImage imageWithContentsOfFile:path];
     }
 }
+- (UIImage *)getHomeImg:  (NSString *) bookTitle  {
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/home.png",fsPath, InventoryDir, bookTitle];
+    if (![self checkForPath:path]) {
+        NSLog(@"%@ doesn't exist", path);
+        return nil;
+    }
+    else {
+        return [UIImage imageWithContentsOfFile:path];
+    }
+}
 
+- (UIImage *)getQuitImg {
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/quiticon.png",fsPath, InventoryDir, [self currentBookTitle]];
+    if (![self checkForPath:path]) {
+        NSLog(@"%@ doesn't exist", path);
+        return [UIImage imageNamed:@"Default.png"];
+    }
+    else {
+        return [UIImage imageWithContentsOfFile:path];
+    }
+    
+}
 - (NSMutableArray *) getPageBackgrounds: (NSString *) pagePath {
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@%@%@/Backgrounds",fsPath, InventoryDir, pagePath];
     if (![self checkForPath:path]) {
