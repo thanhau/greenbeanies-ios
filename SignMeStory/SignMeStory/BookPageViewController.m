@@ -141,7 +141,9 @@
  * @discussion It creates button that let user go back to previous text
  */
 - (void) addLeftButton {
-    self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 50, 50, 50)];
+    self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, self.backgroundImageView.frame.size.height/2, 50, 50)];
+    
+    
     UIImage *leftArrow = [storyFS getLeftButtonImg];
     
     [self.leftButton setImage:leftArrow forState:UIControlStateNormal];
@@ -160,7 +162,7 @@
  * @discussion It creates button that let user go back to previous text
  */
 - (void) addRightButton {
-    self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.height - 30, 5, 30, 30)];
+    self.rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.height - 50, self.backgroundImageView.frame.size.height/2, 50, 50)];
     UIImage *rightArrow = [storyFS getRightButtonImg];
     
     [self.rightButton setImage:rightArrow forState:UIControlStateNormal];
