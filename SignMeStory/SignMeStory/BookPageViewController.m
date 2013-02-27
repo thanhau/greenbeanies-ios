@@ -62,6 +62,10 @@
         // init background animation and chat bubble
         [self initBackgroundAnimation];
         [self initChatBublle];
+        if (self.listOfAudio != nil)
+        {
+            
+        }
     
         //adding arrow
         [self addLeftButton];

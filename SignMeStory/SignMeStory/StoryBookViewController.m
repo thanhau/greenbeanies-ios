@@ -25,7 +25,31 @@
     storyFS = aStoryFS;
     nPages = [aStoryFS getNumberOfPages:bookTitle];
     [aStoryFS setCurrentBookTitle:aBookTitle];
+    if (hasVoiceOrNot == true)
+    {
+        NSLog(@"have sound = %d",hasVoiceOrNot);
+    }
+    NSLog(@"have sound = %d",hasVoiceOrNot);
+    [self initBook];
     
+    return self;
+}
+
+- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle andWithSound: (bool)hasSound{
+    self = [super init];
+    self.bookTitle = aBookTitle;
+    self.pageText = [[NSMutableArray alloc] init];
+    self.pageNumber = [[NSMutableArray alloc] init];
+    
+    storyFS = aStoryFS;
+    nPages = [aStoryFS getNumberOfPages:bookTitle];
+    [aStoryFS setCurrentBookTitle:aBookTitle];
+    hasVoiceOrNot = hasSound;
+    if (hasVoiceOrNot == true)
+    {
+        NSLog(@"have sound = %d",hasVoiceOrNot);
+    }
+    NSLog(@"have sound = %d",hasVoiceOrNot);
     [self initBook];
     
     return self;
@@ -54,6 +78,11 @@
     
     // adding the exit button on the top left corner
     //[self addExitButton];
+}
+
+-(void)setReadToMe:(bool)onOrOff
+{
+    hasVoiceOrNot = onOrOff;
 }
 
 // return the view controller represents the book at the index.

@@ -15,6 +15,7 @@
     NSString *bookPath;
     int nPages;
     bool valid;
+    bool hasVoiceOrNot;
 }
 
 @property (nonatomic, retain) NSString *bookTitle;
@@ -27,6 +28,7 @@
 
 - (id) initWithStoryBooksDB: (NSString *)bookTitle;
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle;
+- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle andWithSound: (bool)hasSound;
 - (void) setReadToMe: (bool) onOrOff;
 
 @end

@@ -41,6 +41,7 @@
             [self.backgroundImageView setImage:coverPage];
             [self.view addSubview:self.backgroundImageView];
             [self addReadToMeButton];
+            [self addReadByMyselfButton];
         }
     }
     return self;
@@ -73,13 +74,44 @@
 }
 
 /*!
+ * @function addReadByMyselfButton
+ * @abstract adding an read by myself button in the view
+ * @discussion It creates button that let user listen to the audio
+ */
+- (void) addReadByMyselfButton {
+    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 140, 30, 30)];
+    UIImage *readByMyselfImage = [storyFS getReadByMyselfImg:title];
+    
+    [readByMyselfButton setImage:readByMyselfImage forState:UIControlStateNormal];
+    [readByMyselfButton addTarget:self action:@selector(readByMyself) forControlEvents:UIControlEventTouchUpInside];
+    //[self.leftButton addTarget:self action:@selector(goToPreviousText) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: readByMyselfButton];
+}
+
+/*!
  * @function addReadToMe
  * @abstract allow the audio work
  * @discussion allow the audio work
  */
 -(void) readToMe
 {
-    StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS: storyFS andTitle: title];
+    //StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS: storyFS andTitle: title];
+    //[aNewBook setReadToMe:true];
+    StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS:storyFS andTitle:title andWithSound:true];
+    [aNewBook.view setFrame: self.view.bounds];
+    [self presentViewController:aNewBook animated:YES completion:nil];
+}
+/*!
+ * @function addReadByMyself
+ * @abstract don't allow the audio work
+ * @discussion don't allow the audio work
+ */
+-(void) readByMyself
+{
+    //StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS: storyFS andTitle: title];
+    //[aNewBook setReadToMe:false];
+    
+    StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS:storyFS andTitle:title andWithSound:false];
     [aNewBook.view setFrame: self.view.bounds];
     [self presentViewController:aNewBook animated:YES completion:nil];
 }

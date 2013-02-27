@@ -121,6 +121,17 @@
     }
 }
 
+- (UIImage *) getReadByMyselfImg: (NSString *) bookTitle {
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/withoutaudioicon.png",fsPath, InventoryDir, bookTitle];
+    if (![self checkForPath:path]) {
+        NSLog(@"%@ doesn't exist", path);
+        return nil;
+    }
+    else {
+        return [UIImage imageWithContentsOfFile:path];
+    }
+}
+
 
 - (UIImage *) getChatBubbleImg {
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/chatBubble.png",fsPath, InventoryDir, [self currentBookTitle]];
