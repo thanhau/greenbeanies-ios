@@ -28,7 +28,6 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
 }
 
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle {
@@ -43,6 +42,7 @@
         }
         else {
             valid = true;
+            [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
             
             NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
             x_percent = [[userDefault objectForKey:X_Percentage] floatValue];
