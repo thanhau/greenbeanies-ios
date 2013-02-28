@@ -42,6 +42,10 @@ static NSString *DictionaryDir = @"/Dictionary";
 
 - (NSMutableArray *) getPageBackgrounds: (NSString *) pagePath;
 - (NSMutableArray *) getListOfText: (NSString *) pagePath;
+<<<<<<< HEAD
 - (NSMutableArray *) getListOfAudio: (NSString *) pagePath; 
+=======
+- (NSMutableArray *) getListOfAudio: (NSString *) pagePath; // database_2012_02_27_JW
+>>>>>>> Added Audio
 
 @end

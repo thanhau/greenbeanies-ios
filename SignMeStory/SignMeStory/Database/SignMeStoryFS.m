@@ -233,6 +233,10 @@
     }
 }
 
+<<<<<<< HEAD
+=======
+// database_2012_02_27_JW
+>>>>>>> Added Audio
 - (NSMutableArray *) getListOfAudio: (NSString *) pagePath{
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Audio",fsPath, InventoryDir, pagePath];
     if (![self checkForPath:path]) {
@@ -260,17 +264,11 @@
     }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Added Audio
 - (bool) checkForPath: (NSString *) path {
-    // the following part is for debugging
-    /*
-    NSArray *contents  = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
-    int numberOfFiles = [contents count];
-    NSLog(@"current Path :%@, %d files", path, numberOfFiles);
-    
-    for (int i = 0; i < numberOfFiles; i++)
-        NSLog (@"%@", [contents objectAtIndex: i]);
-    */
     return [[NSFileManager defaultManager] fileExistsAtPath:path];
 }
 

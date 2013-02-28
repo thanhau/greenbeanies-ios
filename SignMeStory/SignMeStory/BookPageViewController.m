@@ -12,7 +12,6 @@
 {
     AVAudioPlayer *theAudio;
     MPMoviePlayerController *mpc;
-    
 }
 @end
 
@@ -48,6 +47,19 @@
                                    userInfo:nil
                                     repeats:NO];
     [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
+    
+}
+
+// database_2012_02_27_JW
+- (void) viewDidAppear:(BOOL)animated {
+    [self playAudioAt:0];
+}
+
+// database_2012_02_27_JW
+- (void) viewDidDisappear:(BOOL)animated {
+    if (theAudio != nil) {
+        [theAudio stop];
+    }
 }
 
 // database_2012_02_27_JW
@@ -71,15 +83,12 @@
         // init backgroundImages
         [self setBackgroundImages: [storyFS getPageBackgrounds:path]];
         [self setListOfText: [storyFS getListOfText:path]];
- 
+        [self setListOfAudio: [storyFS getListOfAudio:path]];
+        
         // init background animation and chat bubble
         [self initBackgroundAnimation];
         [self initChatBublle];
-        if (self.listOfAudio != nil)
-        {
-            
-        }
-    
+        
         //adding arrow
         [self addLeftButton];
         [self addRightButton];
@@ -237,7 +246,6 @@
     if (self.positionOfText < [self.listOfText count])
     {
        
-        
         if (self.leftButton.hidden == YES)
         {
             self.leftButton.hidden = NO;
@@ -258,7 +266,11 @@
         self.webView.frame = frame;
         CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
         self.textBackground.frame = textBackgroundFrame;
+<<<<<<< HEAD
         [self playAudioAt:self.positionOfText];
+=======
+        [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
+>>>>>>> Added Audio
     }
     else
     {
@@ -266,9 +278,16 @@
     }
 }
 
+<<<<<<< HEAD
 - (void) playAudioAt:(int) index {
     if (theAudio != nil) {
         [theAudio stop];
+=======
+// database_2012_02_27_JW
+- (void) playAudioAt:(int) index {
+    if (theAudio != nil) {
+         [theAudio stop];
+>>>>>>> Added Audio
     }
     AVAudioPlayer *nextAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:[[self listOfAudio] objectAtIndex:index] error:nil];
     theAudio = nextAudio;
@@ -311,7 +330,11 @@
         self.webView.frame = frame;
         CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
         self.textBackground.frame = textBackgroundFrame;
+<<<<<<< HEAD
         [self playAudioAt:self.positionOfText];
+=======
+        [self playAudioAt:self.positionOfText]; // database_2012_02_27_JW
+>>>>>>> Added Audio
     }
     else
     {
@@ -323,15 +346,13 @@
 - (void) addPlayVideoButton {
     UIImage *playImage = [UIImage imageNamed:@"play.png"];
     UIButton *playVideoButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, 30, 30)];
-    
-    
-    
     [playVideoButton setImage:playImage forState:UIControlStateNormal];
     
     [playVideoButton addTarget:self action:@selector(playVideo) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: playVideoButton];
     
 }
+
 /*!
  * @function playVideo
  * @abstract play video
@@ -373,9 +394,6 @@
     
     [theAudio pause];
     NSLog(@"pause");
-        
-    
-    
 }
 /*!
  * @function addPlayButton
@@ -386,8 +404,6 @@
     UIImage *playImage = [UIImage imageNamed:@"play.png"];
     
     UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2, self.backgroundImageView.frame.size.height - 45, 30, 30)];
-    
-    
     
     [playButton setImage:playImage forState:UIControlStateNormal];
     [playButton addTarget:self action:@selector(playAudio) forControlEvents:UIControlEventTouchUpInside];
@@ -568,9 +584,11 @@
  * @abstract quit current view
  * @discussion dismiss current view controller, back to the bookshelf.
  */
--(void) quit {
-    
+-(void) quit
+{
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self removeFromParentViewController];
+
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
