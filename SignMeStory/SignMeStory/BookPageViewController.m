@@ -41,22 +41,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [NSTimer scheduledTimerWithTimeInterval:5
+}
+
+// database_2012_02_27_JW
+- (void) viewDidAppear:(BOOL)animated {
+    [NSTimer scheduledTimerWithTimeInterval:1
                                      target:self
                                    selector:@selector(playAnimation)
                                    userInfo:nil
                                     repeats:NO];
     [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
-    
-}
-
-// database_2012_02_27_JW
-- (void) viewDidAppear:(BOOL)animated {
     if (withSound) {
         [self playAudioAt:0];
     }
-
 }
 
 // database_2012_02_27_JW
@@ -107,6 +104,7 @@
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path andWithSound: (bool)hasSound{
     self = [super init];
     if (self) {
+
         storyFS = aStoryFS;
         withSound = hasSound;
         // init backgroundImages
@@ -135,7 +133,6 @@
             self.leftButton.hidden = YES;
             self.rightButton.hidden = YES;
         }
-        
     }
     return self;
 }
@@ -166,7 +163,7 @@
     [textBackgroundView setFrame: CGRectMake(self.backgroundImageView.frame.origin.x + x_space,
                                              self.backgroundImageView.frame.origin.y + y_space,
                                              self.backgroundImageView.frame.size.width - (x_space * 2),
-                                             40)];
+                                             30)];
     
     [textBackgroundView setImage:[storyFS getChatBubbleImg]];
     
@@ -181,8 +178,8 @@
     [self.webView setBackgroundColor:[UIColor clearColor]];
     self.webView.opaque = NO;
     [self.webView setDelegate:self];
-    
-    //[textBackgroundView addSubview:self.webView];
+    [[self.webView scrollView] setScrollEnabled:false];
+
     [self.view addSubview:textBackgroundView];
     [self.view addSubview:self.webView];
     
@@ -590,6 +587,12 @@
  */
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView
 {
+    if ([[self.listOfText objectAtIndex:0] isEqualToString:@""]) {
+        [self.webView setFrame:(CGRectMake(0, 0, 0, 0))];
+        [self.textBackgroundView setFrame:(CGRectMake(0, 0, 0, 0))];
+        
+    }
+    else {
     CGRect frame1 = aWebView.frame;
     frame1.size.height = 1;
     aWebView.frame = frame1;
@@ -600,7 +603,9 @@
     self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
                                                self.webView.frame.origin.y,
                                                self.webView.frame.size.width,
-                                               fittingSize.height);
+                                               fittingSize.height - 15);
+    
+    }
 }
 
 /*!

@@ -37,7 +37,6 @@
         storyFS = aStoryFS;
         title = aBookTitle;
         
-        [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
         UIImage *coverPage = [storyFS getCoverImg: title];
         if (coverPage == nil)  {
             valid = false;
@@ -119,6 +118,7 @@
     //StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS: storyFS andTitle: title];
     //[aNewBook setReadToMe:true];
     StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS:storyFS andTitle:title andWithSound:true];
+    [aNewBook setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [aNewBook.view setFrame: self.view.bounds];
     [self presentViewController:aNewBook animated:YES completion:nil];
 }
@@ -133,6 +133,7 @@
     //[aNewBook setReadToMe:false];
     
     StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS:storyFS andTitle:title andWithSound:false];
+    [aNewBook setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [aNewBook.view setFrame: self.view.bounds];
     [self presentViewController:aNewBook animated:YES completion:nil];
 }

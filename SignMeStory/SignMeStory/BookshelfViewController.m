@@ -116,6 +116,7 @@
  */
 - (void) goToBook:(UIButton *) sender {
     int bookID = [[[sender titleLabel] text] integerValue];
+    [[self.coverViewControllers objectAtIndex:bookID] setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:[self.coverViewControllers objectAtIndex:bookID] animated:YES completion:nil];
 }
 

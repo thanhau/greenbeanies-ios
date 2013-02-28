@@ -235,7 +235,7 @@
         }
         
         if ([textArray count] == 0) {
-            [textArray addObject:@"..."];
+            [textArray addObject:@""];
         }
         return textArray;
     }
