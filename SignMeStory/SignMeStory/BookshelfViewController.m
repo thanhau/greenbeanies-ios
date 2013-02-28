@@ -122,6 +122,11 @@
     //[self presentViewController:coverPage animated:YES completion:nil];
 }
 
+// force the orientation to landscape
+-(NSInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
