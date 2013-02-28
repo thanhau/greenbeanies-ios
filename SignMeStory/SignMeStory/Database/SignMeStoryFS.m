@@ -233,6 +233,34 @@
     }
 }
 
+- (NSMutableArray *) getListOfAudio: (NSString *) pagePath{
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Audio",fsPath, InventoryDir, pagePath];
+    if (![self checkForPath:path]) {
+        NSLog(@"%@ doesn't exist", path);
+        return nil;
+    }
+    else {
+        NSMutableArray *audioFileArray = [[NSMutableArray alloc]initWithArray: [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil]];
+        NSMutableArray *audioArray = [[NSMutableArray alloc] init];
+        
+        if ([audioFileArray count ] == 0) {
+            return nil;
+        }
+        else {
+            NSArray *sortedAudioFileArray = [audioFileArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+                return [obj1 compare:obj2 options:NSNumericSearch];
+            }];
+            for (int i = 0; i < [audioFileArray count]; i++) {
+                NSURL *urlAudio = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", path, [sortedAudioFileArray objectAtIndex:i]]];
+                [audioArray addObject: urlAudio];
+            }
+            
+        }
+        return audioArray;
+    }
+}
+
+
 - (bool) checkForPath: (NSString *) path {
     // the following part is for debugging
     /*

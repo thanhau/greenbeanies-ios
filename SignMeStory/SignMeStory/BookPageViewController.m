@@ -50,6 +50,19 @@
     [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
 }
 
+// database_2012_02_27_JW
+- (void) viewDidAppear:(BOOL)animated {
+    [self playAudioAt:0];
+}
+
+// database_2012_02_27_JW
+- (void) viewDidDisappear:(BOOL)animated {
+    if (theAudio != nil) {
+        [theAudio stop];
+    }
+}
+
+
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path {
     self = [super init];
     if (self) {
@@ -245,12 +258,24 @@
         self.webView.frame = frame;
         CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
         self.textBackground.frame = textBackgroundFrame;
-
+        [self playAudioAt:self.positionOfText];
     }
     else
     {
         self.rightButton.hidden = YES;
     }
+}
+
+- (void) playAudioAt:(int) index {
+    if (theAudio != nil) {
+        [theAudio stop];
+    }
+    AVAudioPlayer *nextAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:[[self listOfAudio] objectAtIndex:index] error:nil];
+    theAudio = nextAudio;
+    [theAudio prepareToPlay];
+    
+    float playDelay = .5;
+    [theAudio playAtTime:(theAudio.deviceCurrentTime + playDelay)];
 }
 
 /*!
@@ -286,6 +311,7 @@
         self.webView.frame = frame;
         CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
         self.textBackground.frame = textBackgroundFrame;
+        [self playAudioAt:self.positionOfText];
     }
     else
     {

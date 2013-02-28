@@ -42,5 +42,6 @@ static NSString *DictionaryDir = @"/Dictionary";
 
 - (NSMutableArray *) getPageBackgrounds: (NSString *) pagePath;
 - (NSMutableArray *) getListOfText: (NSString *) pagePath;
+- (NSMutableArray *) getListOfAudio: (NSString *) pagePath; 
 
 @end
