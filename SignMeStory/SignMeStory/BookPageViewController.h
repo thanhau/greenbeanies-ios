@@ -20,7 +20,7 @@ static NSString *Y_Percentage = @"Y_Percentage";
     NSString *pagePath;
     bool audion;
     bool *lastpage;
-    bool *hasSound;
+    bool *withSound;
 }
 
 @property (nonatomic, retain) UILabel *pageTextLabel;

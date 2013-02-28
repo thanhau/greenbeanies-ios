@@ -87,7 +87,8 @@
 
 // return the view controller represents the book at the index.
 - (BookPageViewController *)bookPageAtIndex: (NSUInteger ) index{
-    BookPageViewController *bpVC = [[BookPageViewController alloc] initWithStoryBooksFS:storyFS andPagePath:[self.pageText objectAtIndex:index]];
+    //BookPageViewController *bpVC = [[BookPageViewController alloc] initWithStoryBooksFS:storyFS andPagePath:[self.pageText objectAtIndex:index ]];
+    BookPageViewController *bpVC = [[BookPageViewController alloc] initWithStoryBooksFS:storyFS andPagePath:[self.pageText objectAtIndex:index] andWithSound:hasVoiceOrNot];
     [bpVC setPageText:[self.pageText objectAtIndex:index]];
     return bpVC;
 }

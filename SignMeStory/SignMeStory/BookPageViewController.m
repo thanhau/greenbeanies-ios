@@ -52,7 +52,10 @@
 
 // database_2012_02_27_JW
 - (void) viewDidAppear:(BOOL)animated {
-    [self playAudioAt:0];
+    if (withSound) {
+        [self playAudioAt:0];
+    }
+
 }
 
 // database_2012_02_27_JW
@@ -71,8 +74,10 @@
         // init backgroundImages
         [self setBackgroundImages: [storyFS getPageBackgrounds:path]];
         [self setListOfText: [storyFS getListOfText:path]];
-        [self setListOfAudio: [storyFS getListOfAudio:path]];
-        
+        if (withSound)
+        {
+            [self setListOfAudio: [storyFS getListOfAudio:path]];
+        }
         // init background animation and chat bubble
         [self initBackgroundAnimation];
         [self initChatBublle];
@@ -102,7 +107,7 @@
     self = [super init];
     if (self) {
         storyFS = aStoryFS;
-        
+        withSound = hasSound;
         // init backgroundImages
         [self setBackgroundImages: [storyFS getPageBackgrounds:path]];
         [self setListOfText: [storyFS getListOfText:path]];
@@ -271,8 +276,10 @@
         
         //CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
         //self.textBackground.frame = textBackgroundFrame;
-
-        [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
+        if (withSound) {
+            [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
+        }
+    
     }
     else
     {
@@ -326,8 +333,9 @@
         self.webView.frame = frame;
         //CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
         //self.textBackground.frame = textBackgroundFrame;
-        
-        [self playAudioAt:self.positionOfText]; // database_2012_02_27_JW
+        if (withSound) {
+            [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
+        }
     }
     else
     {
@@ -563,10 +571,18 @@
     
     UIImage *quitIconImg = [storyFS getQuitImg];
     UIBarButtonItem *quitButton = [[UIBarButtonItem alloc] initWithImage:quitIconImg style:UIBarButtonItemStylePlain target:self action:@selector(quit)];
-    NSArray *buttons = [[NSArray alloc]
-                        initWithObjects:quitButton,flexibleSpace,playButton, pauseButton,stopButton,flexibleSpace, nil];
+    if (withSound) {
+        NSArray *buttons = [[NSArray alloc]
+                            initWithObjects:quitButton,flexibleSpace,playButton, pauseButton,stopButton,flexibleSpace, nil];
+        self.toolBar.items = buttons;
+    }
+    else {
+        NSArray *buttons = [[NSArray alloc] initWithObjects:quitButton, nil];
+        self.toolBar.items = buttons;
+    }
     
-    self.toolBar.items = buttons;
+    
+    
     
     
 }
