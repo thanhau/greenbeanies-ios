@@ -126,7 +126,7 @@
         // adding toolbar at bottom
         [self addToolBar];
         
-        //[self addPlayVideoButton];
+        [self addPlayVideoButton];
         
         //hide arrow if only have one item in array
         if ([self.listOfText count] == 1)
@@ -183,6 +183,8 @@
     
     [textBackgroundView addSubview:self.webView];
     [self.backgroundImageView addSubview:textBackgroundView];
+    //[self.backgroundImageView bringSubviewToFront:self.webView];
+    //[self.view addSubview: webView];
 
 }
 
@@ -637,42 +639,22 @@
     return myDescriptionHTML;
 }
 
-
-/*!
- * @function addHighlighToTextWithVideo
- * @abstract addHighlighToTextWithVideo
- * @discussion Add bold, italic, underline to texts which will open video
- */
--(void)addHighlighToTextWithVideo
-{
-    NSArray *importanceWord = [NSArray arrayWithObjects:@"hat",@"tree",@"day",@"backpack",@"cat",@"walked",@"eat",@"dog",@"happy",@"moon",@"asleep", nil];
-    if (self.listOfText != nil)
-    {
-        for (int i = 0; i < [self.listOfText count]; i++) {
-            for (int x = 0 ; x < [importanceWord count]; x++) {
-                NSString *newString = [NSString stringWithFormat:@"<a style='background-color:green;'>%@</a>",[importanceWord objectAtIndex:x]];
-                /*
-                NSString *highlightString = [[self.listOfText objectAtIndex:i] stringByReplacingOccurrencesOfString:[importanceWord objectAtIndex:x] withString:newString];
-                [self.listOfText replaceObjectAtIndex:i withObject:highlightString];
-                */
-                NSString *listOfWords = [self.listOfText objectAtIndex:i];
-                
-                NSArray *listItems = [listOfWords componentsSeparatedByString:@" "];
-                NSMutableArray *list = [NSMutableArray arrayWithArray:listItems];
-                listItems = nil;
-                for (int y = 0; y < [list count]; y++) {
-                    if ([[importanceWord objectAtIndex:x]isEqualToString:[list objectAtIndex:y]]) {
-                        [list replaceObjectAtIndex:y withObject:newString];
-                    }
-                }
-                NSString *newSentence = [list componentsJoinedByString:@" "];
-                //NSLog(@"%@",newSentence);
-                [self.listOfText replaceObjectAtIndex:i withObject:newSentence];
-            }
-            
-            
-        }
+- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *URL = [request URL];
+    if ([[URL scheme] isEqualToString:@"callmycode"]) {
+        
+        NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"hat" ofType:@"mp4" inDirectory:@"Dictionary"];
+        NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
+        mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
+        [mpc setMovieSourceType:MPMovieSourceTypeFile];
+        [[self view]addSubview:mpc.view];
+        [mpc setFullscreen:YES];
+        [mpc play];
     }
+    
+    return YES;
 }
+
+
 
 @end
