@@ -65,7 +65,6 @@
     }
 }
 
-
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path {
     self = [super init];
     if (self) {
@@ -136,7 +135,6 @@
             self.rightButton.hidden = YES;
         }
         
-        //[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
     }
     return self;
 }
@@ -163,8 +161,6 @@
     float x_space = 40 * [x_percent floatValue];
     float y_space = 3;
 
-    
-    UIImage *imgChatBubble = [storyFS getChatBubbleImg];
     UIImageView *textBackgroundView = [[UIImageView alloc]init];
     [textBackgroundView setFrame: CGRectMake(self.backgroundImageView.frame.origin.x + x_space,
                                              self.backgroundImageView.frame.origin.y + y_space,
@@ -172,10 +168,6 @@
                                              60)];
     
     [textBackgroundView setImage:[storyFS getChatBubbleImg]];
-    
-    //[textBackgroundView setImage:[self imageWithImage:imgChatBubble convertToSize:self.webView.frame.size]];
-
-    
     
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0,
                                                               0,
@@ -188,7 +180,6 @@
     [self.webView setBackgroundColor:[UIColor clearColor]];
     self.webView.opaque = NO;
     [self.webView setDelegate:self];
-    
     
     [textBackgroundView addSubview:self.webView];
     [self.backgroundImageView addSubview:textBackgroundView];
@@ -218,7 +209,6 @@
  */
 - (void) addLeftButton {
     self.leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, self.backgroundImageView.frame.size.height/2, 50, 50)];
-    
     
     UIImage *leftArrow = [storyFS getLeftButtonImg];
     
@@ -327,7 +317,6 @@
         
         NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
         [self.webView loadHTMLString:htmlString baseURL:nil];
-        
         
         
         CGFloat height = [[self.webView stringByEvaluatingJavaScriptFromString:@"document.height"] floatValue];

@@ -197,8 +197,12 @@
         NSMutableArray *backgroundArray = [[NSMutableArray alloc]initWithArray: [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil]];
         NSMutableArray *imgArray = [[NSMutableArray alloc] init];
         
+        NSArray *sortedBackgroundFileArray = [backgroundArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+            return [obj1 compare:obj2 options:NSNumericSearch];
+        }];
+        
         for (int i = 0; i < [backgroundArray count]; i++) {
-            UIImage *tempImg = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/%@", path, [backgroundArray objectAtIndex:i]]];
+            UIImage *tempImg = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/%@", path, [sortedBackgroundFileArray objectAtIndex:i]]];
             [imgArray addObject: tempImg];
         }
         
@@ -221,8 +225,12 @@
         NSMutableArray *textFiledArray = [[NSMutableArray alloc]initWithArray: [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil]];
         NSMutableArray *textArray = [[NSMutableArray alloc] init];
         
+        NSArray *sortedTextFileArray = [textFiledArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+            return [obj1 compare:obj2 options:NSNumericSearch];
+        }];
+        
         for (int i = 0; i < [textFiledArray count]; i++) {
-            NSString *tempStr = [NSString stringWithContentsOfFile: [NSMutableString stringWithFormat:@"%@/%@", path, [textFiledArray objectAtIndex:i]] encoding:NSASCIIStringEncoding error:nil];
+            NSString *tempStr = [NSString stringWithContentsOfFile: [NSMutableString stringWithFormat:@"%@/%@", path, [sortedTextFileArray objectAtIndex:i]] encoding:NSASCIIStringEncoding error:nil];
             [textArray addObject: tempStr];
         }
         

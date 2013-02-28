@@ -36,13 +36,14 @@
         [aNewBook.view setFrame: self.view.bounds];
         if ([aNewBook isAValidBook]) {
             [self.coverViewControllers addObject:aNewBook];
-
         }
     }
+    
     // First page orientation issue
     // Remove this line of code will cause the first initial page's size (460, 320) different than we expected (480, 300).
     // Because the first page of the book is initialized in protratait, it deduct the width in landscape by the size of status bar.
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
+    //[[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:YES];
 
     [self.view addSubview: [self bookShelf]];
 }
@@ -115,11 +116,7 @@
  */
 - (void) goToBook:(UIButton *) sender {
     int bookID = [[[sender titleLabel] text] integerValue];
-    NSLog(@"Book %@ is selected", [[sender titleLabel] text]);
-//    CoverPageViewController *coverPage = [[CoverPageViewController alloc]init];
-    
     [self presentViewController:[self.coverViewControllers objectAtIndex:bookID] animated:YES completion:nil];
-    //[self presentViewController:coverPage animated:YES completion:nil];
 }
 
 // force the orientation to landscape

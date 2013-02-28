@@ -8,7 +8,10 @@
 
 #import "CoverPageViewController.h"
 
-@interface CoverPageViewController ()
+@interface CoverPageViewController () {
+    float x_percent;
+    float y_percent;
+}
 
 @end
 
@@ -21,6 +24,11 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
 }
 
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle {
@@ -36,6 +44,11 @@
         }
         else {
             valid = true;
+            
+            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+            x_percent = [[userDefault objectForKey:X_Percentage] floatValue];
+            y_percent = [[userDefault objectForKey:Y_Percentage] floatValue];
+            
             self.backgroundImageView = [[UIImageView alloc]init];
             [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
             [self.backgroundImageView setImage:coverPage];
@@ -43,6 +56,7 @@
             [self addReadToMeButton];
             [self addReadByMyselfButton];
             [self addHomeButton];
+            
         }
     }
     return self;
@@ -65,7 +79,10 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadToMeButton {
-    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2, 200, 100, 100)];
+    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2,
+                                                                          200,
+                                                                          100,
+                                                                          100)];
     UIImage *readToMeImage = [storyFS getReadToMeImg:title];
     
     [readToMeButton setImage:readToMeImage forState:UIControlStateNormal];
@@ -80,7 +97,10 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadByMyselfButton {
-    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2 + 110, 200, 100, 100)];
+    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2 + 110,
+                                                                              200,
+                                                                              100,
+                                                                              100)];
     UIImage *readByMyselfImage = [storyFS getReadByMyselfImg:title];
     
     [readByMyselfButton setImage:readByMyselfImage forState:UIControlStateNormal];
@@ -134,13 +154,10 @@
  * @discussion It creates button that exit current book and redirect to the bookshelf
  */
 - (void) addHomeButton {
-    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
-    
+    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30 * x_percent, 30 * y_percent)];
     UIImage *homeImg = [storyFS getHomeImg:title];
     
     [homeButton setImage:homeImg forState:UIControlStateNormal];
-    
-    
     [homeButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: homeButton];
 }
