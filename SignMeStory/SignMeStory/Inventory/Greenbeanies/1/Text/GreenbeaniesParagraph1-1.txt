@@ -1,1 +1,1 @@
-Wearing his newly created hat <input type='button' value="do somthing in 10s" onclick='window.location="callmycode:cmd=showAlert&var=myVar"'/>,  
+Wearing his newly created <a type='link' value="hat" onclick='window.location="callmycode:cmd=showAlert&var=myVar"'/><i><b><FONT COLOR="green">hat</FONT></b></i></a>,  

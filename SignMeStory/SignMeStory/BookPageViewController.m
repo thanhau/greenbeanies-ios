@@ -169,8 +169,8 @@
     
     [textBackgroundView setImage:[storyFS getChatBubbleImg]];
     
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0,
-                                                              0,
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(textBackgroundView.frame.origin.x,
+                                                              textBackgroundView.frame.origin.y,
                                                               textBackgroundView.frame.size.width,
                                                               textBackgroundView.frame.size.height)];
     //[self addHighlighToTextWithVideo];
@@ -181,11 +181,12 @@
     self.webView.opaque = NO;
     [self.webView setDelegate:self];
     
-    [textBackgroundView addSubview:self.webView];
-    [self.backgroundImageView addSubview:textBackgroundView];
+    //[textBackgroundView addSubview:self.webView];
+    [self.view addSubview:textBackgroundView];
+    [self.view addSubview:self.webView];
+    
     //[self.backgroundImageView bringSubviewToFront:self.webView];
     //[self.view addSubview: webView];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -631,7 +632,7 @@
     NSString *myDescriptionHTML = [NSString stringWithFormat:@"<html> \n"
                                    "<head> \n"
                                    "<style type=\"text/css\"> \n"
-                                   "body {font-family: \"%@\"; font-size: %@; text-align:left}\n"
+                                   "body {font-family: \"%@\"; font-size: %@; text-align:center}\n"
                                    "</style> \n"
                                    "</head> \n"
                                    "<body><p>%@</p></body> \n"
