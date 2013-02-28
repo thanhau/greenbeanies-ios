@@ -76,6 +76,7 @@
         [self setListOfText: [storyFS getListOfText:path]];
         if (withSound)
         {
+            //NSLog(@"has sound is true");
             [self setListOfAudio: [storyFS getListOfAudio:path]];
         }
         // init background animation and chat bubble
@@ -111,7 +112,11 @@
         // init backgroundImages
         [self setBackgroundImages: [storyFS getPageBackgrounds:path]];
         [self setListOfText: [storyFS getListOfText:path]];
-        
+        if (withSound)
+        {
+            NSLog(@"has sound is true");
+            [self setListOfAudio: [storyFS getListOfAudio:path]];
+        }
         // init background animation and chat bubble
         [self initBackgroundAnimation];
         [self initChatBublle];
