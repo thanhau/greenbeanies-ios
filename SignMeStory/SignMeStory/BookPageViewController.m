@@ -19,6 +19,7 @@
 @synthesize pagePath;
 @synthesize pageText;
 @synthesize backgroundImageView;
+@synthesize textBackgroundView;
 @synthesize backgroundImage;
 @synthesize textView;
 @synthesize animationImage;
@@ -161,11 +162,11 @@
     float x_space = 40 * [x_percent floatValue];
     float y_space = 3;
 
-    UIImageView *textBackgroundView = [[UIImageView alloc]init];
+    textBackgroundView = [[UIImageView alloc]init];
     [textBackgroundView setFrame: CGRectMake(self.backgroundImageView.frame.origin.x + x_space,
                                              self.backgroundImageView.frame.origin.y + y_space,
                                              self.backgroundImageView.frame.size.width - (x_space * 2),
-                                             60)];
+                                             40)];
     
     [textBackgroundView setImage:[storyFS getChatBubbleImg]];
     
@@ -265,15 +266,7 @@
     
         NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
         [self.webView loadHTMLString:htmlString baseURL:nil];
-        CGFloat height = [[self.webView stringByEvaluatingJavaScriptFromString:@"document.height"] floatValue];
-        CGFloat width = [[self.webView stringByEvaluatingJavaScriptFromString:@"document.width"] floatValue];
-        CGRect frame = self.webView.frame;
-        frame.size.height = height;
-        frame.size.width = width;
-        self.webView.frame = frame;
         
-        //CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
-        //self.textBackground.frame = textBackgroundFrame;
         if (withSound) {
             [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
         }
@@ -321,15 +314,6 @@
         NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
         [self.webView loadHTMLString:htmlString baseURL:nil];
         
-        
-        CGFloat height = [[self.webView stringByEvaluatingJavaScriptFromString:@"document.height"] floatValue];
-        CGFloat width = [[self.webView stringByEvaluatingJavaScriptFromString:@"document.width"] floatValue];
-        CGRect frame = self.webView.frame;
-        frame.size.height = height;
-        frame.size.width = width;
-        self.webView.frame = frame;
-        //CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
-        //self.textBackground.frame = textBackgroundFrame;
         if (withSound) {
             [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
         }
@@ -578,10 +562,6 @@
         self.toolBar.items = buttons;
     }
     
-    
-    
-    
-    
 }
 
 
@@ -610,16 +590,17 @@
  */
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView
 {
-    CGFloat height = [[aWebView stringByEvaluatingJavaScriptFromString:@"document.height"] floatValue];
-    CGFloat width = [[aWebView stringByEvaluatingJavaScriptFromString:@"document.width"] floatValue];
-    
-    CGRect frame = aWebView.frame;
-    frame.size.height = height;
-    frame.size.width = width;
-    aWebView.frame = frame;
-    
-    //CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
-    //self.textBackground.frame = textBackgroundFrame;
+    CGRect frame1 = aWebView.frame;
+    frame1.size.height = 1;
+    aWebView.frame = frame1;
+    CGSize fittingSize = [aWebView sizeThatFits:CGSizeZero];
+    frame1.size = fittingSize;
+    aWebView.frame = frame1;
+
+    self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
+                                               self.webView.frame.origin.y,
+                                               self.webView.frame.size.width,
+                                               fittingSize.height);
 }
 
 /*!
@@ -642,8 +623,8 @@
 
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSURL *URL = [request URL];
-    if ([[URL scheme] isEqualToString:@"callmycode"]) {
-        
+    if ([[URL scheme] isEqualToString:@"test1"]) {
+        NSLog(@"%@", request);
         NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"hat" ofType:@"mp4" inDirectory:@"Dictionary"];
         NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
         mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];

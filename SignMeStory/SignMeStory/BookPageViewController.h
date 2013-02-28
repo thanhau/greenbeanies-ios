@@ -25,6 +25,7 @@ static NSString *Y_Percentage = @"Y_Percentage";
 
 @property (nonatomic, retain) UILabel *pageTextLabel;
 @property (nonatomic, retain) UIImageView * backgroundImageView;
+@property (nonatomic, retain) UIImageView * textBackgroundView;
 //@property (nonatomic, retain) UIImageView *textBackground;
 @property (nonatomic, retain) UIImage *backgroundImage;
 @property (nonatomic, retain) UITextView *textView;

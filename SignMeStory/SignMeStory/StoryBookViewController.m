@@ -45,11 +45,6 @@
     nPages = [aStoryFS getNumberOfPages:bookTitle];
     [aStoryFS setCurrentBookTitle:aBookTitle];
     hasVoiceOrNot = hasSound;
-    if (hasVoiceOrNot == true)
-    {
-        NSLog(@"have sound = %d",hasVoiceOrNot);
-    }
-    NSLog(@"have sound = %d",hasVoiceOrNot);
     [self initBook];
     
     return self;
