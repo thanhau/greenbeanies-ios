@@ -110,11 +110,6 @@
         // init background animation and chat bubble
         [self initBackgroundAnimation];
         [self initChatBublle];
-        if (self.listOfAudio != nil)
-        {
-            
-        }
-        
         //adding arrow
         [self addLeftButton];
         [self addRightButton];
@@ -151,7 +146,31 @@
 }
 
 - (void) initChatBublle {
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 60)];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSNumber *x_percent = [userDefault objectForKey:X_Percentage];
+    NSNumber *y_percent = [userDefault objectForKey:Y_Percentage];
+
+    float x_space = 40 * [x_percent floatValue];
+    float y_space = 3;
+
+    
+    UIImage *imgChatBubble = [storyFS getChatBubbleImg];
+    UIImageView *textBackgroundView = [[UIImageView alloc]init];
+    [textBackgroundView setFrame: CGRectMake(self.backgroundImageView.frame.origin.x + x_space,
+                                             self.backgroundImageView.frame.origin.y + y_space,
+                                             self.backgroundImageView.frame.size.width - (x_space * 2),
+                                             60)];
+    
+    [textBackgroundView setImage:[storyFS getChatBubbleImg]];
+    
+    //[textBackgroundView setImage:[self imageWithImage:imgChatBubble convertToSize:self.webView.frame.size]];
+
+    
+    
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0,
+                                                              0,
+                                                              textBackgroundView.frame.size.width,
+                                                              textBackgroundView.frame.size.height)];
     //[self addHighlighToTextWithVideo];
     NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:0]];
     
@@ -160,13 +179,10 @@
     self.webView.opaque = NO;
     [self.webView setDelegate:self];
     
-    UIImage *imgChatBubble = [storyFS getChatBubbleImg];
-    UIImageView *textBackgroundView = [[UIImageView alloc]init];
-    [textBackgroundView setFrame: CGRectMake(40, 0, self.webView.frame.size.width, self.webView.frame.size.height)];
-    [textBackgroundView setImage:[self imageWithImage:imgChatBubble convertToSize:self.webView.frame.size]];
-
+    
     [textBackgroundView addSubview:self.webView];
     [self.backgroundImageView addSubview:textBackgroundView];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -252,8 +268,9 @@
         frame.size.height = height;
         frame.size.width = width;
         self.webView.frame = frame;
-        CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
-        self.textBackground.frame = textBackgroundFrame;
+        
+        //CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
+        //self.textBackground.frame = textBackgroundFrame;
 
         [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
     }
@@ -307,8 +324,9 @@
         frame.size.height = height;
         frame.size.width = width;
         self.webView.frame = frame;
-        CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
-        self.textBackground.frame = textBackgroundFrame;
+        //CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
+        //self.textBackground.frame = textBackgroundFrame;
+        
         [self playAudioAt:self.positionOfText]; // database_2012_02_27_JW
     }
     else
@@ -586,9 +604,9 @@
     frame.size.height = height;
     frame.size.width = width;
     aWebView.frame = frame;
-    CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
-    self.textBackground.frame = textBackgroundFrame;
-
+    
+    //CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
+    //self.textBackground.frame = textBackgroundFrame;
 }
 
 /*!
@@ -601,7 +619,7 @@
     NSString *myDescriptionHTML = [NSString stringWithFormat:@"<html> \n"
                                    "<head> \n"
                                    "<style type=\"text/css\"> \n"
-                                   "body {font-family: \"%@\"; font-size: %@; text-align:center}\n"
+                                   "body {font-family: \"%@\"; font-size: %@; text-align:left}\n"
                                    "</style> \n"
                                    "</head> \n"
                                    "<body><p>%@</p></body> \n"

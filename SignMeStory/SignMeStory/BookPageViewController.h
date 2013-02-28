@@ -11,6 +11,10 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "SignMeStoryFS.h"
 
+static NSString *X_Percentage = @"X_Percentage";
+static NSString *Y_Percentage = @"Y_Percentage";
+
+
 @interface BookPageViewController : UIViewController<AVAudioPlayerDelegate,UITextViewDelegate,UIWebViewDelegate,UIGestureRecognizerDelegate> {
     SignMeStoryFS *storyFS;
     NSString *pagePath;
@@ -21,7 +25,7 @@
 
 @property (nonatomic, retain) UILabel *pageTextLabel;
 @property (nonatomic, retain) UIImageView * backgroundImageView;
-@property (nonatomic, retain) UIImageView *textBackground;
+//@property (nonatomic, retain) UIImageView *textBackground;
 @property (nonatomic, retain) UIImage *backgroundImage;
 @property (nonatomic, retain) UITextView *textView;
 @property (nonatomic, retain) UIWebView *webView;

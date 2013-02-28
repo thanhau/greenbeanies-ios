@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     aStoryFS = [[SignMeStoryFS alloc] initFS];
     inventory = [aStoryFS generateBookPaths];
     self.coverViewControllers = [[NSMutableArray alloc] init];
@@ -38,28 +38,12 @@
             [self.coverViewControllers addObject:aNewBook];
 
         }
-        //StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS: aStoryFS andTitle:[NSString stringWithFormat: @"%@", [inventory objectAtIndex:i]]];
-        //[aNewBook.view setFrame: self.view.bounds];
-        //if ([aNewBook isAValidBook])
-        //    [self.bookViewControllers addObject:aNewBook];
     }
-    
     // First page orientation issue
     // Remove this line of code will cause the first initial page's size (460, 320) different than we expected (480, 300).
     // Because the first page of the book is initialized in protratait, it deduct the width in landscape by the size of status bar.
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
-    
-    /*
-    self.bookViewControllers = [[NSMutableArray alloc] init];
 
-    // creates 10 testing book.
-    // this method should be replace with actual amount of books when testing is completed.
-    for (int i = 0; i < 10; i++) {
-        StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksDB: [NSString stringWithFormat: @"Test %d", i]];
-        [aNewBook.view setFrame: self.view.bounds];
-        [self.bookViewControllers addObject:aNewBook];
-    }
-    */
     [self.view addSubview: [self bookShelf]];
 }
 
@@ -73,20 +57,36 @@
  * @return a bookshelf view.
  */
 - (UIView *) bookShelf {
-    UIView *shelf = [[UIView alloc] init];
-    //Adds the shelf background image
-    shelf.backgroundColor = [[UIColor alloc] initWithPatternImage:[aStoryFS getBookShelfBackground]];
+    UIImageView *shelfImg = [[UIImageView alloc]init];
+    CGSize initialShelfImg = CGSizeMake(320, 460);
+    float x_percent = 1;
+    float y_percent = 1;
     
-    [shelf setFrame: self.view.bounds];
+    if (self.view.bounds.size.height != initialShelfImg.height || self.view.bounds.size.width != initialShelfImg.width) {
+        x_percent = self.view.bounds.size.width / initialShelfImg.width;
+        y_percent = self.view.bounds.size.height / initialShelfImg.height;
+        initialShelfImg.width *= x_percent;
+        initialShelfImg.height *= y_percent;
+    }
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setFloat:x_percent forKey:X_Percentage];
+    [userDefault setFloat:y_percent forKey:Y_Percentage];
+    
+    [shelfImg setFrame: CGRectMake(0, 0, initialShelfImg.width, initialShelfImg.height)];
+    [shelfImg setImage: [aStoryFS getBookShelfBackground]];
+    [shelfImg setUserInteractionEnabled:TRUE];
+    
+    int numberOfBooks = [self.coverViewControllers count];
+    float x_space = 15 * x_percent;
+    float y_space = 17 * y_percent;
+    float book_w = 50 * x_percent;
+    float book_h = 70 * y_percent;
+    float x_pos = 0;
+    float y_pos = 33 * y_percent;
     UIColor *c = [[UIColor alloc] initWithRed:.5 green:.5 blue:.5 alpha:.5];
-    int x_space = 15;
-    int y_space = 17;
-    int book_w = 50;
-    int book_h = 65;
-    int x_pos = 0;
-    int y_pos = 30;
     
-    for (int i = 0; i < [self.coverViewControllers count]; i++) {
+    for (int i = 0; i < numberOfBooks; i++) {
         x_pos += x_space;
         UIButton *bookButton = [[UIButton alloc] initWithFrame:CGRectMake(x_pos, y_pos, book_w, book_h)];
         x_pos += (book_w + x_space);
@@ -101,9 +101,9 @@
         [bookButton setBackgroundColor: c];
         // when a book is selected it calls goToBook to switch the view controller.
         [bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
-        [shelf addSubview:bookButton];
+        [shelfImg addSubview:bookButton];
     }
-    return shelf;
+    return shelfImg;
 }
 
 /*!
