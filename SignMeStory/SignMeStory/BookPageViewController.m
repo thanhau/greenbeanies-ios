@@ -62,18 +62,6 @@
     }
 }
 
-// database_2012_02_27_JW
-- (void) viewDidAppear:(BOOL)animated {
-    [self playAudioAt:0];
-}
-
-// database_2012_02_27_JW
-- (void) viewDidDisappear:(BOOL)animated {
-    if (theAudio != nil) {
-        [theAudio stop];
-    }
-}
-
 
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path {
     self = [super init];
@@ -266,11 +254,8 @@
         self.webView.frame = frame;
         CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
         self.textBackground.frame = textBackgroundFrame;
-<<<<<<< HEAD
-        [self playAudioAt:self.positionOfText];
-=======
+
         [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
->>>>>>> Added Audio
     }
     else
     {
@@ -278,16 +263,10 @@
     }
 }
 
-<<<<<<< HEAD
-- (void) playAudioAt:(int) index {
-    if (theAudio != nil) {
-        [theAudio stop];
-=======
 // database_2012_02_27_JW
 - (void) playAudioAt:(int) index {
     if (theAudio != nil) {
          [theAudio stop];
->>>>>>> Added Audio
     }
     AVAudioPlayer *nextAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:[[self listOfAudio] objectAtIndex:index] error:nil];
     theAudio = nextAudio;
@@ -330,11 +309,7 @@
         self.webView.frame = frame;
         CGRect textBackgroundFrame = CGRectMake(40, 0, frame.size.width, frame.size.height);
         self.textBackground.frame = textBackgroundFrame;
-<<<<<<< HEAD
-        [self playAudioAt:self.positionOfText];
-=======
         [self playAudioAt:self.positionOfText]; // database_2012_02_27_JW
->>>>>>> Added Audio
     }
     else
     {

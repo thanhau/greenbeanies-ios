@@ -233,10 +233,7 @@
     }
 }
 
-<<<<<<< HEAD
-=======
 // database_2012_02_27_JW
->>>>>>> Added Audio
 - (NSMutableArray *) getListOfAudio: (NSString *) pagePath{
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Audio",fsPath, InventoryDir, pagePath];
     if (![self checkForPath:path]) {
@@ -264,10 +261,6 @@
     }
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Added Audio
 - (bool) checkForPath: (NSString *) path {
     return [[NSFileManager defaultManager] fileExistsAtPath:path];
 }
