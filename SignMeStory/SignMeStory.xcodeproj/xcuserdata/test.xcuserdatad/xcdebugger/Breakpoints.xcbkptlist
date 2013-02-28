@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/BookPageViewController.m"
-         timestampString = "383683867.258931"
+         timestampString = "383694698.279392"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "490"
-         endingLineNumber = "490"
+         startingLineNumber = "530"
+         endingLineNumber = "530"
          landmarkName = "-addToolBar"
          landmarkType = "5">
       </FileBreakpoint>

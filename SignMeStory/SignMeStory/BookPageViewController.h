@@ -16,6 +16,7 @@
     NSString *pagePath;
     bool audion;
     bool *lastpage;
+    bool *hasSound;
 }
 
 @property (nonatomic, retain) UILabel *pageTextLabel;
@@ -39,7 +40,8 @@
 
 @property (nonatomic, strong) NSMutableArray *backgroundImages;
 
-- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) pagePath;
+- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path;
+- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path andWithSound: (bool)hasSound;
 
 
 

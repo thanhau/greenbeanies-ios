@@ -88,6 +88,45 @@
     return self;
 }
 
+- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path andWithSound: (bool)hasSound{
+    self = [super init];
+    if (self) {
+        storyFS = aStoryFS;
+        
+        // init backgroundImages
+        [self setBackgroundImages: [storyFS getPageBackgrounds:path]];
+        [self setListOfText: [storyFS getListOfText:path]];
+        
+        // init background animation and chat bubble
+        [self initBackgroundAnimation];
+        [self initChatBublle];
+        if (self.listOfAudio != nil)
+        {
+            
+        }
+        
+        //adding arrow
+        [self addLeftButton];
+        [self addRightButton];
+        
+        // adding toolbar at bottom
+        [self addToolBar];
+        
+        //[self addPlayVideoButton];
+        
+        //hide arrow if only have one item in array
+        if ([self.listOfText count] == 1)
+        {
+            self.leftButton.hidden = YES;
+            self.rightButton.hidden = YES;
+        }
+        
+        //[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
+    }
+    return self;
+}
+
+
 - (void) initBackgroundAnimation {
     self.backgroundImageView = [[UIImageView alloc]init];
     [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
@@ -103,6 +142,7 @@
 
 - (void) initChatBublle {
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, 400, 60)];
+    //[self addHighlighToTextWithVideo];
     NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:0]];
     
     [self.webView loadHTMLString:htmlString baseURL:nil];
@@ -542,7 +582,7 @@
     NSString *myDescriptionHTML = [NSString stringWithFormat:@"<html> \n"
                                    "<head> \n"
                                    "<style type=\"text/css\"> \n"
-                                   "body {font-family: \"%@\"; font-size: %@;}\n"
+                                   "body {font-family: \"%@\"; font-size: %@; text-align:center}\n"
                                    "</style> \n"
                                    "</head> \n"
                                    "<body><p>%@</p></body> \n"
@@ -550,5 +590,42 @@
     return myDescriptionHTML;
 }
 
+
+/*!
+ * @function addHighlighToTextWithVideo
+ * @abstract addHighlighToTextWithVideo
+ * @discussion Add bold, italic, underline to texts which will open video
+ */
+-(void)addHighlighToTextWithVideo
+{
+    NSArray *importanceWord = [NSArray arrayWithObjects:@"hat",@"tree",@"day",@"backpack",@"cat",@"walked",@"eat",@"dog",@"happy",@"moon",@"asleep", nil];
+    if (self.listOfText != nil)
+    {
+        for (int i = 0; i < [self.listOfText count]; i++) {
+            for (int x = 0 ; x < [importanceWord count]; x++) {
+                NSString *newString = [NSString stringWithFormat:@"<a style='background-color:green;'>%@</a>",[importanceWord objectAtIndex:x]];
+                /*
+                NSString *highlightString = [[self.listOfText objectAtIndex:i] stringByReplacingOccurrencesOfString:[importanceWord objectAtIndex:x] withString:newString];
+                [self.listOfText replaceObjectAtIndex:i withObject:highlightString];
+                */
+                NSString *listOfWords = [self.listOfText objectAtIndex:i];
+                
+                NSArray *listItems = [listOfWords componentsSeparatedByString:@" "];
+                NSMutableArray *list = [NSMutableArray arrayWithArray:listItems];
+                listItems = nil;
+                for (int y = 0; y < [list count]; y++) {
+                    if ([[importanceWord objectAtIndex:x]isEqualToString:[list objectAtIndex:y]]) {
+                        [list replaceObjectAtIndex:y withObject:newString];
+                    }
+                }
+                NSString *newSentence = [list componentsJoinedByString:@" "];
+                //NSLog(@"%@",newSentence);
+                [self.listOfText replaceObjectAtIndex:i withObject:newSentence];
+            }
+            
+            
+        }
+    }
+}
 
 @end
