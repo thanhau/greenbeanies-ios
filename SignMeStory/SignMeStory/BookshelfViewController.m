@@ -34,9 +34,7 @@
     for (int i = 0; i < [inventory count]; i++) {
         CoverPageViewController *aNewBook = [[CoverPageViewController alloc] initWithStoryBooksFS:aStoryFS andTitle: [NSString stringWithFormat: @"%@", [inventory objectAtIndex:i]]];
         [aNewBook.view setFrame: self.view.bounds];
-        if ([aNewBook isAValidBook]) {
-            [self.coverViewControllers addObject:aNewBook];
-        }
+        [self.coverViewControllers addObject:aNewBook];
     }
     
     // First page orientation issue
@@ -79,9 +77,9 @@
     [shelfImg setUserInteractionEnabled:TRUE];
     
     int numberOfBooks = [self.coverViewControllers count];
-    float x_space = 15 * x_percent;
+    float x_space = 20 * x_percent;
     float y_space = 17 * y_percent;
-    float book_w = 50 * x_percent;
+    float book_w = 120 * x_percent;
     float book_h = 70 * y_percent;
     float x_pos = 0;
     float y_pos = 33 * y_percent;
@@ -101,7 +99,9 @@
         
         [bookButton setBackgroundColor: c];
         // when a book is selected it calls goToBook to switch the view controller.
-        [bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
+        if ([[self.coverViewControllers objectAtIndex:i ] isAValidBook]) {
+            [bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
+        }
         [shelfImg addSubview:bookButton];
     }
     return shelfImg;

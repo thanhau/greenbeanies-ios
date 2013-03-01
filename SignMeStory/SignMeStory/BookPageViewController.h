@@ -44,8 +44,6 @@ static NSString *Y_Percentage = @"Y_Percentage";
 
 
 @property (nonatomic, strong) NSMutableArray *backgroundImages;
-
-- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path;
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path andWithSound: (bool)hasSound;
 
 

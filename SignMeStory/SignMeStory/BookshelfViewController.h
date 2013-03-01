@@ -14,7 +14,7 @@
     NSMutableArray *inventory;
 }
 
-@property (nonatomic, strong, retain) UIViewController *currentViewController;
 @property (nonatomic, strong, retain) NSMutableArray *coverViewControllers;
 @property (nonatomic, strong, retain) CoverPageViewController *coverPage;
+
 @end

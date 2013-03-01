@@ -16,25 +16,6 @@
 @synthesize bookPath;
 @synthesize bookTitle;
 
-- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle{
-    self = [super init];
-    self.bookTitle = aBookTitle;
-    self.pageText = [[NSMutableArray alloc] init];
-    self.pageNumber = [[NSMutableArray alloc] init];
-    
-    storyFS = aStoryFS;
-    nPages = [aStoryFS getNumberOfPages:bookTitle];
-    [aStoryFS setCurrentBookTitle:aBookTitle];
-    if (hasVoiceOrNot == true)
-    {
-        NSLog(@"have sound = %d",hasVoiceOrNot);
-    }
-    NSLog(@"have sound = %d",hasVoiceOrNot);
-    [self initBook];
-    
-    return self;
-}
-
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle andWithSound: (bool)hasSound{
     self = [super init];
     self.bookTitle = aBookTitle;
@@ -75,17 +56,12 @@
     //[self addExitButton];
 }
 
--(void)setReadToMe:(bool)onOrOff
-{
-    hasVoiceOrNot = onOrOff;
-}
 
 // return the view controller represents the book at the index.
 - (BookPageViewController *)bookPageAtIndex: (NSUInteger ) index{
     BookPageViewController *bpVC = [[BookPageViewController alloc] initWithStoryBooksFS:storyFS andPagePath:[self.pageText objectAtIndex:index] andWithSound:hasVoiceOrNot];
     [bpVC setPageText:[self.pageText objectAtIndex:index]];
     [bpVC setModalTransitionStyle:UIModalTransitionStylePartialCurl];
-
     return bpVC;
 }
 
@@ -107,6 +83,7 @@
         return nil;
     }
     index--;
+    [viewController removeFromParentViewController  ];
     return [self bookPageAtIndex:index];
 }
 
@@ -123,6 +100,7 @@
         return nil;
     }
     index++;
+    [viewController removeFromParentViewController  ];
     return [self bookPageAtIndex:index];
 }
 
@@ -154,36 +132,6 @@
  */
 -(void) quit {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-/*!
- * @function initWithStoryBooksDB
- * @abstract custom override initialization method
- * @discussion It initialize all the instance and creates pages for this book.
- * @return this view controller
- */
-- (id) initWithStoryBooksDB: (NSString *) aBookTitle
-{
-    self = [super init];
-    
-    NSDictionary *option = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin] forKey:UIPageViewControllerOptionSpineLocationKey];
-    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:option];
-    [self.pageViewController setDataSource:self];
-    
-    // Begin the book with page index 0
-    BookPageViewController *book = [self bookPageAtIndex:0];;
-    NSArray *viewControllers = [NSArray arrayWithObject:book];
-    
-    [[self pageViewController] setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-    [self.pageViewController.view setFrame: self.view.bounds];
-    [self addChildViewController:self.pageViewController];
-    [self.view addSubview:self.pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
-    
-    // adding the exit button on the top left corner
-    //[self addExitButton];
-    
-    return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -26,9 +26,6 @@
 @property (nonatomic, weak) UITapGestureRecognizer *singeTap;
 @property (weak, nonatomic) UIToolbar *toolBar;
 
-- (id) initWithStoryBooksDB: (NSString *)bookTitle;
-- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle;
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle andWithSound: (bool)hasSound;
-- (void) setReadToMe: (bool) onOrOff;
 
 @end

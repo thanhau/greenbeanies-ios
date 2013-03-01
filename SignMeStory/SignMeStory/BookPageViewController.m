@@ -63,44 +63,6 @@
     }
 }
 
-- (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path {
-    self = [super init];
-    if (self) {
-        storyFS = aStoryFS;
-        
-        // init backgroundImages
-        [self setBackgroundImages: [storyFS getPageBackgrounds:path]];
-        [self setListOfText: [storyFS getListOfText:path]];
-        if (withSound)
-        {
-            //NSLog(@"has sound is true");
-            [self setListOfAudio: [storyFS getListOfAudio:path]];
-        }
-        // init background animation and chat bubble
-        [self initBackgroundAnimation];
-        [self initChatBublle];
-        
-        //adding arrow
-        [self addLeftButton];
-        [self addRightButton];
-        
-        // adding toolbar at bottom
-        [self addToolBar];
-        
-        //[self addPlayVideoButton];
-        
-        //hide arrow if only have one item in array
-        if ([self.listOfText count] == 1)
-        {
-            self.leftButton.hidden = YES;
-            self.rightButton.hidden = YES;
-        }
-        
-        //[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
-    }
-    return self;
-}
-
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andPagePath: (NSString *) path andWithSound: (bool)hasSound{
     self = [super init];
     if (self) {
@@ -112,7 +74,6 @@
         [self setListOfText: [storyFS getListOfText:path]];
         if (withSound)
         {
-            NSLog(@"has sound is true");
             [self setListOfAudio: [storyFS getListOfAudio:path]];
         }
         // init background animation and chat bubble
@@ -125,7 +86,7 @@
         // adding toolbar at bottom
         [self addToolBar];
         
-        [self addPlayVideoButton];
+        //[self addPlayVideoButton];
         
         //hide arrow if only have one item in array
         if ([self.listOfText count] == 1)
@@ -154,8 +115,7 @@
 - (void) initChatBublle {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSNumber *x_percent = [userDefault objectForKey:X_Percentage];
-    NSNumber *y_percent = [userDefault objectForKey:Y_Percentage];
-
+    
     float x_space = 40 * [x_percent floatValue];
     float y_space = 3;
 
@@ -593,18 +553,17 @@
         
     }
     else {
-    CGRect frame1 = aWebView.frame;
-    frame1.size.height = 1;
-    aWebView.frame = frame1;
-    CGSize fittingSize = [aWebView sizeThatFits:CGSizeZero];
-    frame1.size = fittingSize;
-    aWebView.frame = frame1;
+        CGRect frame1 = aWebView.frame;
+        frame1.size.height = 1;
+        aWebView.frame = frame1;
+        CGSize fittingSize = [aWebView sizeThatFits:CGSizeZero];
+        frame1.size = fittingSize;
+        aWebView.frame = frame1;
 
-    self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
-                                               self.webView.frame.origin.y,
-                                               self.webView.frame.size.width,
-                                               fittingSize.height - 15);
-    
+        self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
+                                                   self.webView.frame.origin.y,
+                                                   self.webView.frame.size.width,
+                                                   fittingSize.height - 15);
     }
 }
 
