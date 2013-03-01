@@ -13,8 +13,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "549"
          endingLineNumber = "549"
-         landmarkName = "@implementation BookPageViewController"
-         landmarkType = "3">
+         landmarkName = "-gestureRecognizer:shouldReceiveTouch:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -27,6 +27,19 @@
          startingLineNumber = "148"
          endingLineNumber = "148"
          landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SignMeStory/Database/SignMeStoryFS.m"
+         timestampString = "383805549.692974"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "188"
+         endingLineNumber = "188"
+         landmarkName = "-getHomeImg"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
