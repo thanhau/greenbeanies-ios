@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F715EEA16E036080073293E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F715EE916E036080073293E /* QuartzCore.framework */; };
 		8FEE95C516D87B58002B8F04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE95C416D87B58002B8F04 /* UIKit.framework */; };
 		8FEE95C716D87B58002B8F04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE95C616D87B58002B8F04 /* Foundation.framework */; };
 		8FEE95C916D87B58002B8F04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE95C816D87B58002B8F04 /* CoreGraphics.framework */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F715EE916E036080073293E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8FEE95C016D87B58002B8F04 /* SignMeStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignMeStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FEE95C416D87B58002B8F04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8FEE95C616D87B58002B8F04 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F715EEA16E036080073293E /* QuartzCore.framework in Frameworks */,
 				8FEE95ED16D87B71002B8F04 /* MediaPlayer.framework in Frameworks */,
 				8FEE95EB16D87B6C002B8F04 /* AVFoundation.framework in Frameworks */,
 				8FEE95C516D87B58002B8F04 /* UIKit.framework in Frameworks */,
@@ -85,6 +88,7 @@
 		8FEE95B516D87B58002B8F04 = {
 			isa = PBXGroup;
 			children = (
+				8F715EE916E036080073293E /* QuartzCore.framework */,
 				8FEE95CA16D87B58002B8F04 /* SignMeStory */,
 				8FEE95C316D87B58002B8F04 /* Frameworks */,
 				8FEE95C116D87B58002B8F04 /* Products */,
