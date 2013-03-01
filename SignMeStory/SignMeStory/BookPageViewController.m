@@ -210,15 +210,14 @@
    
     if (self.positionOfText < [self.listOfText count])
     {
-        if (self.positionOfText == [self.listOfText count] -1) {
-            [self playAnimation];
-        }
         if (self.leftButton.hidden == YES)
         {
             self.leftButton.hidden = NO;
         }
         if (self.positionOfText == [self.listOfText count] - 1)
         {
+            [self showNextPage];
+            [self playAnimation];
             self.rightButton.hidden = YES;
         }
         [self.textView setText:[self.listOfText objectAtIndex:self.positionOfText]];
@@ -235,19 +234,6 @@
     {
         self.rightButton.hidden = YES;
     }
-}
-
-// database_2012_02_27_JW
-- (void) playAudioAt:(int) index {
-    if (theAudio != nil) {
-         [theAudio stop];
-    }
-    AVAudioPlayer *nextAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:[[self listOfAudio] objectAtIndex:index] error:nil];
-    theAudio = nextAudio;
-    [theAudio prepareToPlay];
-    
-    float playDelay = .5;
-    [theAudio playAtTime:(theAudio.deviceCurrentTime + playDelay)];
 }
 
 /*!
@@ -270,6 +256,8 @@
         }
         if (self.positionOfText == 0)
         {
+            [self showNextPage];
+            [self playAnimation];
             self.leftButton.hidden = YES;
         }
         [self.textView setText:[self.listOfText objectAtIndex:self.positionOfText]];
@@ -287,6 +275,20 @@
     }
 }
 
+
+
+// database_2012_02_27_JW
+- (void) playAudioAt:(int) index {
+    if (theAudio != nil) {
+        [theAudio stop];
+    }
+    AVAudioPlayer *nextAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:[[self listOfAudio] objectAtIndex:index] error:nil];
+    theAudio = nextAudio;
+    [theAudio prepareToPlay];
+    
+    float playDelay = .5;
+    [theAudio playAtTime:(theAudio.deviceCurrentTime + playDelay)];
+}
 
 - (void) addPlayVideoButton {
     UIImage *playImage = [UIImage imageNamed:@"play.png"];
@@ -606,6 +608,10 @@
     return YES;
 }
 
-
-
+- (void) showNextPage {
+    NSLog(@"show Next Page");
+    UIViewController *screen = [[UIViewController alloc] init];
+    [screen setModalTransitionStyle:UIModalTransitionStylePartialCurl];
+    [self presentViewController:screen animated:YES completion:nil];
+}
 @end
