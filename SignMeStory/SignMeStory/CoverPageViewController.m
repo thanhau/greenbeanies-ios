@@ -54,7 +54,7 @@
             [self.view addSubview:self.backgroundImageView];
             [self addReadToMeButton];
             [self addReadByMyselfButton];
-            [self addHomeButton];
+            [self addBookShelfButton];
             
         }
     }
@@ -150,17 +150,17 @@
 }
 
 /*!
- * @function addHomeButton
+ * @function addBookShelfButton
  * @abstract adding an exit button in the view so user can go back to bookshelf
  * @discussion It creates button that exit current book and redirect to the bookshelf
  */
-- (void) addHomeButton {
-    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30 * x_percent, 30 * y_percent)];
-    UIImage *homeImg = [storyFS getHomeImg:title];
+- (void) addBookShelfButton {
+    UIButton *bookShelfButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30 * x_percent, 30 * y_percent)];
+    UIImage *bookShelfImg = [storyFS getbookshelfImg:title];
     
-    [homeButton setImage:homeImg forState:UIControlStateNormal];
-    [homeButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: homeButton];
+    [bookShelfButton setImage:bookShelfImg forState:UIControlStateNormal];
+    [bookShelfButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: bookShelfButton];
 }
 
 /*!

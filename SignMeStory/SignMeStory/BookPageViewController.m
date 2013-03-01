@@ -210,7 +210,9 @@
    
     if (self.positionOfText < [self.listOfText count])
     {
-       
+        if (self.positionOfText == [self.listOfText count] -1) {
+            [self playAnimation];
+        }
         if (self.leftButton.hidden == YES)
         {
             self.leftButton.hidden = NO;
@@ -258,6 +260,10 @@
     
     if (self.positionOfText >= 0)
     {
+        
+        if (self.positionOfText == 0) {
+            [self playAnimation];
+        }
         if (self.rightButton.hidden == YES)
         {
             self.rightButton.hidden = NO;
@@ -507,15 +513,15 @@
     
     //create quit button
     
-    UIImage *quitIconImg = [storyFS getQuitImg];
-    UIBarButtonItem *quitButton = [[UIBarButtonItem alloc] initWithImage:quitIconImg style:UIBarButtonItemStylePlain target:self action:@selector(quit)];
+    UIImage *homeIconImg = [storyFS getHomeImg];
+    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:homeIconImg style:UIBarButtonItemStylePlain target:self action:@selector(quit)];
     if (withSound) {
         NSArray *buttons = [[NSArray alloc]
-                            initWithObjects:quitButton,flexibleSpace,playButton, pauseButton,stopButton,flexibleSpace, nil];
+                            initWithObjects:homeButton,flexibleSpace,playButton, pauseButton,stopButton,flexibleSpace, nil];
         self.toolBar.items = buttons;
     }
     else {
-        NSArray *buttons = [[NSArray alloc] initWithObjects:quitButton, nil];
+        NSArray *buttons = [[NSArray alloc] initWithObjects:homeButton, nil];
         self.toolBar.items = buttons;
     }
     

@@ -165,8 +165,8 @@
         return [UIImage imageWithContentsOfFile:path];
     }
 }
-- (UIImage *)getHomeImg:  (NSString *) bookTitle  {
-    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/home.png",fsPath, InventoryDir, bookTitle];
+- (UIImage *)getbookshelfImg:  (NSString *) bookTitle  {
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/bookshelficon.png",fsPath, InventoryDir, bookTitle];
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
         return nil;
@@ -176,8 +176,8 @@
     }
 }
 
-- (UIImage *)getQuitImg {
-    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/quiticon.png",fsPath, InventoryDir, [self currentBookTitle]];
+- (UIImage *)getHomeImg {
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/home.png",fsPath, InventoryDir, [self currentBookTitle]];
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
         return [UIImage imageNamed:@"Default.png"];
