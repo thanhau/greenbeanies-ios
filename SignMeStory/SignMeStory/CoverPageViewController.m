@@ -155,7 +155,7 @@
  * @discussion It creates button that exit current book and redirect to the bookshelf
  */
 - (void) addBookShelfButton {
-    UIButton *bookShelfButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30 * x_percent, 30 * y_percent)];
+    UIButton *bookShelfButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
     UIImage *bookShelfImg = [storyFS getbookshelfImg:title];
     
     [bookShelfButton setImage:bookShelfImg forState:UIControlStateNormal];
