@@ -1,1 +1,1 @@
-their hats were snugly on again. 
+their <a type='link' value="hat" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">hats</FONT></b></i></a> were snugly on again. 

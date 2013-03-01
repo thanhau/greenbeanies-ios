@@ -88,7 +88,6 @@
 		8FEE95B516D87B58002B8F04 = {
 			isa = PBXGroup;
 			children = (
-				8F715EE916E036080073293E /* QuartzCore.framework */,
 				8FEE95CA16D87B58002B8F04 /* SignMeStory */,
 				8FEE95C316D87B58002B8F04 /* Frameworks */,
 				8FEE95C116D87B58002B8F04 /* Products */,
@@ -106,6 +105,7 @@
 		8FEE95C316D87B58002B8F04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8F715EE916E036080073293E /* QuartzCore.framework */,
 				8FEE95EC16D87B71002B8F04 /* MediaPlayer.framework */,
 				8FEE95EA16D87B6C002B8F04 /* AVFoundation.framework */,
 				8FEE95C416D87B58002B8F04 /* UIKit.framework */,

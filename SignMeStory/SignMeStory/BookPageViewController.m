@@ -594,7 +594,7 @@
 
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSURL *URL = [request URL];
-    if ([[URL scheme] isEqualToString:@"test1"]) {
+    if ([[URL scheme] isEqualToString:@"keyword"]) {
         NSLog(@"%@", request);
         NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"hat" ofType:@"mp4" inDirectory:@"Dictionary"];
         NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];

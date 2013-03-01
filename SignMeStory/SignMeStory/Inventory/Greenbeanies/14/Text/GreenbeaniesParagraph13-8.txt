@@ -1,1 +1,1 @@
- Luckily, the wind swept his hat back around 
+ Luckily, the wind swept his <a type='link' value="hat" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">hat</FONT></b></i></a> back around 

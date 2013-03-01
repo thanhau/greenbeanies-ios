@@ -1,1 +1,1 @@
-After that, they both held their hats closely for the ride across the waves. 
+After that, they both held their <a type='link' value="hat" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">hats</FONT></b></i></a> closely for the ride across the waves. 

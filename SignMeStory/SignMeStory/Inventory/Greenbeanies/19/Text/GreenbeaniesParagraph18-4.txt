@@ -1,1 +1,1 @@
-Ugh! A Dog! 
+Ugh! A <a type='link' value="hat" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">Dog</FONT></b></i></a>! 

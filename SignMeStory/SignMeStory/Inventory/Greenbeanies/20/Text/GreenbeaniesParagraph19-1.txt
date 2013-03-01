@@ -1,1 +1,1 @@
-They walked for many more miles along a dirt road 
+They <a type='link' value="hat" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">walked</FONT></b></i></a> for many more miles along a dirt road 
