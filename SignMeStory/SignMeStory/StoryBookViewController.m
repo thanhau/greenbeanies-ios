@@ -83,7 +83,6 @@
         return nil;
     }
     index--;
-    [viewController removeFromParentViewController  ];
     return [self bookPageAtIndex:index];
 }
 
@@ -100,7 +99,6 @@
         return nil;
     }
     index++;
-    [viewController removeFromParentViewController  ];
     return [self bookPageAtIndex:index];
 }
 

@@ -96,6 +96,15 @@
             self.leftButton.hidden = YES;
             self.rightButton.hidden = YES;
         }
+        
+        UIButton *nextPButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.height - 30, 0, 30, 30)];
+        UIImage *bookShelfImg = [UIImage imageNamed:@"PageCurl.png" ];
+        
+        [nextPButton setImage:bookShelfImg forState:UIControlStateNormal];
+        [nextPButton addTarget:self action:@selector(showNextPage) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.view addSubview:nextPButton];
+
     }
     return self;
 }
@@ -223,6 +232,15 @@
    
     if (self.positionOfText < [self.listOfText count])
     {
+        [self.textView setText:[self.listOfText objectAtIndex:self.positionOfText]];
+    
+        NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
+        [self.webView loadHTMLString:htmlString baseURL:nil];
+        
+        if (withSound) {
+            [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
+        }
+        
         if (self.leftButton.hidden == YES)
         {
             self.leftButton.hidden = NO;
@@ -233,15 +251,6 @@
             [self playAnimation];
             self.rightButton.hidden = YES;
         }
-        [self.textView setText:[self.listOfText objectAtIndex:self.positionOfText]];
-    
-        NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
-        [self.webView loadHTMLString:htmlString baseURL:nil];
-        
-        if (withSound) {
-            [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
-        }
-    
     }
     else
     {
@@ -258,7 +267,15 @@
     self.positionOfText = self.positionOfText - 1;
     
     if (self.positionOfText >= 0)
-    {
+    {   
+        [self.textView setText:[self.listOfText objectAtIndex:self.positionOfText]];
+        
+        NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
+        [self.webView loadHTMLString:htmlString baseURL:nil];
+        
+        if (withSound) {
+            [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
+        }
         
         if (self.positionOfText == 0) {
             [self playAnimation];
@@ -272,14 +289,6 @@
             //[self showNextPage];
             [self playAnimation];
             self.leftButton.hidden = YES;
-        }
-        [self.textView setText:[self.listOfText objectAtIndex:self.positionOfText]];
-        
-        NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
-        [self.webView loadHTMLString:htmlString baseURL:nil];
-        
-        if (withSound) {
-            [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
         }
     }
     else
@@ -552,7 +561,7 @@
  */
 -(void) quit
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:NULL];
     [self removeFromParentViewController];
 }
 
@@ -581,7 +590,11 @@
         CGSize fittingSize = [aWebView sizeThatFits:CGSizeZero];
         frame1.size = fittingSize;
         aWebView.frame = frame1;
-        NSLog(@"%f",fittingSize.height - 15);
+        self.webView.frame = CGRectMake(self.webView.frame.origin.x,
+                                        self.webView.frame.origin.y,
+                                        self.webView.frame.size.width,
+                                        fittingSize.height
+                                        );
         self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
                                                    self.webView.frame.origin.y,
                                                    self.webView.frame.size.width,
@@ -631,9 +644,16 @@
 }
 
 - (void) showNextPage {
+/*
     NSLog(@"show Next Page");
     UIViewController *screen = [[UIViewController alloc] init];
     [screen setModalTransitionStyle:UIModalTransitionStylePartialCurl];
     [self presentViewController:screen animated:YES completion:nil];
+*/
 }
+
+-(void) hideButton:(UIButton *)aButton{
+    [aButton setHidden:(![aButton isHidden])];
+}
+
 @end
