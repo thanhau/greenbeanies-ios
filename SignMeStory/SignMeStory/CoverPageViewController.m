@@ -78,8 +78,8 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadToMeButton {
-    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2 + 70,
-                                                                          200,
+    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 - 100,
+                                                                          self.backgroundImageView.frame.size.height - 100,
                                                                           100,
                                                                           100)];
     UIImage *readToMeImage = [storyFS getReadToMeImg:title];
@@ -96,8 +96,8 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadByMyselfButton {
-    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2 + 190,
-                                                                              200,
+    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 + 10,
+                                                                              self.backgroundImageView.frame.size.height - 100,
                                                                               100,
                                                                               100)];
     UIImage *readByMyselfImage = [storyFS getReadByMyselfImg:title];

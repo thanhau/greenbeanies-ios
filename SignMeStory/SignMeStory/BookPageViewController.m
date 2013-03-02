@@ -620,6 +620,9 @@
  */
 -(NSString*)createWebString:(NSString*)content
 {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    float x_percent = [[userDefault valueForKey:X_Percentage] floatValue];
+    
     NSString *myDescriptionHTML = [NSString stringWithFormat:@"<html> \n"
                                    "<head> \n"
                                    "<style type=\"text/css\"> \n"
@@ -627,7 +630,7 @@
                                    "</style> \n"
                                    "</head> \n"
                                    "<body><p>%@</p></body> \n"
-                                   "</html>", @"helvetica", [NSNumber numberWithInt:20], content];
+                                   "</html>", @"helvetica", [NSNumber numberWithInt:20 * x_percent], content];
     return myDescriptionHTML;
 }
 
