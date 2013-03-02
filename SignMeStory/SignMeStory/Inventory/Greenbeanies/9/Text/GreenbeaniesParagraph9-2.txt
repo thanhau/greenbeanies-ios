@@ -1,1 +1,1 @@
-Placing the <a type='link' value="hat" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">cat</FONT></b></i></a> comfortably in her backpack, 
+Placing the <a type='link' value="cat" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">cat</FONT></b></i></a> comfortably in her backpack, 

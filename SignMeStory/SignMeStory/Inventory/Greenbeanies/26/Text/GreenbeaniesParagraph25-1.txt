@@ -1,1 +1,1 @@
-Before the <a type='link' value="hat" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">moon</FONT></b></i></a> had risen in the sky,
+Before the <a type='link' value="moon" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">moon</FONT></b></i></a> had risen in the sky,

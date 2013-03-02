@@ -590,7 +590,9 @@
         NSArray *a = PerformHTMLXPathQuery(data, @"//@value");
         //Need to parse out the actual word.
         query = a[0];
-        NSLog(@"String %@", query);
+        NSLog(@"%@", query);
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        dic = DictionaryForNode((__bridge xmlNodePtr)(data), dic);
         NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"hat" ofType:@"mp4" inDirectory:@"Dictionary"];
         NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
         mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];

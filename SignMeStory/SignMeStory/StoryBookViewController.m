@@ -7,6 +7,7 @@
 //
 
 #import "StoryBookViewController.h"
+#import "XPathQuery.h"
 
 @interface StoryBookViewController ()
 

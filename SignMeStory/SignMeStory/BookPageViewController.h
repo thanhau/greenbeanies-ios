@@ -10,7 +10,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "SignMeStoryFS.h"
-#import "XPathQuery.h"
 
 static NSString *X_Percentage = @"X_Percentage";
 static NSString *Y_Percentage = @"Y_Percentage";
@@ -29,7 +28,6 @@ static NSString *Y_Percentage = @"Y_Percentage";
 @property (nonatomic) UILabel *pageTextLabel;
 @property (nonatomic) UIImageView * backgroundImageView;
 @property (nonatomic) UIImageView * textBackgroundView;
-//@property (nonatomic, retain) UIImageView *textBackground;
 @property (nonatomic) UIImage *backgroundImage;
 @property (nonatomic) UITextView *textView;
 @property (nonatomic) UIWebView *webView;

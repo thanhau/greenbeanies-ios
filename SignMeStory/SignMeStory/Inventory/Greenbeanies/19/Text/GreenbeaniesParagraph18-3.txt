@@ -1,1 +1,1 @@
-Miss Matilda was surprised to see a yellow <a type='link' value="hat" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">dog</FONT></b></i></a> following them. 
+Miss Matilda was surprised to see a yellow <a type='link' value="dog" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">dog</FONT></b></i></a> following them. 
