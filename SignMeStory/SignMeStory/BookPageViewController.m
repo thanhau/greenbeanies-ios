@@ -7,6 +7,7 @@
 //
 
 #import "BookPageViewController.h"
+#import "XPathQuery.h"
 
 @interface BookPageViewController ()
 {
@@ -69,6 +70,7 @@
 
         storyFS = aStoryFS;
         withSound = hasSound;
+        pagePath = path;
         // init backgroundImages
         [self setBackgroundImages: [storyFS getPageBackgrounds:path]];
         [self setListOfText: [storyFS getListOfText:path]];
@@ -592,10 +594,17 @@
     return myDescriptionHTML;
 }
 
-- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSURL *URL = [request URL];
-    if ([[URL scheme] isEqualToString:@"keyword"]) {
-        NSLog(@"%@", request);
+- (BOOL) webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *url = [request URL];
+    if ([[url scheme] isEqualToString:@"keyword"]) {
+       
+        NSData *data = [[NSData alloc] init];
+        NSString *query = [aWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        data = [query dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *a = PerformHTMLXPathQuery(data, @"//@value");
+        //Need to parse out the actual word.
+        query = a[0];
+        NSLog(@"String %@", query);
         NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"hat" ofType:@"mp4" inDirectory:@"Dictionary"];
         NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
         mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];

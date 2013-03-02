@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "SignMeStoryFS.h"
+#import "XPathQuery.h"
 
 static NSString *X_Percentage = @"X_Percentage";
 static NSString *Y_Percentage = @"Y_Percentage";
