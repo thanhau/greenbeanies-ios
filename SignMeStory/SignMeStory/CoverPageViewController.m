@@ -78,7 +78,7 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadToMeButton {
-    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2,
+    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2 + 70,
                                                                           200,
                                                                           100,
                                                                           100)];
@@ -96,7 +96,7 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadByMyselfButton {
-    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2 + 110,
+    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.height / 2 + 190,
                                                                               200,
                                                                               100,
                                                                               100)];
@@ -155,7 +155,7 @@
  * @discussion It creates button that exit current book and redirect to the bookshelf
  */
 - (void) addBookShelfButton {
-    UIButton *bookShelfButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
+    UIButton *bookShelfButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 70, 70)];
     UIImage *bookShelfImg = [storyFS getbookshelfImg:title];
     
     [bookShelfButton setImage:bookShelfImg forState:UIControlStateNormal];
