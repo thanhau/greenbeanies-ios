@@ -176,6 +176,17 @@
     }
 }
 
+- (UIImage *) getCurlPageImg {
+    NSString *path = [NSString stringWithFormat:@"%@/%@/PageCurl.png",fsPath, ImagesDir];
+    if (![self checkForPath:path]) {
+        NSLog(@"%@ doesn't exist", path);
+        return [UIImage imageNamed:@"Default.png"];
+    }
+    else {
+        return [UIImage imageWithContentsOfFile:path];
+    }
+}
+
 - (UIImage *)getHomeImg {
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/home.png",fsPath, InventoryDir, [self currentBookTitle]];
     if (![self checkForPath:path]) {
@@ -185,7 +196,6 @@
     else {
         return [UIImage imageWithContentsOfFile:path];
     }
-    
 }
 - (NSMutableArray *) getPageBackgrounds: (NSString *) pagePath {
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@%@%@/Backgrounds",fsPath, InventoryDir, pagePath];

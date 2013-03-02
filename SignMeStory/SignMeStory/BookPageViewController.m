@@ -111,8 +111,12 @@
 
 //Add page curl to background imafe
 - (void) addNextPButton {
-    self.nextPButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.height - 30, 0, 30, 30)];
-    UIImage *bookShelfImg = [UIImage imageNamed:@"PageCurl.png" ];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSNumber *x_percent = [userDefault objectForKey:X_Percentage];
+    
+    self.nextPButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.height - 50,
+                                                                  0, 50 , 50)];
+    UIImage *bookShelfImg = [storyFS getCurlPageImg];
     
     [self.nextPButton setImage:bookShelfImg forState:UIControlStateNormal];
     [self.nextPButton addTarget:self action:@selector(showNextPage) forControlEvents:UIControlEventTouchUpInside];
@@ -144,17 +148,12 @@
     float y_space = 3;
 
     textBackgroundView = [[UIImageView alloc]init];
-    [textBackgroundView setFrame: CGRectMake(self.backgroundImageView.frame.origin.x + x_space,
-                                             self.backgroundImageView.frame.origin.y + y_space,
-                                             self.backgroundImageView.frame.size.width - (x_space * 2),
-                                             37)];
-    
     [textBackgroundView setImage:[storyFS getChatBubbleImg]];
     
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(textBackgroundView.frame.origin.x,
-                                                              textBackgroundView.frame.origin.y,
-                                                              textBackgroundView.frame.size.width,
-                                                              textBackgroundView.frame.size.height)];
+    self.webView = [[UIWebView alloc]initWithFrame: CGRectMake(self.backgroundImageView.frame.origin.x + x_space,
+                                                               self.backgroundImageView.frame.origin.y + y_space,
+                                                               self.backgroundImageView.frame.size.width - (x_space * 2),
+                                                               50)];
     
     NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:0]];
     
@@ -541,19 +540,27 @@
         
     }
     else {
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        float x_percent = [[userDefault valueForKey:X_Percentage] floatValue];
+        
         CGRect frame1 = aWebView.frame;
         frame1.size.height = 1;
         aWebView.frame = frame1;
         CGSize fittingSize = [aWebView sizeThatFits:CGSizeZero];
         frame1.size = fittingSize;
         aWebView.frame = frame1;
-        
-        
-        if (fittingSize.height >= 40) {
-        self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
+
+        if (fittingSize.height * x_percent >= 40 * x_percent) {
+            self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
                                                    self.webView.frame.origin.y,
                                                    self.webView.frame.size.width,
-                                                   fittingSize.height - 15);
+                                                   fittingSize.height - 15 * x_percent);
+        }
+        else {
+            self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
+                                                       self.webView.frame.origin.y,
+                                                       self.webView.frame.size.width,
+                                                       fittingSize.height);    
         }
     }
 }
@@ -567,6 +574,7 @@
 {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     float x_percent = [[userDefault valueForKey:X_Percentage] floatValue];
+    
     
     NSString *myDescriptionHTML = [NSString stringWithFormat:@"<html> \n"
                                    "<head> \n"
