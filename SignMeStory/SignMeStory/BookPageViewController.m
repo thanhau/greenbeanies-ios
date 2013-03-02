@@ -229,7 +229,7 @@
         }
         if (self.positionOfText == [self.listOfText count] - 1)
         {
-            [self showNextPage];
+            //[self showNextPage];
             [self playAnimation];
             self.rightButton.hidden = YES;
         }
@@ -269,7 +269,7 @@
         }
         if (self.positionOfText == 0)
         {
-            [self showNextPage];
+            //[self showNextPage];
             [self playAnimation];
             self.leftButton.hidden = YES;
         }
