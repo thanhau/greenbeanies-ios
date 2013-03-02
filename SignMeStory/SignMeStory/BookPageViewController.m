@@ -585,15 +585,11 @@
     if ([[url scheme] isEqualToString:@"keyword"]) {
        
         NSData *data = [[NSData alloc] init];
-        NSString *query = [aWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-        data = [query dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *a = PerformHTMLXPathQuery(data, @"//@value");
-        //Need to parse out the actual word.
-        query = a[0];
-        NSLog(@"%@", query);
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        dic = DictionaryForNode((__bridge xmlNodePtr)(data), dic);
-        NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"hat" ofType:@"mp4" inDirectory:@"Dictionary"];
+        NSString *content = [aWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        data = [content dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *result = PerformHTMLXPathQuery(data, @"//@value");
+        content = result[0];
+        NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:[content valueForKey:@"nodeContent"] ofType:@"mp4" inDirectory:@"Dictionary"];
         NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
         mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
         [mpc setMovieSourceType:MPMovieSourceTypeFile];
