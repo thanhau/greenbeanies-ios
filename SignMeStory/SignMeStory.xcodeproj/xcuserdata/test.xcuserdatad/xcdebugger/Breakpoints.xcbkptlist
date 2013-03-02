@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/BookPageViewController.m"
-         timestampString = "383789424.36895"
+         timestampString = "383882256.191268"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "549"
-         endingLineNumber = "549"
+         startingLineNumber = "562"
+         endingLineNumber = "562"
          landmarkName = "-gestureRecognizer:shouldReceiveTouch:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -40,6 +40,19 @@
          startingLineNumber = "188"
          endingLineNumber = "188"
          landmarkName = "-getHomeImg"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SignMeStory/BookPageViewController.m"
+         timestampString = "383882256.191268"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "305"
+         endingLineNumber = "305"
+         landmarkName = "-playAudioAt:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -125,7 +125,7 @@
     [textBackgroundView setFrame: CGRectMake(self.backgroundImageView.frame.origin.x + x_space,
                                              self.backgroundImageView.frame.origin.y + y_space,
                                              self.backgroundImageView.frame.size.width - (x_space * 2),
-                                             30)];
+                                             37)];
     
     [textBackgroundView setImage:[storyFS getChatBubbleImg]];
     
@@ -161,6 +161,17 @@
  * @discussion It creates animation from group of imgage 
  */
 -(void) playAnimation{
+    if (withSound)
+    {
+        //int duration = [[self.listOfAudio objectAtIndex:positionOfText] durationWatched];
+        //NSLog(@"time of audio is %i",duration);
+        if (durationOfAudio != 1.00)
+        {
+            NSLog(@"Animation in different rate");
+            self.backgroundImageView.animationDuration = durationOfAudio;
+        }
+        
+    }
     self.backgroundImageView.image = [[self backgroundImages ] lastObject];
     [self.backgroundImageView startAnimating];
 }
@@ -289,7 +300,9 @@
     [theAudio prepareToPlay];
     
     float playDelay = .5;
+    durationOfAudio = [theAudio duration];
     [theAudio playAtTime:(theAudio.deviceCurrentTime + playDelay)];
+    NSLog(@"%f",[theAudio duration]);
 }
 
 - (void) addPlayVideoButton {
@@ -568,7 +581,7 @@
         CGSize fittingSize = [aWebView sizeThatFits:CGSizeZero];
         frame1.size = fittingSize;
         aWebView.frame = frame1;
-
+        NSLog(@"%f",fittingSize.height - 15);
         self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
                                                    self.webView.frame.origin.y,
                                                    self.webView.frame.size.width,
