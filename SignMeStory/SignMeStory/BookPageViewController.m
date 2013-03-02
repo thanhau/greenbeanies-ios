@@ -51,7 +51,7 @@
                                    selector:@selector(playAnimation)
                                    userInfo:nil
                                     repeats:NO];
-    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
     if (withSound) {
         [self playAudioAt:0];
     }
@@ -90,25 +90,35 @@
         
         //[self addPlayVideoButton];
         
+        // adding next page symbol
+        [self addNextPButton];
+        
         //hide arrow if only have one item in array
         if ([self.listOfText count] == 1)
         {
             self.leftButton.hidden = YES;
             self.rightButton.hidden = YES;
+            if (![[self.listOfText objectAtIndex:0] isEqualToString:@""]) {
+                self.nextPButton.hidden = NO;
+            }
+            else {
+                self.nextPButton.hidden = YES;
+            }
         }
-        
-        UIButton *nextPButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.height - 30, 0, 30, 30)];
-        UIImage *bookShelfImg = [UIImage imageNamed:@"PageCurl.png" ];
-        
-        [nextPButton setImage:bookShelfImg forState:UIControlStateNormal];
-        [nextPButton addTarget:self action:@selector(showNextPage) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.view addSubview:nextPButton];
-
     }
     return self;
 }
 
+- (void) addNextPButton {
+    self.nextPButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.height - 30, 0, 30, 30)];
+    UIImage *bookShelfImg = [UIImage imageNamed:@"PageCurl.png" ];
+    
+    [self.nextPButton setImage:bookShelfImg forState:UIControlStateNormal];
+    [self.nextPButton addTarget:self action:@selector(showNextPage) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.nextPButton setHidden:TRUE];
+    [self.view addSubview:self.nextPButton];
+}
 
 - (void) initBackgroundAnimation {
     self.backgroundImageView = [[UIImageView alloc]init];
@@ -250,6 +260,7 @@
             //[self showNextPage];
             [self playAnimation];
             self.rightButton.hidden = YES;
+            self.nextPButton.hidden = NO;
         }
     }
     else
@@ -265,6 +276,7 @@
  */
 -(void)goToPreviousText {
     self.positionOfText = self.positionOfText - 1;
+    self.nextPButton.hidden = YES;
     
     if (self.positionOfText >= 0)
     {   
@@ -442,7 +454,7 @@
 {
     NSLog(@"tap");
     if (self.toolBar.hidden == YES) {
-        [UIView animateWithDuration:1
+        [UIView animateWithDuration:0
                          animations:^(void) {
                              [self.toolBar setAlpha:1];
                          }
@@ -456,7 +468,7 @@
     }
     else if (self.toolBar.hidden == NO) {
         
-        [UIView animateWithDuration:1
+        [UIView animateWithDuration:2
                          animations:^(void) {
                              [self.toolBar setAlpha:0];
                          }
@@ -590,15 +602,14 @@
         CGSize fittingSize = [aWebView sizeThatFits:CGSizeZero];
         frame1.size = fittingSize;
         aWebView.frame = frame1;
-        self.webView.frame = CGRectMake(self.webView.frame.origin.x,
-                                        self.webView.frame.origin.y,
-                                        self.webView.frame.size.width,
-                                        fittingSize.height
-                                        );
+        
+        
+        if (fittingSize.height >= 40) {
         self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
                                                    self.webView.frame.origin.y,
                                                    self.webView.frame.size.width,
                                                    fittingSize.height - 15);
+        }
     }
 }
 

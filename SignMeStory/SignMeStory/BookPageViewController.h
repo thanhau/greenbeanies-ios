@@ -25,23 +25,24 @@ static NSString *Y_Percentage = @"Y_Percentage";
     float durationOfAudio;
 }
 
-@property (nonatomic, retain) UILabel *pageTextLabel;
-@property (nonatomic, retain) UIImageView * backgroundImageView;
-@property (nonatomic, retain) UIImageView * textBackgroundView;
+@property (nonatomic) UIButton *nextPButton;
+@property (nonatomic) UILabel *pageTextLabel;
+@property (nonatomic) UIImageView * backgroundImageView;
+@property (nonatomic) UIImageView * textBackgroundView;
 //@property (nonatomic, retain) UIImageView *textBackground;
-@property (nonatomic, retain) UIImage *backgroundImage;
-@property (nonatomic, retain) UITextView *textView;
-@property (nonatomic, retain) UIWebView *webView;
-@property (nonatomic, strong, retain) NSMutableArray *animationImage;
-@property (nonatomic, strong, retain) NSMutableArray *listOfText;
-@property (nonatomic, strong, retain) NSMutableArray *listOfAudio;
-@property (nonatomic, strong, retain) NSString *pageText;
-@property (nonatomic, strong, retain) UITapGestureRecognizer *singeTap;
-@property (strong, nonatomic, retain) UIToolbar *toolBar;
-@property (strong, nonatomic, retain) UIButton *leftButton;
-@property (strong, nonatomic, retain) UIButton *rightButton;
+@property (nonatomic) UIImage *backgroundImage;
+@property (nonatomic) UITextView *textView;
+@property (nonatomic) UIWebView *webView;
+@property (nonatomic, strong) NSMutableArray *animationImage;
+@property (nonatomic, strong) NSMutableArray *listOfText;
+@property (nonatomic, strong) NSMutableArray *listOfAudio;
+@property (nonatomic, strong) NSString *pageText;
+@property (nonatomic, strong) UITapGestureRecognizer *singeTap;
+@property (strong, nonatomic) UIToolbar *toolBar;
+@property (strong, nonatomic) UIButton *leftButton;
+@property (strong, nonatomic) UIButton *rightButton;
 @property int positionOfText;
-@property (nonatomic, retain) NSString *pagePath;
+@property (nonatomic) NSString *pagePath;
 
 
 
