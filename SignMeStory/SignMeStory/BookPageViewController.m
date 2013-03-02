@@ -98,12 +98,7 @@
         {
             self.leftButton.hidden = YES;
             self.rightButton.hidden = YES;
-            if (![[self.listOfText objectAtIndex:0] isEqualToString:@""]) {
-                self.nextPButton.hidden = NO;
-            }
-            else {
-                self.nextPButton.hidden = YES;
-            }
+            self.nextPButton.hidden = NO;
         }
     }
     return self;
@@ -323,7 +318,6 @@
     float playDelay = .5;
     durationOfAudio = [theAudio duration];
     [theAudio playAtTime:(theAudio.deviceCurrentTime + playDelay)];
-    NSLog(@"%f",[theAudio duration]);
 }
 
 

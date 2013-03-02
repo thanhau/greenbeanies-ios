@@ -98,7 +98,11 @@
         return nil;
     }
     index++;
-    return [self bookPageAtIndex:index];
+    BookPageViewController *bpVC = [self bookPageAtIndex:index];
+    if (index == [self.pageText count ] - 1) {
+        bpVC.nextPButton.hidden =TRUE;
+    }
+    return bpVC;
 }
 
 // force the orientation to landscape
