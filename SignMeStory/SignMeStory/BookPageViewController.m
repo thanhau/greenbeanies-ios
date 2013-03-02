@@ -44,7 +44,7 @@
     [super viewDidLoad];
 }
 
-// database_2012_02_27_JW
+// Do play sound and do animation when view appear
 - (void) viewDidAppear:(BOOL)animated {
     [NSTimer scheduledTimerWithTimeInterval:1
                                      target:self
@@ -57,7 +57,7 @@
     }
 }
 
-// database_2012_02_27_JW
+// Stop the audio
 - (void) viewDidDisappear:(BOOL)animated {
     if (theAudio != nil) {
         [theAudio stop];
@@ -88,7 +88,7 @@
         // adding toolbar at bottom
         [self addToolBar];
         
-        //[self addPlayVideoButton];
+        
         
         // adding next page symbol
         [self addNextPButton];
@@ -109,6 +109,7 @@
     return self;
 }
 
+//Add page curl to background imafe
 - (void) addNextPButton {
     self.nextPButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.height - 30, 0, 30, 30)];
     UIImage *bookShelfImg = [UIImage imageNamed:@"PageCurl.png" ];
@@ -120,6 +121,7 @@
     [self.view addSubview:self.nextPButton];
 }
 
+//Initialize the background
 - (void) initBackgroundAnimation {
     self.backgroundImageView = [[UIImageView alloc]init];
     [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
@@ -133,6 +135,7 @@
     [self.view addSubview:self.backgroundImageView];
 }
 
+//Initialize the chat bubble
 - (void) initChatBublle {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSNumber *x_percent = [userDefault objectForKey:X_Percentage];
@@ -152,7 +155,7 @@
                                                               textBackgroundView.frame.origin.y,
                                                               textBackgroundView.frame.size.width,
                                                               textBackgroundView.frame.size.height)];
-    //[self addHighlighToTextWithVideo];
+    
     NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:0]];
     
     [self.webView loadHTMLString:htmlString baseURL:nil];
@@ -164,8 +167,7 @@
     [self.view addSubview:textBackgroundView];
     [self.view addSubview:self.webView];
     
-    //[self.backgroundImageView bringSubviewToFront:self.webView];
-    //[self.view addSubview: webView];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -182,11 +184,10 @@
 -(void) playAnimation{
     if (withSound)
     {
-        //int duration = [[self.listOfAudio objectAtIndex:positionOfText] durationWatched];
-        //NSLog(@"time of audio is %i",duration);
+        
         if (durationOfAudio != 1.00)
         {
-            NSLog(@"Animation in different rate");
+            
             self.backgroundImageView.animationDuration = durationOfAudio;
         }
         
@@ -248,7 +249,7 @@
         [self.webView loadHTMLString:htmlString baseURL:nil];
         
         if (withSound) {
-            [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
+            [self playAudioAt:self.positionOfText];
         }
         
         if (self.leftButton.hidden == YES)
@@ -257,7 +258,7 @@
         }
         if (self.positionOfText == [self.listOfText count] - 1)
         {
-            //[self showNextPage];
+            
             [self playAnimation];
             self.rightButton.hidden = YES;
             self.nextPButton.hidden = NO;
@@ -286,7 +287,7 @@
         [self.webView loadHTMLString:htmlString baseURL:nil];
         
         if (withSound) {
-            [self playAudioAt:self.positionOfText];// database_2012_02_27_JW
+            [self playAudioAt:self.positionOfText];
         }
         
         if (self.positionOfText == 0) {
@@ -298,7 +299,7 @@
         }
         if (self.positionOfText == 0)
         {
-            //[self showNextPage];
+            
             [self playAnimation];
             self.leftButton.hidden = YES;
         }
@@ -311,7 +312,7 @@
 
 
 
-// database_2012_02_27_JW
+// play audio at certain index
 - (void) playAudioAt:(int) index {
     if (theAudio != nil) {
         [theAudio stop];
@@ -326,47 +327,6 @@
     NSLog(@"%f",[theAudio duration]);
 }
 
-- (void) addPlayVideoButton {
-    UIImage *playImage = [UIImage imageNamed:@"play.png"];
-    UIButton *playVideoButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, 30, 30)];
-    [playVideoButton setImage:playImage forState:UIControlStateNormal];
-    
-    [playVideoButton addTarget:self action:@selector(playVideo) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: playVideoButton];
-    
-}
-
-/*!
- * @function playVideo
- * @abstract play video
- * @discussion It play certain video
- */
--(void) playVideo
-{
-    NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"hat" ofType:@"mp4"];
-    NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
-    mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
-    [mpc setMovieSourceType:MPMovieSourceTypeFile];
-    [[self view]addSubview:mpc.view];
-    [mpc setFullscreen:YES];
-    [mpc play];
-}
-
-/*!
- * @function addPauseButton
- * @abstract adding an pause audio button in the view so user can pause the audio
- * @discussion It creates button that pause audio
- */
-- (void) addPauseButton {
-    UIImage *pauseImage = [UIImage imageNamed:@"pause.png"];
-    UIButton *pauseButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 + 35, self.backgroundImageView.frame.size.height - 45, 30, 30)];
-
-    [pauseButton setImage:pauseImage forState:UIControlStateNormal];
-    
-    [pauseButton addTarget:self action:@selector(pauseAudio) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: pauseButton];
-    
-}
 
 /*!
  * @function pauseAudio
@@ -414,26 +374,10 @@
 -(void)playAudio
 {
     [theAudio play];
-    NSLog(@"play");
-}
-
-
-
-/*!
- * @function addPlayButton
- * @abstract adding an play audio button in the view so user can play the audio
- * @discussion It creates button that play audio
- */
-- (void) addStopButton {
-    
-    UIImage *stopImage = [UIImage imageNamed:@"stop.png"];
-    UIButton *stopButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 - 35, self.backgroundImageView.frame.size.height - 45, 30, 30)];
-    
-    [stopButton setImage:stopImage forState:UIControlStateNormal];
-    [stopButton addTarget:self action:@selector(stopAudio) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: stopButton];
     
 }
+
+
 
 /*!
  * @function playAudio
@@ -443,7 +387,7 @@
 -(void)stopAudio
 {
     [theAudio stop];
-    NSLog(@"stop");
+    
 }
 /*!
  * @function showToolBar
@@ -452,7 +396,7 @@
  */
 - (void)showToolbar
 {
-    NSLog(@"tap");
+    
     if (self.toolBar.hidden == YES) {
         [UIView animateWithDuration:0
                          animations:^(void) {
@@ -577,6 +521,7 @@
     [self removeFromParentViewController];
 }
 
+//Tap Gesture won't happen when use click on the left and right arrow
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
        shouldReceiveTouch:(UITouch *)touch {
     // Don't recognize taps in the buttons
@@ -634,6 +579,7 @@
     return myDescriptionHTML;
 }
 
+//Load video when user click on link
 - (BOOL) webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSURL *url = [request URL];
     if ([[url scheme] isEqualToString:@"keyword"]) {
@@ -666,6 +612,7 @@
 */
 }
 
+// hide button
 -(void) hideButton:(UIButton *)aButton{
     [aButton setHidden:(![aButton isHidden])];
 }

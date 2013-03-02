@@ -8,12 +8,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/BookPageViewController.m"
-         timestampString = "383882256.191268"
+         timestampString = "383892466.783819"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "562"
-         endingLineNumber = "562"
-         landmarkName = "-quit"
+         startingLineNumber = "506"
+         endingLineNumber = "506"
+         landmarkName = "-addToolBar"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -21,13 +21,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/StoryBookViewController.m"
-         timestampString = "383728238.058303"
+         timestampString = "383892466.783819"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "148"
-         endingLineNumber = "148"
-         landmarkName = "-viewDidLoad"
-         landmarkType = "5">
+         startingLineNumber = "133"
+         endingLineNumber = "133"
+         landmarkName = "@implementation StoryBookViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -47,12 +47,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/BookPageViewController.m"
-         timestampString = "383882256.191268"
+         timestampString = "383892466.783819"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "305"
-         endingLineNumber = "305"
-         landmarkName = "-playAudioAt:"
+         startingLineNumber = "306"
+         endingLineNumber = "306"
+         landmarkName = "-goToPreviousText"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

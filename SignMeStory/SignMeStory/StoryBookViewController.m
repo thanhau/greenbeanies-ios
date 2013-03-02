@@ -52,8 +52,7 @@
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
-    // adding the exit button on the top left corner
-    //[self addExitButton];
+ 
 }
 
 
@@ -106,21 +105,7 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
-/*!
- * @function addExitButton
- * @abstract adding an exit button in the view so user can go back to bookshelf
- * @discussion It creates button that exit current book and redirect to the bookshelf
- */
-- (void) addExitButton {
-    UIButton *exitButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
-    [exitButton setTitle: [NSString stringWithFormat: @"Q"]
-                forState: UIControlStateNormal];
-    
-    [exitButton setBackgroundColor: [UIColor grayColor]];
-    
-    [exitButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: exitButton];
-}
+
 
 /*!
  * @function quit

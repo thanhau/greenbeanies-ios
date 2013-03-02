@@ -86,14 +86,14 @@
     
     [readToMeButton setImage:readToMeImage forState:UIControlStateNormal];
     [readToMeButton addTarget:self action:@selector(readToMe) forControlEvents:UIControlEventTouchUpInside];
-    //[self.leftButton addTarget:self action:@selector(goToPreviousText) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview: readToMeButton];
 }
 
 /*!
  * @function addReadByMyselfButton
  * @abstract adding an read by myself button in the view
- * @discussion It creates button that let user listen to the audio
+ * @discussion It creates button that don't let user listen to the audio
  */
 - (void) addReadByMyselfButton {
     UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 + 10,
@@ -104,7 +104,7 @@
     
     [readByMyselfButton setImage:readByMyselfImage forState:UIControlStateNormal];
     [readByMyselfButton addTarget:self action:@selector(readByMyself) forControlEvents:UIControlEventTouchUpInside];
-    //[self.leftButton addTarget:self action:@selector(goToPreviousText) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview: readByMyselfButton];
 }
 
@@ -115,8 +115,7 @@
  */
 -(void) readToMe
 {
-    //StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS: storyFS andTitle: title];
-    //[aNewBook setReadToMe:true];
+    
     StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS:storyFS andTitle:title andWithSound:true];
     [aNewBook setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [aNewBook.view setFrame: self.view.bounds];
@@ -129,8 +128,7 @@
  */
 -(void) readByMyself
 {
-    //StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS: storyFS andTitle: title];
-    //[aNewBook setReadToMe:false];
+    
     
     StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS:storyFS andTitle:title andWithSound:false];
     [aNewBook setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
