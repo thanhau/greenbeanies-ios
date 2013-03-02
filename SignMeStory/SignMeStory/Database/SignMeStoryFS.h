@@ -31,6 +31,7 @@ static NSString *DictionaryDir = @"/Dictionary";
 - (NSString *) getPageText: (NSString *) bookPath andPageNumber: (int) pageNumber;
 - (NSString *) getPageBackground: (NSString *) bookPath andPageNumber: (int) pageNumber;
 
+- (UIImage *) getCoverIcon: (NSString *) bookTitle;
 - (UIImage *) getCoverImg: (NSString *) bookTitle;
 - (UIImage *) getReadToMeImg:(NSString *) bookTitle;
 - (UIImage *) getReadByMyselfImg: (NSString *) bookTitle;

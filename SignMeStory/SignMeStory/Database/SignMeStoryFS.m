@@ -98,6 +98,17 @@
 }
 
 
+- (UIImage *) getCoverIcon: (NSString *) bookTitle {
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/coverIcon.jpg",fsPath, InventoryDir, bookTitle];
+    if (![self checkForPath:path]) {
+        NSLog(@"%@ doesn't exist", path);
+        return nil;
+    }
+    else {
+        return [UIImage imageWithContentsOfFile:path];
+    }
+}
+
 - (UIImage *) getCoverImg: (NSString *) bookTitle {
     
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/coverPage.jpg",fsPath, InventoryDir, bookTitle];
