@@ -89,8 +89,9 @@
         x_pos += x_space;
         UIButton *bookButton = [[UIButton alloc] initWithFrame:CGRectMake(x_pos, y_pos, book_w, book_h)];
         x_pos += (book_w + x_space);
-        [bookButton setTitle: [NSString stringWithFormat: @"%d", i]
-                    forState: UIControlStateNormal];
+        
+        UIImage *coverIconForBook = [aStoryFS getCoverIconForBook:[NSString stringWithFormat: @"%@", [inventory objectAtIndex:i]]];
+        [bookButton setImage:coverIconForBook forState:UIControlStateNormal];
         
         if (x_pos + book_w + x_space >= self.view.frame.size.width) {
             x_pos = 0;

@@ -187,6 +187,17 @@
     }
 }
 
+- (UIImage *)getCoverIconForBook:  (NSString *) bookTitle  {
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/coverIcon.png",fsPath, InventoryDir, bookTitle];
+    if (![self checkForPath:path]) {
+        NSLog(@"%@ doesn't exist", path);
+        return nil;
+    }
+    else {
+        return [UIImage imageWithContentsOfFile:path];
+    }
+}
+
 - (UIImage *) getCurlPageImg {
     NSString *path = [NSString stringWithFormat:@"%@/%@/PageCurl.png",fsPath, ImagesDir];
     if (![self checkForPath:path]) {
