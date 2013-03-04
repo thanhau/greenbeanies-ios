@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		221E0FF816E16703008C5C8A /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 221E0FF716E16703008C5C8A /* XPathQuery.m */; };
 		22A9A33216E16B7D00DAB32B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A9A33116E16B7D00DAB32B /* libxml2.dylib */; };
+		52B37B0C16E515250037250B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B37B0B16E515250037250B /* icon.png */; };
 		8F715EEA16E036080073293E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F715EE916E036080073293E /* QuartzCore.framework */; };
 		8FEE95C516D87B58002B8F04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE95C416D87B58002B8F04 /* UIKit.framework */; };
 		8FEE95C716D87B58002B8F04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE95C616D87B58002B8F04 /* Foundation.framework */; };
@@ -38,6 +39,7 @@
 		221E0FF616E16703008C5C8A /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		221E0FF716E16703008C5C8A /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		22A9A33116E16B7D00DAB32B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		52B37B0B16E515250037250B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Inventory/Greenbeanies/Other/icon.png; sourceTree = "<group>"; };
 		8F715EE916E036080073293E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8FEE95C016D87B58002B8F04 /* SignMeStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignMeStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FEE95C416D87B58002B8F04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -154,6 +156,7 @@
 				8FEE95EF16D87D50002B8F04 /* Images */,
 				8FEE95F016D87D50002B8F04 /* Inventory */,
 				8FEE95CC16D87B58002B8F04 /* SignMeStory-Info.plist */,
+				52B37B0B16E515250037250B /* icon.png */,
 				8FEE95CD16D87B58002B8F04 /* InfoPlist.strings */,
 				8FEE95D016D87B58002B8F04 /* main.m */,
 				8FEE95D216D87B58002B8F04 /* SignMeStory-Prefix.pch */,
@@ -233,6 +236,7 @@
 				8FEE95F116D87D50002B8F04 /* Dictionary in Resources */,
 				8FEE95F216D87D50002B8F04 /* Images in Resources */,
 				8FEE95F316D87D50002B8F04 /* Inventory in Resources */,
+				52B37B0C16E515250037250B /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

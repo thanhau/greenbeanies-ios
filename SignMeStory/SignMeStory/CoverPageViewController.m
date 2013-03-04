@@ -78,7 +78,7 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadToMeButton {
-    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 - 100,
+    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 - 60,
                                                                           self.backgroundImageView.frame.size.height - 100,
                                                                           100,
                                                                           100)];
@@ -96,7 +96,7 @@
  * @discussion It creates button that don't let user listen to the audio
  */
 - (void) addReadByMyselfButton {
-    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 + 10,
+    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 + 40,
                                                                               self.backgroundImageView.frame.size.height - 100,
                                                                               100,
                                                                               100)];
