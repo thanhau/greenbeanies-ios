@@ -83,7 +83,6 @@
     float book_h = 70 * y_percent;
     float x_pos = 0;
     float y_pos = 33 * y_percent;
-    UIColor *c = [[UIColor alloc] initWithRed:.5 green:.5 blue:.5 alpha:.5];
     
     for (int i = 0; i < numberOfBooks; i++) {
         x_pos += x_space;
@@ -91,17 +90,25 @@
         x_pos += (book_w + x_space);
         
         UIImage *coverIconForBook = [aStoryFS getCoverIconForBook:[NSString stringWithFormat: @"%@", [inventory objectAtIndex:i]]];
-        [bookButton setImage:coverIconForBook forState:UIControlStateNormal];
+        UIImageView *bookBackgroundView = [[UIImageView alloc] initWithImage:coverIconForBook];
+        
+        [bookBackgroundView setFrame: CGRectMake(0, 0, book_w, book_h)];
+        [bookButton addSubview:bookBackgroundView];
+        //[bookButton setImage:coverIconForBook forState:UIControlStateNormal];
         
         if (x_pos + book_w + x_space >= self.view.frame.size.width) {
             x_pos = 0;
             y_pos += (book_h + y_space);
         }
         
-        [bookButton setBackgroundColor: c];
         // when a book is selected it calls goToBook to switch the view controller.
         if ([[self.coverViewControllers objectAtIndex:i ] isAValidBook]) {
             [bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else {
+            bookButton.titleLabel.font = [UIFont systemFontOfSize:15 * x_percent];
+            [bookButton setTitle:@"Coming Soon!" forState:UIControlStateNormal];
+            [bookButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
         }
         [shelfImg addSubview:bookButton];
     }

@@ -41,21 +41,22 @@
             valid = false;
         }
         else {
-            valid = true;
-            [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
+            if ([storyFS getNumberOfPages:title] > 0) {
+                valid = true;
+                [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
             
-            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-            x_percent = [[userDefault objectForKey:X_Percentage] floatValue];
-            y_percent = [[userDefault objectForKey:Y_Percentage] floatValue];
+                NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                x_percent = [[userDefault objectForKey:X_Percentage] floatValue];
+                y_percent = [[userDefault objectForKey:Y_Percentage] floatValue];
             
-            self.backgroundImageView = [[UIImageView alloc]init];
-            [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
-            [self.backgroundImageView setImage:coverPage];
-            [self.view addSubview:self.backgroundImageView];
-            [self addReadToMeButton];
-            [self addReadByMyselfButton];
-            [self addBookShelfButton];
-            
+                self.backgroundImageView = [[UIImageView alloc]init];
+                [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
+                [self.backgroundImageView setImage: coverPage];
+                [self.view addSubview:self.backgroundImageView];
+                [self addReadToMeButton];
+                [self addReadByMyselfButton];
+                [self addBookShelfButton];
+            }
         }
     }
     return self;
@@ -128,8 +129,6 @@
  */
 -(void) readByMyself
 {
-    
-    
     StoryBookViewController *aNewBook = [[StoryBookViewController alloc] initWithStoryBooksFS:storyFS andTitle:title andWithSound:false];
     [aNewBook setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [aNewBook.view setFrame: self.view.bounds];

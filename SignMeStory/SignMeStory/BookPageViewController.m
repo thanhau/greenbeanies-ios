@@ -106,9 +106,6 @@
 
 //Add page curl to background imafe
 - (void) addNextPButton {
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSNumber *x_percent = [userDefault objectForKey:X_Percentage];
-    
     self.nextPButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.height - 50,
                                                                   0, 50 , 50)];
     UIImage *bookShelfImg = [storyFS getCurlPageImg];
@@ -160,8 +157,6 @@
 
     [self.view addSubview:textBackgroundView];
     [self.view addSubview:self.webView];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
