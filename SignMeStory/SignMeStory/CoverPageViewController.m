@@ -11,6 +11,7 @@
 @interface CoverPageViewController () {
     float x_percent;
     float y_percent;
+    MPMoviePlayerController *mpc;
 }
 
 @end
@@ -56,6 +57,7 @@
                 [self addReadToMeButton];
                 [self addReadByMyselfButton];
                 [self addBookShelfButton];
+                [self addTutorialButton];
             }
         }
     }
@@ -110,6 +112,25 @@
 }
 
 /*!
+ * @function addTutorialButton
+ * @abstract adding tutorial button
+ * @discussion It creates tutorial button that show video how to use the app
+ */
+- (void) addTutorialButton {
+    UIButton *addTutorialButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width - 70,
+                                                                              self.backgroundImageView.frame.origin.y + 5,
+                                                                              70,
+                                                                              70)];
+   
+    UIImage *readByMyselfImage = [storyFS getReadByMyselfImg:title];
+    
+    [addTutorialButton setImage:readByMyselfImage forState:UIControlStateNormal];
+    [addTutorialButton addTarget:self action:@selector(displayTutorial) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview: addTutorialButton];
+}
+
+/*!
  * @function addReadToMe
  * @abstract allow the audio work
  * @discussion allow the audio work
@@ -133,6 +154,22 @@
     [aNewBook setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [aNewBook.view setFrame: self.view.bounds];
     [self presentViewController:aNewBook animated:YES completion:nil];
+}
+
+/*!
+ * @function displayTutorial
+ * @abstract display tutorial video
+ * @discussion display tutorial video
+ */
+-(void) displayTutorial
+{
+    NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"tutorial" ofType:@"mp4" inDirectory:@"Dictionary"];
+    NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
+    mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
+    [mpc setMovieSourceType:MPMovieSourceTypeFile];
+    [[self view]addSubview:mpc.view];
+    [mpc setFullscreen:YES];
+    [mpc play];
 }
 
 - (bool) isAValidBook {

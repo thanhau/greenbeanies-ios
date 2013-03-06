@@ -586,14 +586,43 @@
         NSString *content = [aWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
         data = [content dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *result = PerformHTMLXPathQuery(data, @"//@value");
-        content = result[0];
-        NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:[content valueForKey:@"nodeContent"] ofType:@"mp4" inDirectory:@"Dictionary"];
-        NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
-        mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
-        [mpc setMovieSourceType:MPMovieSourceTypeFile];
-        [[self view]addSubview:mpc.view];
-        [mpc setFullscreen:YES];
-        [mpc play];
+        
+        
+        //Hard code to handle 2 anchor tag in one sentence
+        if ([result count] > 1) {
+            if ([request.URL.host isEqualToString:@"backpack"]) {
+                content = result[1];
+                NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:[content valueForKey:@"nodeContent"] ofType:@"mp4" inDirectory:@"Dictionary"];
+                NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
+                mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
+                [mpc setMovieSourceType:MPMovieSourceTypeFile];
+                [[self view]addSubview:mpc.view];
+                [mpc setFullscreen:YES];
+                [mpc play];
+            }
+            else
+            {
+                content = result[0];
+                NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:[content valueForKey:@"nodeContent"] ofType:@"mp4" inDirectory:@"Dictionary"];
+                NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
+                mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
+                [mpc setMovieSourceType:MPMovieSourceTypeFile];
+                [[self view]addSubview:mpc.view];
+                [mpc setFullscreen:YES];
+                [mpc play];
+            }
+        }
+        else{
+            content = result[0];
+            NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:[content valueForKey:@"nodeContent"] ofType:@"mp4" inDirectory:@"Dictionary"];
+            NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
+            mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
+            [mpc setMovieSourceType:MPMovieSourceTypeFile];
+            [[self view]addSubview:mpc.view];
+            [mpc setFullscreen:YES];
+            [mpc play];
+        }
+        
     }
     
     return YES;

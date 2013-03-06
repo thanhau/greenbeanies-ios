@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StoryBookViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface CoverPageViewController : UIViewController {
     SignMeStoryFS *storyFS;
