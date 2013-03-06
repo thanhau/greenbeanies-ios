@@ -1,1 +1,1 @@
- but especially today, the day of the big wilderness adventure!
+ but especially today, the <a type='link' value="day" onclick='window.location="keyword:"'/><i><b><u><FONT COLOR="green">day</FONT></u></b></i></a> of the big wilderness adventure!

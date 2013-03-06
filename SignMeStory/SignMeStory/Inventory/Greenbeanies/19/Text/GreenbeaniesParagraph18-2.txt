@@ -1,1 +1,1 @@
-From her watchful perch in CeCe's backpack, 
+From her watchful perch in CeCe's <a type='link' value="backpack" onclick='window.location="keyword:"'/><i><b><u><FONT COLOR="green">backpack</FONT></u></b></i></a>, 

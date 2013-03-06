@@ -1,1 +1,1 @@
-Wearing his newly created <a type='link' value="hat" onclick='window.location="keyword:"'/><i><b><FONT COLOR="green">hat</FONT></b></i></a>, 
+Wearing his newly created <a type='link' value="hat" onclick='window.location="keyword:"'/><i><b><u><FONT COLOR="green">hat</FONT></b></u></i></a>, 
