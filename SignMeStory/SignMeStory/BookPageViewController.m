@@ -246,7 +246,6 @@
         }
         if (self.positionOfText == [self.listOfText count] - 1)
         {
-            
             [self playAnimation];
             self.rightButton.hidden = YES;
             self.nextPButton.hidden = NO;
@@ -522,10 +521,12 @@
  */
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView
 {
+    [textBackgroundView setHidden:TRUE];
     if ([[self.listOfText objectAtIndex:0] isEqualToString:@""]) {
         [self.webView setFrame:(CGRectMake(0, 0, 0, 0))];
         [self.textBackgroundView setFrame:(CGRectMake(0, 0, 0, 0))];
-        
+        [self.webView setHidden:TRUE];
+        [self.textBackgroundView setHidden:TRUE];
     }
     else {
         [textBackgroundView setImage:[storyFS getChatBubbleImg]];
@@ -552,6 +553,7 @@
                                                        self.webView.frame.size.width,
                                                        fittingSize.height);    
         }
+        [textBackgroundView setHidden:FALSE];
     }
 }
 
