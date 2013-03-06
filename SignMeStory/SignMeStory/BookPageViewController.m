@@ -53,7 +53,7 @@
                                     repeats:NO];
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
     if (withSound) {
-        [self playAudioAt:0];
+        [self playAudioAt:positionOfText];
     }
 }
 
