@@ -133,14 +133,13 @@
 
 //Initialize the chat bubble
 - (void) initChatBublle {
+    textBackgroundView = [[UIImageView alloc]init];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSNumber *x_percent = [userDefault objectForKey:X_Percentage];
     
     float x_space = 40 * [x_percent floatValue];
     float y_space = 3;
 
-    textBackgroundView = [[UIImageView alloc]init];
-    [textBackgroundView setImage:[storyFS getChatBubbleImg]];
     
     self.webView = [[UIWebView alloc]initWithFrame: CGRectMake(self.backgroundImageView.frame.origin.x + x_space,
                                                                self.backgroundImageView.frame.origin.y + y_space,
@@ -154,7 +153,7 @@
     self.webView.opaque = NO;
     [self.webView setDelegate:self];
     [[self.webView scrollView] setScrollEnabled:false];
-
+    
     [self.view addSubview:textBackgroundView];
     [self.view addSubview:self.webView];
 }
@@ -529,6 +528,8 @@
         
     }
     else {
+        [textBackgroundView setImage:[storyFS getChatBubbleImg]];
+        
         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
         float x_percent = [[userDefault valueForKey:X_Percentage] floatValue];
         
