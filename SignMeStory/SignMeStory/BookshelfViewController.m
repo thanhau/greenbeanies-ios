@@ -106,9 +106,9 @@
             [bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
         }
         else {
-            bookButton.titleLabel.font = [UIFont systemFontOfSize:15 * x_percent];
-            [bookButton setTitle:@"Coming Soon!" forState:UIControlStateNormal];
-            [bookButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+            //bookButton.titleLabel.font = [UIFont systemFontOfSize:15 * x_percent];
+            //[bookButton setTitle:@"Coming Soon!" forState:UIControlStateNormal];
+            //[bookButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
         }
         [shelfImg addSubview:bookButton];
     }

@@ -71,6 +71,7 @@
         storyFS = aStoryFS;
         withSound = hasSound;
         pagePath = path;
+        positionOfText = 0;
         // init backgroundImages
         [self setBackgroundImages: [storyFS getPageBackgrounds:path]];
         [self setListOfText: [storyFS getListOfText:path]];
@@ -588,7 +589,6 @@
         NSString *content = [aWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
         data = [content dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *result = PerformHTMLXPathQuery(data, @"//@value");
-        
         
         //Hard code to handle 2 anchor tag in one sentence
         if ([result count] > 1) {
