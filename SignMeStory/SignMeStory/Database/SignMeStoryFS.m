@@ -120,6 +120,16 @@
         return [UIImage imageWithContentsOfFile:path];
     }
 }
+- (UIImage *) getDemoImg: (NSString *) bookTitle {
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/Demoicon.png",fsPath, InventoryDir, bookTitle];
+    if (![self checkForPath:path]) {
+        NSLog(@"%@ doesn't exist", path);
+        return nil;
+    }
+    else {
+        return [UIImage imageWithContentsOfFile:path];
+    }
+}
 
 - (UIImage *) getReadToMeImg: (NSString *) bookTitle {
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/readwithaudio.png",fsPath, InventoryDir, bookTitle];

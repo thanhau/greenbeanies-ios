@@ -35,6 +35,7 @@ static NSString *DictionaryDir = @"/Dictionary";
 - (UIImage *) getCoverImg: (NSString *) bookTitle;
 - (UIImage *) getReadToMeImg:(NSString *) bookTitle;
 - (UIImage *) getReadByMyselfImg: (NSString *) bookTitle;
+- (UIImage *) getDemoImg: (NSString *) bookTitle;
 - (UIImage *) getChatBubbleImg;
 - (UIImage *) getLeftButtonImg;
 - (UIImage *) getRightButtonImg;

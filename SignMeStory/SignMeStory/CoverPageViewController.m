@@ -122,9 +122,9 @@
                                                                               70,
                                                                               70)];
    
-    UIImage *readByMyselfImage = [storyFS getReadByMyselfImg:title];
+    UIImage *demoIcon = [storyFS getDemoImg:title];
     
-    [addTutorialButton setImage:readByMyselfImage forState:UIControlStateNormal];
+    [addTutorialButton setImage:demoIcon forState:UIControlStateNormal];
     [addTutorialButton addTarget:self action:@selector(displayTutorial) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview: addTutorialButton];
