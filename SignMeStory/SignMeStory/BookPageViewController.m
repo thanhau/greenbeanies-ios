@@ -13,6 +13,7 @@
 {
     AVAudioPlayer *theAudio;
     MPMoviePlayerController *mpc;
+    int audioShouldPlay;
 }
 @end
 
@@ -52,9 +53,15 @@
                                    userInfo:nil
                                     repeats:NO];
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
+    
     if (withSound) {
-        [self playAudioAt:positionOfText];
+        if (audioShouldPlay == 0){
+            [self playAudioAt:positionOfText];
+            audioShouldPlay++;
+        }
     }
+    
+    
 }
 
 // Stop the audio
@@ -71,7 +78,9 @@
         storyFS = aStoryFS;
         withSound = hasSound;
         pagePath = path;
+        audioShouldPlay = 0;
         positionOfText = 0;
+        
         // init backgroundImages
         [self setBackgroundImages: [storyFS getPageBackgrounds:path]];
         [self setListOfText: [storyFS getListOfText:path]];

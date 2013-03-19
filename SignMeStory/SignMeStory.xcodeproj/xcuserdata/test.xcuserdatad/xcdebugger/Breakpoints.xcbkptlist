@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/BookPageViewController.m"
-         timestampString = "383892466.783819"
+         timestampString = "385420583.568316"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "506"
-         endingLineNumber = "506"
+         startingLineNumber = "513"
+         endingLineNumber = "513"
          landmarkName = "-quit"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/BookPageViewController.m"
-         timestampString = "383892466.783819"
+         timestampString = "385420583.568316"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "306"
-         endingLineNumber = "306"
+         startingLineNumber = "313"
+         endingLineNumber = "313"
          landmarkName = "-playAudioAt:"
          landmarkType = "5">
       </FileBreakpoint>
