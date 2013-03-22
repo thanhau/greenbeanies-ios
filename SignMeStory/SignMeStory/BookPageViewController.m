@@ -43,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 }
 
 // Do play sound and do animation when view appear
@@ -143,7 +144,8 @@
 
 //Initialize the chat bubble
 - (void) initChatBublle {
-    textBackgroundView = [[UIImageView alloc]init];
+    self.textBackgroundView = [[UIImageView alloc]init];
+    
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSNumber *x_percent = [userDefault objectForKey:X_Percentage];
     
@@ -164,7 +166,7 @@
     [self.webView setDelegate:self];
     [[self.webView scrollView] setScrollEnabled:false];
     
-    [self.view addSubview:textBackgroundView];
+    [self.view addSubview:self.textBackgroundView];
     [self.view addSubview:self.webView];
 }
 
@@ -531,7 +533,7 @@
  */
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView
 {
-    [textBackgroundView setHidden:TRUE];
+    [self.textBackgroundView setHidden:TRUE];
     if ([[self.listOfText objectAtIndex:0] isEqualToString:@""]) {
         [self.webView setFrame:(CGRectMake(0, 0, 0, 0))];
         [self.textBackgroundView setFrame:(CGRectMake(0, 0, 0, 0))];
@@ -539,7 +541,7 @@
         [self.textBackgroundView setHidden:TRUE];
     }
     else {
-        [textBackgroundView setImage:[storyFS getChatBubbleImg]];
+        [self.textBackgroundView setImage:[storyFS getChatBubbleImg]];
         
         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
         float x_percent = [[userDefault valueForKey:X_Percentage] floatValue];
@@ -563,7 +565,7 @@
                                                        self.webView.frame.size.width,
                                                        fittingSize.height);    
         }
-        [textBackgroundView setHidden:FALSE];
+        [self.textBackgroundView setHidden:FALSE];
     }
 }
 
