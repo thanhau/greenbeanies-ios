@@ -74,7 +74,10 @@
 -(NSInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskLandscape;
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    return (interfaceOrientation == UIInterfaceOrientationMaskLandscape);
+}
 /*!
  * @function addReadToMeButton
  * @abstract adding an read to me button in the view 

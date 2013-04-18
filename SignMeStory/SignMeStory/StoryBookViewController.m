@@ -109,7 +109,10 @@
 -(NSInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskLandscape;
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    return (interfaceOrientation == UIInterfaceOrientationMaskLandscape);
+}
 
 
 /*!

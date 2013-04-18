@@ -132,7 +132,10 @@
 -(NSInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    return (interfaceOrientation == UIInterfaceOrientationMaskLandscape);
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
