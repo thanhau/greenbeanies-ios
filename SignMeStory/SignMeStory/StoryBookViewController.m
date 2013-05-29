@@ -7,7 +7,7 @@
 //
 
 #import "StoryBookViewController.h"
-#import "XPathQuery.h"
+
 
 @interface StoryBookViewController ()
 
@@ -111,7 +111,7 @@
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     
-    return (interfaceOrientation == UIInterfaceOrientationMaskLandscape);
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeRight) || (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 }
 
 
@@ -137,6 +137,11 @@
 {
     [super viewDidLoad];
     
+}
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+
 }
 
 - (void)didReceiveMemoryWarning

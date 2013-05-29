@@ -30,6 +30,14 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
+/*
+-(void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    storyFS = nil;
+    title = nil;
+    mpc = nil;
+}
+*/
 
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle {
     self = [super init];
@@ -76,7 +84,7 @@
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     
-    return (interfaceOrientation == UIInterfaceOrientationMaskLandscape);
+        return (interfaceOrientation == UIInterfaceOrientationLandscapeRight) || (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 }
 /*!
  * @function addReadToMeButton
