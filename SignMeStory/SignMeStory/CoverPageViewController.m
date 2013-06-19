@@ -174,10 +174,10 @@
  */
 -(void) displayTutorial
 {
-    NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"tutorial" ofType:@"mp4" inDirectory:@"Dictionary"];
-    NSURL *urlVideo = [NSURL fileURLWithPath:stringVideoPath];
+    //NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"tutorial" ofType:@"mp4" inDirectory:@"Dictionary"];
+    NSURL *urlVideo = [NSURL URLWithString:@"http://hidevmobile.com/gbv/tutorial.mp4"];
+    NSLog(@"url:%@",urlVideo );
     mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
-    [mpc setMovieSourceType:MPMovieSourceTypeFile];
     [[self view]addSubview:mpc.view];
     [mpc setFullscreen:YES];
     [mpc play];
