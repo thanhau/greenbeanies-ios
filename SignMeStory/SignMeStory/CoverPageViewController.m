@@ -27,17 +27,13 @@
     return self;
 }
 
+
 - (void) viewDidAppear:(BOOL)animated {
+   
     [super viewDidAppear:animated];
+    
+   
 }
-/*
--(void) viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    storyFS = nil;
-    title = nil;
-    mpc = nil;
-}
-*/
 
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle {
     self = [super init];
@@ -76,6 +72,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+     
+
 }
 
 // force the orientation to landscape
@@ -92,10 +91,10 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadToMeButton {
-    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 - 60,
-                                                                          self.backgroundImageView.frame.size.height - 100,
-                                                                          100,
-                                                                          100)];
+    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x,
+                                                                          self.backgroundImageView.frame.size.height - 50,
+                                                                          50,
+                                                                          50)];
     UIImage *readToMeImage = [storyFS getReadToMeImg:title];
     
     [readToMeButton setImage:readToMeImage forState:UIControlStateNormal];
@@ -110,10 +109,10 @@
  * @discussion It creates button that don't let user listen to the audio
  */
 - (void) addReadByMyselfButton {
-    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 + 40,
-                                                                              self.backgroundImageView.frame.size.height - 100,
-                                                                              100,
-                                                                              100)];
+    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 - 60,
+                                                                              self.backgroundImageView.frame.size.height - 50,
+                                                                              50,
+                                                                              50)];
     UIImage *readByMyselfImage = [storyFS getReadByMyselfImg:title];
     
     [readByMyselfButton setImage:readByMyselfImage forState:UIControlStateNormal];
@@ -128,10 +127,10 @@
  * @discussion It creates tutorial button that show video how to use the app
  */
 - (void) addTutorialButton {
-    UIButton *addTutorialButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width - 70,
-                                                                              self.backgroundImageView.frame.origin.y + 5,
-                                                                              70,
-                                                                              70)];
+    UIButton *addTutorialButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width - 100,
+                                                                              self.backgroundImageView.frame.size.height - 50,
+                                                                              50,
+                                                                              50)];
    
     UIImage *demoIcon = [storyFS getDemoImg:title];
     
@@ -180,6 +179,7 @@
     mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
     [[self view]addSubview:mpc.view];
     [mpc setFullscreen:YES];
+    
     [mpc play];
 }
 

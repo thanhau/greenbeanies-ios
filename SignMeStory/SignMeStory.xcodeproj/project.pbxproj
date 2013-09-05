@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		006F845117D7EA8500760213 /* IntroVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006F845017D7EA8500760213 /* IntroVideoViewController.m */; };
+		006F845317D8339100760213 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 006F845217D8339100760213 /* icon.png */; };
+		0095D11B178CD3B600392C21 /* Dictionary in Resources */ = {isa = PBXBuildFile; fileRef = 0095D11A178CD3B600392C21 /* Dictionary */; };
 		22A9A33216E16B7D00DAB32B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A9A33116E16B7D00DAB32B /* libxml2.dylib */; };
-		52B37B0C16E515250037250B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B37B0B16E515250037250B /* icon.png */; };
 		52CB0EF916EE729D00F6416C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CB0EF716EE729D00F6416C /* Icon-72.png */; };
 		52CB0EFA16EE729D00F6416C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CB0EF816EE729D00F6416C /* Icon@2x.png */; };
 		8F715EEA16E036080073293E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F715EE916E036080073293E /* QuartzCore.framework */; };
@@ -26,7 +28,6 @@
 		8FEE95E416D87B58002B8F04 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE95E316D87B58002B8F04 /* ViewController.m */; };
 		8FEE95EB16D87B6C002B8F04 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE95EA16D87B6C002B8F04 /* AVFoundation.framework */; };
 		8FEE95ED16D87B71002B8F04 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE95EC16D87B71002B8F04 /* MediaPlayer.framework */; };
-		8FEE95F116D87D50002B8F04 /* Dictionary in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE95EE16D87D50002B8F04 /* Dictionary */; };
 		8FEE95F216D87D50002B8F04 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE95EF16D87D50002B8F04 /* Images */; };
 		8FEE95F316D87D50002B8F04 /* Inventory in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE95F016D87D50002B8F04 /* Inventory */; };
 		8FEE95FD16D87E37002B8F04 /* BookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE95F616D87E37002B8F04 /* BookPageViewController.m */; };
@@ -37,8 +38,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		006F844F17D7EA8500760213 /* IntroVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroVideoViewController.h; sourceTree = "<group>"; };
+		006F845017D7EA8500760213 /* IntroVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroVideoViewController.m; sourceTree = "<group>"; };
+		006F845217D8339100760213 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		0095D11A178CD3B600392C21 /* Dictionary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dictionary; sourceTree = "<group>"; };
 		22A9A33116E16B7D00DAB32B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		52B37B0B16E515250037250B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Inventory/Greenbeanies/Other/icon.png; sourceTree = "<group>"; };
 		52CB0EF716EE729D00F6416C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		52CB0EF816EE729D00F6416C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		8F715EE916E036080073293E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -61,7 +65,6 @@
 		8FEE95E316D87B58002B8F04 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8FEE95EA16D87B6C002B8F04 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8FEE95EC16D87B71002B8F04 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		8FEE95EE16D87D50002B8F04 /* Dictionary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dictionary; sourceTree = "<group>"; };
 		8FEE95EF16D87D50002B8F04 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		8FEE95F016D87D50002B8F04 /* Inventory */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Inventory; sourceTree = "<group>"; };
 		8FEE95F516D87E37002B8F04 /* BookPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookPageViewController.h; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 		8FEE95CA16D87B58002B8F04 /* SignMeStory */ = {
 			isa = PBXGroup;
 			children = (
+				006F844F17D7EA8500760213 /* IntroVideoViewController.h */,
+				006F845017D7EA8500760213 /* IntroVideoViewController.m */,
 				8FEE95F516D87E37002B8F04 /* BookPageViewController.h */,
 				8FEE95F616D87E37002B8F04 /* BookPageViewController.m */,
 				8FEE95F716D87E37002B8F04 /* BookshelfViewController.h */,
@@ -151,11 +156,11 @@
 		8FEE95CB16D87B58002B8F04 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8FEE95EE16D87D50002B8F04 /* Dictionary */,
+				0095D11A178CD3B600392C21 /* Dictionary */,
 				8FEE95EF16D87D50002B8F04 /* Images */,
 				8FEE95F016D87D50002B8F04 /* Inventory */,
 				8FEE95CC16D87B58002B8F04 /* SignMeStory-Info.plist */,
-				52B37B0B16E515250037250B /* icon.png */,
+				006F845217D8339100760213 /* icon.png */,
 				52CB0EF716EE729D00F6416C /* Icon-72.png */,
 				52CB0EF816EE729D00F6416C /* Icon@2x.png */,
 				8FEE95CD16D87B58002B8F04 /* InfoPlist.strings */,
@@ -234,12 +239,12 @@
 				8FEE95DB16D87B58002B8F04 /* Default-568h@2x.png in Resources */,
 				8FEE95DE16D87B58002B8F04 /* MainStoryboard_iPhone.storyboard in Resources */,
 				8FEE95E116D87B58002B8F04 /* MainStoryboard_iPad.storyboard in Resources */,
-				8FEE95F116D87D50002B8F04 /* Dictionary in Resources */,
 				8FEE95F216D87D50002B8F04 /* Images in Resources */,
 				8FEE95F316D87D50002B8F04 /* Inventory in Resources */,
-				52B37B0C16E515250037250B /* icon.png in Resources */,
 				52CB0EF916EE729D00F6416C /* Icon-72.png in Resources */,
 				52CB0EFA16EE729D00F6416C /* Icon@2x.png in Resources */,
+				0095D11B178CD3B600392C21 /* Dictionary in Resources */,
+				006F845317D8339100760213 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +263,7 @@
 				8FEE95FF16D87E37002B8F04 /* CoverPageViewController.m in Sources */,
 				8FEE960016D87E37002B8F04 /* StoryBookViewController.m in Sources */,
 				8FEE960316D8809A002B8F04 /* SignMeStoryFS.m in Sources */,
+				006F845117D7EA8500760213 /* IntroVideoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

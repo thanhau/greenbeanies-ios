@@ -14,6 +14,7 @@
     SignMeStoryFS *storyFS;
     NSString *title;
     bool valid;
+    
 }
 
 @property (nonatomic) UIImageView * backgroundImageView;

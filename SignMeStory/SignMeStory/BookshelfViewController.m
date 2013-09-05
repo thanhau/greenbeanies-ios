@@ -9,7 +9,10 @@
 #import "BookshelfViewController.h"
 
 @interface BookshelfViewController ()
-
+{
+    int bookId;
+    MPMoviePlayerController *mpc;
+}
 @end
 
 @implementation BookshelfViewController
@@ -25,24 +28,37 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     
+    [super viewDidLoad];
+    //Default to first book
+    bookId = 1;
     aStoryFS = [[SignMeStoryFS alloc] initFS];
     inventory = [aStoryFS generateBookPaths];
     self.coverViewControllers = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < [inventory count]; i++) {
+        NSLog(@"%@",[inventory objectAtIndex:i]);
         CoverPageViewController *aNewBook = [[CoverPageViewController alloc] initWithStoryBooksFS:aStoryFS andTitle: [NSString stringWithFormat: @"%@", [inventory objectAtIndex:i]]];
         [aNewBook.view setFrame: self.view.bounds];
         [self.coverViewControllers addObject:aNewBook];
     }
-    
+    //[inventory removeObjectAtIndex:2];
+    float x_percent = 1;
+    float y_percent = 1;
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setFloat:x_percent forKey:X_Percentage];
+    [userDefault setFloat:y_percent forKey:Y_Percentage];
     // First page orientation issue
     // Remove this line of code will cause the first initial page's size (460, 320) different than we expected (480, 300).
     // Because the first page of the book is initialized in protratait, it deduct the width in landscape by the size of status bar.
-    //[[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:YES];
-
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:YES];
+    
+     
+     
+    
+    
+    
     [self.view addSubview: [self bookShelf]];
 }
 
@@ -94,7 +110,7 @@
         
         [bookBackgroundView setFrame: CGRectMake(0, 0, book_w, book_h)];
         [bookButton addSubview:bookBackgroundView];
-        //[bookButton setImage:coverIconForBook forState:UIControlStateNormal];
+        [bookButton setImage:coverIconForBook forState:UIControlStateNormal];
         
         if (x_pos + book_w + x_space >= self.view.frame.size.width) {
             x_pos = 0;
@@ -106,9 +122,9 @@
             [bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
         }
         else {
-            //bookButton.titleLabel.font = [UIFont systemFontOfSize:15 * x_percent];
-            //[bookButton setTitle:@"Coming Soon!" forState:UIControlStateNormal];
-            //[bookButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+            bookButton.titleLabel.font = [UIFont systemFontOfSize:15 * x_percent];
+            [bookButton setTitle:@"Coming Soon!" forState:UIControlStateNormal];
+            [bookButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
         }
         [shelfImg addSubview:bookButton];
     }
@@ -123,23 +139,37 @@
  *    The button representing a book.
  */
 - (void) goToBook:(UIButton *) sender {
-    int bookID = [[[sender titleLabel] text] integerValue];
-    [[self.coverViewControllers objectAtIndex:bookID] setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self presentViewController:[self.coverViewControllers objectAtIndex:bookID] animated:YES completion:nil];
+    
+    bookId = [[[sender titleLabel] text] integerValue];
+    
+    
+    [[self.coverViewControllers objectAtIndex:bookId] setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [self presentViewController:[self.coverViewControllers objectAtIndex:bookId] animated:YES completion:nil];
+     
+         
 }
 
-// force the orientation to landscape
+
+-(void) goToNextView
+{
+    [[self.coverViewControllers objectAtIndex:1] setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [self presentViewController:[self.coverViewControllers objectAtIndex:bookId] animated:YES completion:nil];
+}
+
+
+// force the orientation to portrait
 -(NSInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     
-    return (interfaceOrientation == UIInterfaceOrientationMaskLandscape);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

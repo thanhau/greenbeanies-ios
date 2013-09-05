@@ -29,7 +29,9 @@
 
 // prepare the books in the directory in an array;
 - (NSMutableArray *) generateBookPaths {
+    
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@%@", fsPath, InventoryDir];
+    NSLog(@"%@",path);
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
         return nil;

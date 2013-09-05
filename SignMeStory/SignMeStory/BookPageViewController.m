@@ -159,7 +159,7 @@
                                                                50)];
     
     NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:0]];
-    
+   
     [self.webView loadHTMLString:htmlString baseURL:nil];
     [self.webView setBackgroundColor:[UIColor clearColor]];
     self.webView.opaque = NO;
@@ -579,7 +579,6 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     float x_percent = [[userDefault valueForKey:X_Percentage] floatValue];
     
-    
     NSString *myDescriptionHTML = [NSString stringWithFormat:@"<html> \n"
                                    "<head> \n"
                                    "<style type=\"text/css\"> \n"
@@ -594,11 +593,10 @@
 //Load video when user click on link
 - (BOOL) webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSURL *url = [request URL];
-    NSLog(@"jhkjh");
-    NSLog(@"%@",url);
-    NSLog(@"%@",[url scheme] );
+ 
+    //NSLog(@"%@",[url scheme] );
     if ([[url scheme] isEqualToString:@"http"]) {
-        NSLog(@"testing");
+        
         NSString *urlString = [[request URL] absoluteString];
         
         NSURL *urlVideo =  [NSURL URLWithString:urlString];
