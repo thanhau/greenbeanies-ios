@@ -34,6 +34,9 @@
 		8FEE95FE16D87E37002B8F04 /* BookshelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE95F816D87E37002B8F04 /* BookshelfViewController.m */; };
 		8FEE95FF16D87E37002B8F04 /* CoverPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE95FA16D87E37002B8F04 /* CoverPageViewController.m */; };
 		8FEE960316D8809A002B8F04 /* SignMeStoryFS.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE960216D8809A002B8F04 /* SignMeStoryFS.m */; };
+		B2BB473217FBE6720062F6E4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2BB473117FBE6720062F6E4 /* StoreKit.framework */; };
+		B2BB473717FBE7830062F6E4 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BB473417FBE7350062F6E4 /* IAPHelper.m */; };
+		B2BB473817FBE7860062F6E4 /* IAPProductsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BB473617FBE7540062F6E4 /* IAPProductsHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,11 @@
 		8FEE95FA16D87E37002B8F04 /* CoverPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverPageViewController.m; sourceTree = "<group>"; };
 		8FEE960116D8809A002B8F04 /* SignMeStoryFS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignMeStoryFS.h; sourceTree = "<group>"; };
 		8FEE960216D8809A002B8F04 /* SignMeStoryFS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignMeStoryFS.m; sourceTree = "<group>"; };
+		B2BB473117FBE6720062F6E4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B2BB473317FBE7350062F6E4 /* IAPHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		B2BB473417FBE7350062F6E4 /* IAPHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		B2BB473517FBE7540062F6E4 /* IAPProductsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAPProductsHelper.h; sourceTree = "<group>"; };
+		B2BB473617FBE7540062F6E4 /* IAPProductsHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAPProductsHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A9A33216E16B7D00DAB32B /* libxml2.dylib in Frameworks */,
+				B2BB473217FBE6720062F6E4 /* StoreKit.framework in Frameworks */,
 				8F715EEA16E036080073293E /* QuartzCore.framework in Frameworks */,
 				8FEE95ED16D87B71002B8F04 /* MediaPlayer.framework in Frameworks */,
 				8FEE95EB16D87B6C002B8F04 /* AVFoundation.framework in Frameworks */,
@@ -115,6 +124,7 @@
 		8FEE95C316D87B58002B8F04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2BB473117FBE6720062F6E4 /* StoreKit.framework */,
 				8F715EE916E036080073293E /* QuartzCore.framework */,
 				8FEE95EC16D87B71002B8F04 /* MediaPlayer.framework */,
 				8FEE95EA16D87B6C002B8F04 /* AVFoundation.framework */,
@@ -128,6 +138,10 @@
 		8FEE95CA16D87B58002B8F04 /* SignMeStory */ = {
 			isa = PBXGroup;
 			children = (
+				B2BB473317FBE7350062F6E4 /* IAPHelper.h */,
+				B2BB473417FBE7350062F6E4 /* IAPHelper.m */,
+				B2BB473517FBE7540062F6E4 /* IAPProductsHelper.h */,
+				B2BB473617FBE7540062F6E4 /* IAPProductsHelper.m */,
 				006F844F17D7EA8500760213 /* IntroVideoViewController.h */,
 				006F845017D7EA8500760213 /* IntroVideoViewController.m */,
 				8FEE95F716D87E37002B8F04 /* BookshelfViewController.h */,
@@ -250,6 +264,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2BB473817FBE7860062F6E4 /* IAPProductsHelper.m in Sources */,
+				B2BB473717FBE7830062F6E4 /* IAPHelper.m in Sources */,
 				8FEE95D116D87B58002B8F04 /* main.m in Sources */,
 				8FEE95D516D87B58002B8F04 /* AppDelegate.m in Sources */,
 				8FEE95E416D87B58002B8F04 /* ViewController.m in Sources */,
