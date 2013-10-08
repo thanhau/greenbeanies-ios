@@ -28,6 +28,7 @@
     }
     return self;
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -66,7 +67,6 @@
             *stop = YES;
         }
     }];
-
 }
 
 - (void)restoreTapped:(id)sender {
@@ -85,18 +85,15 @@
     }];
 }
 
-- (void)buyButtonTapped:(id)sender {
+/*- (void)buyButtonTapped:(id)sender {
     UIButton *buyButton = (UIButton *)sender;
     SKProduct *product = _products[buyButton.tag];
-
-    
     NSLog(@"Buying %@...", product.productIdentifier);
     [[IAPProductsHelper sharedInstance] buyProduct:product];
-}
+}*/
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
     [self reload];
     //Default to first book
@@ -120,7 +117,6 @@
     // Because the first page of the book is initialized in protratait, it deduct the width in landscape by the size of status bar.
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:YES];
-    
     [self.view addSubview: [self bookShelf]];
 }
 
@@ -183,18 +179,8 @@
         
         // when a book is selected it calls goToBook to switch the view controller.
         if ([[self.coverViewControllers objectAtIndex:i ] isAValidBook]) {
-            if (i == 0)
-            	[bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
-            else {
-                SKProduct * product = (SKProduct *) _products[i - 1];
-                if ([[IAPProductsHelper sharedInstance] productPurchased:product.productIdentifier]) {
-                    [bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
-                } else {
-                    bookButton.alpha = 0.5;
-                    bookButton.tag = i - 1;
-                    //[bookButton addTarget:self action:@selector(buyButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-                }
-            }
+            bookButton.tag = i - 1;
+            [bookButton addTarget:self action:@selector(goToBook:) forControlEvents:UIControlEventTouchUpInside];
         }
         else {
             bookButton.titleLabel.font = [UIFont systemFontOfSize:15 * x_percent];
@@ -203,8 +189,13 @@
         }
         [shelfImg addSubview:bookButton];
     }
-    //shelfImg = nil;
+    UIButton *restoreButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 150, 1, 150, 35)];
     
+    [restoreButton setTitle:@"Restore Purchases" forState:UIControlStateNormal];
+	[restoreButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+    [restoreButton addTarget:self action:@selector(restoreTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [shelfImg addSubview:restoreButton];
+
     return shelfImg;
 }
 
@@ -216,14 +207,27 @@
  *    The button representing a book.
  */
 - (void) goToBook:(UIButton *) sender {
-    
-    bookId = [[[sender titleLabel] text] integerValue];
-    bookId = bookId - 1;
-    
-    [[self.coverViewControllers objectAtIndex:bookId] setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self presentViewController:[self.coverViewControllers objectAtIndex:bookId] animated:YES completion:nil];
-     
-         
+    UIButton *buyButton = (UIButton *)sender;
+    bool purchased = false;
+    SKProduct *product = nil;
+    if (buyButton.tag != -1) {
+    	if ([_products count] >= buyButton.tag + 1) {
+        	product = _products[buyButton.tag];
+        	purchased = [[IAPProductsHelper sharedInstance] productPurchased:product.productIdentifier];
+    	} else {
+        	NSLog(@"An error occured while retrieving the list of purchases.");
+        	return;
+    	}
+    }
+    if (product == nil || purchased == true) {
+    	bookId = [[[sender titleLabel] text] integerValue];
+    	bookId = bookId - 1;
+    	[[self.coverViewControllers objectAtIndex:bookId] setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    	[self presentViewController:[self.coverViewControllers objectAtIndex:bookId] animated:YES completion:nil];
+    } else {
+        NSLog(@"Buying %@...", product.productIdentifier);
+        [[IAPProductsHelper sharedInstance] buyProduct:product];
+    }
 }
 
 
@@ -232,7 +236,6 @@
     [[self.coverViewControllers objectAtIndex:1] setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:[self.coverViewControllers objectAtIndex:bookId] animated:YES completion:nil];
 }
-
 
 // force the orientation to portrait
 -(NSInteger)supportedInterfaceOrientations{

@@ -90,13 +90,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A9A33216E16B7D00DAB32B /* libxml2.dylib in Frameworks */,
-				B2BB473217FBE6720062F6E4 /* StoreKit.framework in Frameworks */,
-				8F715EEA16E036080073293E /* QuartzCore.framework in Frameworks */,
-				8FEE95ED16D87B71002B8F04 /* MediaPlayer.framework in Frameworks */,
 				8FEE95EB16D87B6C002B8F04 /* AVFoundation.framework in Frameworks */,
-				8FEE95C516D87B58002B8F04 /* UIKit.framework in Frameworks */,
-				8FEE95C716D87B58002B8F04 /* Foundation.framework in Frameworks */,
 				8FEE95C916D87B58002B8F04 /* CoreGraphics.framework in Frameworks */,
+				8FEE95C716D87B58002B8F04 /* Foundation.framework in Frameworks */,
+				8FEE95ED16D87B71002B8F04 /* MediaPlayer.framework in Frameworks */,
+				8F715EEA16E036080073293E /* QuartzCore.framework in Frameworks */,
+				B2BB473217FBE6720062F6E4 /* StoreKit.framework in Frameworks */,
+				8FEE95C516D87B58002B8F04 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,13 +124,13 @@
 		8FEE95C316D87B58002B8F04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8FEE95C816D87B58002B8F04 /* CoreGraphics.framework */,
 				B2BB473117FBE6720062F6E4 /* StoreKit.framework */,
 				8F715EE916E036080073293E /* QuartzCore.framework */,
 				8FEE95EC16D87B71002B8F04 /* MediaPlayer.framework */,
 				8FEE95EA16D87B6C002B8F04 /* AVFoundation.framework */,
 				8FEE95C416D87B58002B8F04 /* UIKit.framework */,
 				8FEE95C616D87B58002B8F04 /* Foundation.framework */,
-				8FEE95C816D87B58002B8F04 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -316,7 +316,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -351,7 +351,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

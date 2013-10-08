@@ -70,12 +70,9 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
 }
 
 - (void)buyProduct:(SKProduct *)product {
-    
     NSLog(@"Buying %@...", product.productIdentifier);
-    
     SKPayment * payment = [SKPayment paymentWithProduct:product];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
-    
 }
 
 #pragma mark - SKProductsRequestDelegate
