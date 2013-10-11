@@ -15,6 +15,8 @@
     int audioShouldPlay;
     BOOL isGoingToNextPage;
     CGRect sceneFrame;
+    CGRect defautSceneFrame;
+    CGPoint percentScaleBetweenDifferentDevice;
 }
 
 @end
@@ -51,6 +53,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
 // Do play sound and do animation when view appear
 - (void) viewDidAppear:(BOOL)animated {
@@ -61,15 +64,17 @@
                                    userInfo:nil
                                     repeats:NO];
      */
-    //[NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
-    
+
     if (withSound) {
         if (audioShouldPlay == 0){
             [self playAudioAt:positionOfText];
             audioShouldPlay++;
         }
     }
-    
+    [mpc.view removeFromSuperview];
+    mpc = nil;
+    //[self playAnimation];
+
     
 }
 
@@ -85,12 +90,12 @@
     self.bookTitle = aBookTitle;
     //self.pageTextArray = [[NSMutableArray alloc] init];
     self.pageNumber = [[NSMutableArray alloc] init];
-    //self.listOfAllBackgroundImageView = [[NSMutableArray alloc]init];
+
     self.listOfAllText = [[NSMutableArray alloc]init];
     self.listOfAllAudio = [[NSMutableArray alloc]init];
     self.listOfAllZoomSpec = [[NSMutableArray alloc]init];
     self.listOfZoomSpec = [[NSMutableArray alloc]init];
-    //self.dictOfZoomSpec = [[NSMutableDictionary alloc]init];
+
     currentPageOfDirectory = 0;
     withSound = hasSound;
     storyFS = aStoryFS;
@@ -103,8 +108,10 @@
     newZoomScale = 0.5;
     //isGoingToNextPage =TRUE;
     [self initBook];
-    
-    
+
+    defautSceneFrame = CGRectMake(0, 0, 480, 300);
+    percentScaleBetweenDifferentDevice.x = sceneFrame.size.width / defautSceneFrame.size.width;
+    percentScaleBetweenDifferentDevice.y = sceneFrame.size.height / defautSceneFrame.size.height;
     return self;
 }
 
@@ -119,7 +126,7 @@
         
         [self.listOfAllText addObject:[storyFS getListOfText:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, i+1]]];
         //[self.listOfAllZoomSpec addObject:[storyFS getListOfZoomSpec:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, i+1]]];
-        //[self.listOfAllAudio addObject:[storyFS getListOfAudio:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, i+1]]];
+        [self.listOfAllAudio addObject:[storyFS getListOfAudio:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, i+1]]];
         /*
         NSMutableArray *pageZoomScaleArray = [storyFS getListOfZoomSpec:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, i+1]];
         
@@ -187,16 +194,14 @@
     [self addHomeButton];
     [self addLeftButton];
     [self addRightButton];
-    // adding toolbar at bottom
-    //[self addToolBar];
+
     
     self.singeTap =  [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(displayAnimation)];
     
     self.singeTap.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:self.singeTap];
     
-    // adding next page symbol
-    [self addNextPButton];
+
     
 
     if (currentPageOfDirectory == 0  && positionOfText == 0) {
@@ -222,50 +227,46 @@
                 temp1 = [temp1 stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
                 temp1 = [temp1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                 NSArray *component = [temp1 componentsSeparatedByString:@":"];
-                //NSLog(@"%@", component[0]);
-                //NSLog(@"%@", component[1]);
+
                 [tempDict setObject:component[1] forKey:component[0]];
+                temp1 = nil;
+                component = nil;
             }
             //NSLog(@"temp = %@",tempDict);
             [storeScaleArray addObject:tempDict];
-            //[pageZoomScaleArray replaceObjectAtIndex:k withObject:tempDict];
-            //NSLog(@"store = %@",storeScaleArray);
+            tempDict = nil;
+            temp = nil;
+            tempArray = nil;
         }
         //NSLog(@"test = %@",storeScaleArray);
         self.listOfZoomSpec  = storeScaleArray;
+        pageZoomScaleArray = nil;
+        storeScaleArray = nil;
     }
     NSMutableDictionary* tempDir = [self.listOfZoomSpec objectAtIndex:positionOfText];
 
     originalRectVisible = [self getOriginalRectVisible:tempDir];
     originalZoomScale = [self getOriginalZoomScale:tempDir];
-    [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width, originalRectVisible.height, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
+
     self.scrollView.zoomScale = originalZoomScale;
+    [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width * percentScaleBetweenDifferentDevice.x, originalRectVisible.height * percentScaleBetweenDifferentDevice.y, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
     tempDir = nil;
+    
+    [self autoZoom];
 }
 - (void) changeInfo:(int)currentLocationOfPageDirectory
 {
     //NSString *path = [self.pageTextArray objectAtIndex:currentLocationOfPageDirectory];
     audioShouldPlay = 0;
     
-    // init backgroundImages
-    
-    
-    //[self setBackgroundImages:[self.listOfAllBackgroundImageView objectAtIndex:currentPageOfDirectory]];
-    self.scrollView.zoomScale = .5;
-    [self setBackgroundImages:[storyFS getPageBackgrounds:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, currentLocationOfPageDirectory+1]]];
-    [self.backgroundImageView setImage: [[self backgroundImages ]objectAtIndex:0]];
-    
     [self setListOfText:[self.listOfAllText objectAtIndex:currentPageOfDirectory]];
-    self.backgroundImageView.animationImages = nil;
-    
-    self.backgroundImageView.animationImages = self.backgroundImages;
     if (withSound)
     {
         //[self setListOfAudio: [storyFS getListOfAudio:path]];
         [self setListOfAudio:[self.listOfAllAudio objectAtIndex:currentPageOfDirectory]];
     }
     if (isGoingToNextPage) {
-       
+        
         self.positionOfText = 0;
     }
     else {
@@ -277,25 +278,25 @@
     
     NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
     [self.webView loadHTMLString:htmlString baseURL:nil];
-    
+    htmlString = nil;
     if (withSound) {
         [self playAudioAt:self.positionOfText];
     }
     
     
     /*
-    if (currentPageOfDirectory == [self.listOfAllText count] - 1 && [self.listOfText count] != 1) {
-        NSLog(@"at the end of the page");
-        self.rightButton.hidden = NO;
-        self.leftButton.hidden = NO;
-    }
-    */
+     if (currentPageOfDirectory == [self.listOfAllText count] - 1 && [self.listOfText count] != 1) {
+     NSLog(@"at the end of the page");
+     self.rightButton.hidden = NO;
+     self.leftButton.hidden = NO;
+     }
+     */
     if (currentPageOfDirectory < [self.listOfAllText count] -1 && currentPageOfDirectory > 0)
     {
         self.rightButton.hidden = NO;
         self.leftButton.hidden = NO;
     }
-
+    
     if (currentPageOfDirectory == 0  && positionOfText == 0) {
         self.leftButton.hidden = YES;
         self.rightButton.hidden = NO;
@@ -305,24 +306,24 @@
         self.leftButton.hidden = NO;
         self.rightButton.hidden = YES;
     }
-
+    
     /*
-    self.listOfZoomSpec = [self.listOfAllZoomSpec objectAtIndex:currentPageOfDirectory];
-    //NSLog(@"%@",self.listOfZoomSpec);
-    //NSLog(@"positon of dir = %i, postion of text = %i",currentPageOfDirectory,positionOfText);
-    NSMutableDictionary* tempDir = [self.listOfZoomSpec objectAtIndex:positionOfText];
-    
-    originalRectVisible = [self getOriginalRectVisible:tempDir];
-    originalZoomScale = [self getOriginalZoomScale:tempDir];
-    //NSLog(@"current zoom scale = %f",originalZoomScale);
-    [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width, originalRectVisible.height, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
-    self.scrollView.zoomScale = originalZoomScale;
-    
-    tempDir = nil;
-    NSLog(@"%i",currentPageOfDirectory);
+     self.listOfZoomSpec = [self.listOfAllZoomSpec objectAtIndex:currentPageOfDirectory];
+     //NSLog(@"%@",self.listOfZoomSpec);
+     //NSLog(@"positon of dir = %i, postion of text = %i",currentPageOfDirectory,positionOfText);
+     NSMutableDictionary* tempDir = [self.listOfZoomSpec objectAtIndex:positionOfText];
+     
+     originalRectVisible = [self getOriginalRectVisible:tempDir];
+     originalZoomScale = [self getOriginalZoomScale:tempDir];
+     //NSLog(@"current zoom scale = %f",originalZoomScale);
+     [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width, originalRectVisible.height, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
+     self.scrollView.zoomScale = originalZoomScale;
+     
+     tempDir = nil;
+     NSLog(@"%i",currentPageOfDirectory);
      */
     
-
+    
     NSMutableArray *pageZoomScaleArray = [storyFS getListOfZoomSpec:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, currentPageOfDirectory+1]];
     NSMutableArray *storeScaleArray = [[NSMutableArray alloc]init];
     //NSLog(@"page = %@",pageZoomScaleArray);
@@ -342,45 +343,56 @@
                 temp1 = [temp1 stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
                 temp1 = [temp1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                 NSArray *component = [temp1 componentsSeparatedByString:@":"];
-                //NSLog(@"%@", component[0]);
-                //NSLog(@"%@", component[1]);
+
                 [tempDict setObject:component[1] forKey:component[0]];
+                temp1 = nil;
+                component = nil;
             }
-            //NSLog(@"temp = %@",tempDict);
+
             [storeScaleArray addObject:tempDict];
-            //[pageZoomScaleArray replaceObjectAtIndex:k withObject:tempDict];
-            //NSLog(@"store = %@",storeScaleArray);
+            tempDict = nil;
+            temp = nil;
+            tempArray = nil;
+
         }
         //NSLog(@"test = %@",storeScaleArray);
         self.listOfZoomSpec  = storeScaleArray;
     }
+    pageZoomScaleArray = nil;
+    storeScaleArray = nil;
     NSMutableDictionary* tempDir = [self.listOfZoomSpec objectAtIndex:positionOfText];
     originalRectVisible = [self getOriginalRectVisible:tempDir];
     originalZoomScale = [self getOriginalZoomScale:tempDir];
+    NSLog(@"list of zoom spec = %@",tempDir );
     //NSLog(@"current zoom scale = %f",originalZoomScale);
-    [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width, originalRectVisible.height, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
+
     self.scrollView.zoomScale = originalZoomScale;
+    [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width * percentScaleBetweenDifferentDevice.x, originalRectVisible.height * percentScaleBetweenDifferentDevice.y, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
+    NSLog(@"current zoom spec = %f",self.scrollView.zoomScale);
+    NSLog(@"rect visit = %f%f",self.scrollView.contentOffset.x,self.scrollView.contentOffset.y);
     
     tempDir = nil;
 
-
+    // init backgroundImages
+    
+    
+    //[self setBackgroundImages:[self.listOfAllBackgroundImageView objectAtIndex:currentPageOfDirectory]];
+    
+    [self setBackgroundImages:[storyFS getPageBackgrounds:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, currentLocationOfPageDirectory+1]]];
+    [self.backgroundImageView setImage: [[self backgroundImages ]objectAtIndex:0]];
+    
+    
+    self.backgroundImageView.animationImages = nil;
+    
+    self.backgroundImageView.animationImages = self.backgroundImages;
+    
+    [self autoZoom];
 }
 
 
 
 
-//Add page curl to background imafe
-- (void) addNextPButton {
-    self.nextPButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.height - 50,
-                                                                  0, 50 , 50)];
-    UIImage *bookShelfImg = [storyFS getCurlPageImg];
-    
-    [self.nextPButton setImage:bookShelfImg forState:UIControlStateNormal];
-    [self.nextPButton addTarget:self action:@selector(showNextPage) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.nextPButton setHidden:TRUE];
-    [self.view addSubview:self.nextPButton];
-}
+
 
 //Initialize the background
 - (void) initBackgroundAnimation {
@@ -437,76 +449,113 @@
     
     [self.view addSubview:self.textBackgroundView];
     [self.view addSubview:self.webView];
+    htmlString = nil;
+    userDefault = nil;
+    x_percent = nil;
 }
 
 
 
-/*!
- * @function animation
- * @abstract animation
- * @discussion It creates animation from group of imgage
- */
--(void) playAnimation{
+-(void) autoZoom
+{
+    NSMutableDictionary* tempDir = [self.listOfZoomSpec objectAtIndex:positionOfText];
     
- 
-        NSLog(@"Zoom");
-        
-        //float desiredZoomScale = .5;
-        
-        //float zooming = fabsf(self.scrollView.zoomScale - desiredZoomScale);
-        NSMutableDictionary* tempDir = [self.listOfZoomSpec objectAtIndex:positionOfText];
+    newRectVisible = [self getNewRectVisible:tempDir];
+    newZoomScale = [self getNewZoomScale:tempDir];;
+    tempDir = nil;
+    float desiredZoomScale = newZoomScale;
+    CGRect contentFrame = CGRectMake(newRectVisible.width * percentScaleBetweenDifferentDevice.x, newRectVisible.height * percentScaleBetweenDifferentDevice.y, sceneFrame.size.width, sceneFrame.size.height);
+    //self.backgroundImageView.center  = CGPointMake(461, 177);
+    //CGRect scrollFrame = [self.backgroundImageView convertRect:contentFrame toView:self.scrollView];
+    //scrollFrame = CGRectMake(461, 177, 480, 320);
+    //NSLog(@"scrollview scale = %f",self.scrollView.zoomScale);
     
-        newRectVisible = [self getNewRectVisible:tempDir];
-        newZoomScale = [self getNewZoomScale:tempDir];;
-        tempDir = nil;
-        float desiredZoomScale = newZoomScale;
-        CGRect contentFrame = CGRectMake(newRectVisible.width, newRectVisible.height, sceneFrame.size.width, sceneFrame.size.height);
-        //self.backgroundImageView.center  = CGPointMake(461, 177);
-        CGRect scrollFrame = [self.backgroundImageView convertRect:contentFrame toView:self.scrollView];
-        //scrollFrame = CGRectMake(461, 177, 480, 320);
-        NSLog(@"scrollview scale = %f",self.scrollView.zoomScale);
-        [UIView animateWithDuration:5 delay:0 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
-
-            //self.backgroundImageView.contentMode = UIViewContentModeScaleToFill;
-            //contentFrame = CGRectMake(461, 177, 460, 320);
-            /*
-            [self.scrollView scrollRectToVisible:scrollFrame animated:NO];
+    if (originalZoomScale < newZoomScale) {
+        [self.scrollView scrollRectToVisible:contentFrame animated:NO];
+        
+        [UIView animateWithDuration:3 delay:0 options:UIViewAnimationCurveLinear animations:^{
+            
+            
+            //[self.scrollView scrollRectToVisible:scrollFrame animated:NO];
+            //self.view.layer.anchorPoint =CGPointMake(1, 1);
+            [self.scrollView scrollRectToVisible:contentFrame animated:NO];
             [self.scrollView setZoomScale:desiredZoomScale animated:NO];
-            */
-            [self.scrollView scrollRectToVisible:scrollFrame animated:NO];
-            [self.scrollView setZoomScale:desiredZoomScale animated:NO];
-            /*
-            if (originalZoomScale > newZoomScale) {
-                [self.scrollView scrollRectToVisible:scrollFrame animated:NO];
-                [self.scrollView setZoomScale:desiredZoomScale animated:NO];
-            }
-            else {
-                [self.scrollView scrollRectToVisible:scrollFrame animated:NO];
-                [self.scrollView setZoomScale:desiredZoomScale animated:NO];
-                [self.scrollView scrollRectToVisible:scrollFrame animated:NO];
-            }
-            */
+            //[self.scrollView scrollRectToVisible:contentFrame animated:NO];
             
             
             
             
         } completion:^(BOOL finished)  {
             NSLog(@"scrollview scale = %f",self.scrollView.zoomScale);
-            if ([self.backgroundImages count] > 1) {
-                if ([self.backgroundImages count] / 10 > 1) {
-                    float duration = [self.backgroundImages count] / 10;
-                    self.backgroundImageView.animationDuration = duration;
-                }
-                else
-                {
-                    self.backgroundImageView.animationDuration = 1;
-                }
-                self.backgroundImageView.image = [[self backgroundImages ] lastObject];
-                
-                [self.backgroundImageView startAnimating];
-            }
+            [UIView animateWithDuration:2 delay:0 options:UIViewAnimationCurveLinear animations:^{
+                [self.scrollView scrollRectToVisible:contentFrame animated:NO];
+            } completion:^(BOOL finished){
+                [self playAnimation];
+            }];
+            
         }];
-        /*
+        
+    }
+    else if (originalZoomScale > newZoomScale)
+    {
+        [UIView animateWithDuration:3.5 delay:0 options:UIViewAnimationCurveLinear animations:^{
+            
+            //self.backgroundImageView.contentMode = UIViewContentModeScaleToFill;
+            //contentFrame = CGRectMake(461, 177, 460, 320);
+            /*
+             [self.scrollView scrollRectToVisible:scrollFrame animated:NO];
+             [self.scrollView setZoomScale:desiredZoomScale animated:NO];
+             */
+            [self.scrollView scrollRectToVisible:contentFrame animated:NO];
+            [self.scrollView setZoomScale:desiredZoomScale animated:NO];
+            /*
+             if (originalZoomScale > newZoomScale) {
+             [self.scrollView scrollRectToVisible:scrollFrame animated:NO];
+             [self.scrollView setZoomScale:desiredZoomScale animated:NO];
+             }
+             else {
+             [self.scrollView scrollRectToVisible:scrollFrame animated:NO];
+             [self.scrollView setZoomScale:desiredZoomScale animated:NO];
+             [self.scrollView scrollRectToVisible:scrollFrame animated:NO];
+             }
+             */
+            
+            
+            
+            
+        } completion:^(BOOL finished)  {
+            [self playAnimation];
+        }];
+        
+    }
+    else
+    {
+
+        [UIView animateWithDuration:3.5 delay:0 options:UIViewAnimationCurveLinear animations:^{
+            
+            
+            [self.scrollView scrollRectToVisible:contentFrame animated:NO];
+                        
+            
+            
+            
+        } completion:^(BOOL finished)  {
+            [self playAnimation];
+        }];
+
+    }
+    
+
+}
+
+/*!
+ * @function animation
+ * @abstract animation
+ * @discussion It creates animation from group of imgage
+ */
+-(void) playAnimation
+{
+    if ([self.backgroundImages count] > 1) {
         if ([self.backgroundImages count] / 10 > 1) {
             float duration = [self.backgroundImages count] / 10;
             self.backgroundImageView.animationDuration = duration;
@@ -516,11 +565,13 @@
             self.backgroundImageView.animationDuration = 1;
         }
         self.backgroundImageView.image = [[self backgroundImages ] lastObject];
-
+        
         [self.backgroundImageView startAnimating];
-         */
-    }
+    }    
     
+    
+}
+
 
 
 /*!
@@ -534,7 +585,7 @@
     UIImage *leftArrow = [storyFS getLeftButtonImg];
     
     [self.leftButton setImage:leftArrow forState:UIControlStateNormal];
-    
+    leftArrow = nil;
     
     [self.leftButton addTarget:self action:@selector(goToPreviousText) forControlEvents:UIControlEventTouchUpInside];
     self.singeTap.cancelsTouchesInView = NO;
@@ -553,7 +604,7 @@
     UIImage *rightArrow = [storyFS getRightButtonImg];
     
     [self.rightButton setImage:rightArrow forState:UIControlStateNormal];
-    
+    rightArrow = nil;
     [self.rightButton addTarget:self action:@selector(goToNextText) forControlEvents:UIControlEventTouchUpInside];
     self.singeTap.cancelsTouchesInView = NO;
     [self.view addSubview: self.rightButton];
@@ -563,6 +614,7 @@
     self.homeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width - 44, 44, 44)];
     UIImage *homeIconImg = [storyFS getHomeImg];
     [self.homeButton setImage:homeIconImg forState:UIControlStateNormal];
+    homeIconImg = nil;
     [self.homeButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
     self.singeTap.cancelsTouchesInView = NO;
     [self.view addSubview: self.homeButton];
@@ -574,6 +626,7 @@
  * @discussion It go to next text when user click on right button
  */
 -(void)goToNextText {
+
     self.positionOfText = self.positionOfText + 1;
     
     if (self.positionOfText < [self.listOfText count])
@@ -584,6 +637,7 @@
         
         NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
         [self.webView loadHTMLString:htmlString baseURL:nil];
+        htmlString = nil;
         if (self.leftButton.hidden == YES)
         {
             self.leftButton.hidden = NO;
@@ -591,6 +645,11 @@
         if ((currentPageOfDirectory == [self.listOfAllText count] - 1) && (positionOfText == [self.listOfText count] - 1) ) {
             //self.leftButton.hidden = NO;
             self.rightButton.hidden = YES;
+            [NSTimer scheduledTimerWithTimeInterval:1
+                                             target:self
+                                           selector:@selector(goToBookShelf)
+                                           userInfo:nil
+                                            repeats:NO];
         }
         if (withSound) {
             [self playAudioAt:self.positionOfText];
@@ -600,8 +659,11 @@
         originalRectVisible = [self getOriginalRectVisible:tempDir];
         originalZoomScale = [self getOriginalZoomScale:tempDir];
         tempDir = nil;
-        [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width, originalRectVisible.height, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
+        
         self.scrollView.zoomScale = originalZoomScale;
+        
+        [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width * percentScaleBetweenDifferentDevice.x, originalRectVisible.height * percentScaleBetweenDifferentDevice.y, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
+        [self autoZoom];
         
     }
     else
@@ -622,9 +684,9 @@
  * @discussion It go to previous text when user click on left button
  */
 -(void)goToPreviousText {
+
     self.positionOfText = self.positionOfText - 1;
-    self.nextPButton.hidden = YES;
-    
+        
     if (self.positionOfText >= 0)
     {
         self.scrollView.zoomScale = 1;
@@ -633,15 +695,13 @@
         
         NSString *htmlString = [self createWebString:[self.listOfText objectAtIndex:self.positionOfText] ];
         [self.webView loadHTMLString:htmlString baseURL:nil];
-        
+        htmlString = nil;
         if (self.rightButton.hidden == YES)
         {
             self.rightButton.hidden = NO;
         }
         if (self.positionOfText == 0 && currentPageOfDirectory == 0)
         {
-            
-            //[self playAnimation];
             self.leftButton.hidden = YES;
         }
         if (withSound) {
@@ -652,8 +712,10 @@
         originalRectVisible = [self getOriginalRectVisible:tempDir];
         originalZoomScale = [self getOriginalZoomScale:tempDir];
         tempDir = nil;
-        [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width, originalRectVisible.height, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
+        
         self.scrollView.zoomScale = originalZoomScale;
+        [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width * percentScaleBetweenDifferentDevice.x, originalRectVisible.height * percentScaleBetweenDifferentDevice.y, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
+        [self autoZoom];
     }
     else
     {
@@ -748,42 +810,6 @@
     [theAudio stop];
     
 }
-/*!
- * @function showToolBar
- * @abstract show or hide the tool bar
- * @discussion show or hide the tool bar when user click on it
- */
-- (void)showToolbar
-{
-    /*
-    if (self.toolBar.hidden == YES) {
-        [UIView animateWithDuration:0
-                         animations:^(void) {
-                             [self.toolBar setAlpha:1];
-                         }
-                         completion:^(BOOL finished) {
-                             self.toolBar.hidden = NO;
-                             [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoHideToolBar) userInfo:nil repeats:NO];
-                         }
-         ];
-        //[self.view bringSubviewToFront:self.toolBar];
-        
-    }
-    else if (self.toolBar.hidden == NO) {
-        
-        [UIView animateWithDuration:2
-                         animations:^(void) {
-                             [self.toolBar setAlpha:0];
-                         }
-                         completion:^(BOOL finished) {
-                             self.toolBar.hidden = YES;
-                         }
-         ];
-        
-    }
-     */
-    [self playAnimation];
-}
 
 /*!
  * @function displayAnimation
@@ -795,91 +821,6 @@
     [self playAnimation];
 }
 
-
-/*!
- * @function auto hide toolbar
- * @abstract auto hide toolbar for control the audio
- * @discussion It hide toolbar automaticly
- */
--(void) autoHideToolBar
-{
-    if (self.toolBar.hidden == NO) {
-        
-        [UIView animateWithDuration:1
-                         animations:^(void) {
-                             [self.toolBar setAlpha:0];
-                         }
-                         completion:^(BOOL finished) {
-                             self.toolBar.hidden = YES;
-                         }
-         ];
-        
-    }
-    
-}
-
-/*!
- * @function create toolbar
- * @abstract create toolbar for control the audio
- * @discussion It creates toolbar that use can play, stop, pause the audio
- */
--(void) addToolBar
-{
-    // add tool bar
-    self.toolBar = [[UIToolbar alloc] init];
-    self.toolBar.frame = CGRectMake(0, self.view.frame.size.width - 44, self.view.frame.size.height, 44); // need to change the width according to orientation
-    // make toolbar transparent
-    [self.toolBar setBarStyle:UIBarStyleBlack];
-    self.toolBar.translucent = YES;
-    // init the singe tap gesture
-    self.singeTap =  [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showToolbar)];
-    
-    self.singeTap.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:self.singeTap];
-    self.view.userInteractionEnabled = YES;
-    //Canlce interference on click baritembutton
-    self.singeTap.cancelsTouchesInView = NO;
-    [self.singeTap setDelegate:self];
-    [self.view addSubview:self.toolBar];
-    //create space to aligment the toolbar item
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    //create play button
-    UIBarButtonItem *playButton =
-    [[UIBarButtonItem alloc]
-     initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-     target:self
-     action:@selector(playAudio)];
-    
-    //create pause button
-    UIBarButtonItem *pauseButton =
-    [[UIBarButtonItem alloc]
-     initWithBarButtonSystemItem:UIBarButtonSystemItemPause
-     target: self
-     action:@selector(pauseAudio)];
-    
-    //create bar button
-    UIBarButtonItem *stopButton =
-    [[UIBarButtonItem alloc]
-     initWithBarButtonSystemItem:UIBarButtonSystemItemStop
-     target: self
-     action:@selector(stopAudio)];
-    
-    //create quit button
-    
-    UIImage *homeIconImg = [storyFS getHomeImg];
-    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:homeIconImg style:UIBarButtonItemStylePlain target:self action:@selector(quit)];
-    if (withSound) {
-        NSArray *buttons = [[NSArray alloc]
-                            initWithObjects:homeButton,flexibleSpace,playButton, pauseButton,stopButton,flexibleSpace, nil];
-        self.toolBar.items = buttons;
-    }
-    else {
-        NSArray *buttons = [[NSArray alloc] initWithObjects:homeButton, nil];
-        self.toolBar.items = buttons;
-    }
-    
-}
 
 
 /*!
@@ -928,6 +869,8 @@
         frame1.size = fittingSize;
         aWebView.frame = frame1;
         
+        NSLog(@"web view frame width = %f",self.webView.frame.size.width);
+        NSLog(@"new web view frame width = %f",aWebView.frame.size.width);
         if (fittingSize.height * x_percent >= 40 * x_percent) {
             self.textBackgroundView.frame = CGRectMake(self.webView.frame.origin.x,
                                                        self.webView.frame.origin.y,
@@ -980,7 +923,7 @@
                                    "</style> \n"
                                    "</head> \n"
                                    "<body><p>%@</p></body> \n"
-                                   "</html>", @"helvetica", [NSNumber numberWithInt:20 * x_percent], content];
+                                   "</html>", @"helvetica", [NSNumber numberWithInt:15 * x_percent], content];
     return myDescriptionHTML;
 }
 
@@ -999,19 +942,14 @@
         [mpc setMovieSourceType:MPMovieSourceTypeFile];
         [[self view] addSubview:mpc.view];
         [mpc setFullscreen:YES];
+        url = nil;
+        urlVideo = nil;
+        urlString = nil;
         return NO;
     }
     return YES;
 }
 
-- (void) showNextPage {
-    /*
-     NSLog(@"show Next Page");
-     UIViewController *screen = [[UIViewController alloc] init];
-     [screen setModalTransitionStyle:UIModalTransitionStylePartialCurl];
-     [self presentViewController:screen animated:YES completion:nil];
-     */
-}
 
 // hide button
 -(void) hideButton:(UIButton *)aButton{
@@ -1045,6 +983,7 @@
     
     UIScreen *screen = [UIScreen mainScreen];
     CGRect fullScreenRect = screen.bounds;
+    screen = nil;
     BOOL statusBarHidden = [UIApplication sharedApplication].statusBarHidden;
     
     //implicitly in Portrait orientation.
@@ -1071,7 +1010,7 @@
 
 - (float) getNewZoomScale:(NSMutableDictionary *)dict {
     NSString *temp = [dict objectForKey:@"newZoomScale"];
-    NSLog(@"scale = %f",[temp floatValue]);
+    
     return [temp floatValue];
 }
 
@@ -1081,6 +1020,8 @@
     NSArray *tempArr = [temp componentsSeparatedByString:@","];
     float width = [tempArr[0] floatValue ];
     float height = [tempArr[1] floatValue ];
+    tempArr = nil;
+    temp = nil;
     //NSLog(@"size = %f%f",width,height);
     return CGSizeMake(width, height);
 }
@@ -1090,7 +1031,22 @@
     NSArray *tempArr = [temp componentsSeparatedByString:@","];
     float width = [tempArr[0] floatValue ];
     float height = [tempArr[1] floatValue ];
-    NSLog(@"size = %f%f",width,height);
+    tempArr = nil;
+    temp = nil;
     return CGSizeMake(width, height);
+}
+- (void) scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
+{
+    NSLog(@"true scale = %f",scale);
+}
+- (void) goToBookShelf
+{
+    /*
+    BookshelfViewController *bookShelf = [[BookshelfViewController alloc]init];
+    [bookShelf setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [bookShelf.view setFrame: self.view.bounds];
+    [self presentViewController:bookShelf animated:YES completion:nil];
+     */
+    
 }
 @end

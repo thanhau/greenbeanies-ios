@@ -10,7 +10,7 @@
 
 @interface IntroVideoViewController ()
 {
-MPMoviePlayerController *mpc;
+MPMoviePlayerController *mediaPlayer;
 }
 @end
 
@@ -33,13 +33,13 @@ MPMoviePlayerController *mpc;
     NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"Signmeastoryopeningscreen" ofType:@"m4v" inDirectory:@"Dictionary"];
     NSURL *urlVideo = [[NSURL alloc] initFileURLWithPath:stringVideoPath];
   
-    mpc = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
-    mpc.controlStyle = MPMovieControlStyleNone;
-    [mpc.view setFrame:self.view.bounds];
-    [[self view]addSubview:mpc.view];
-    [mpc setFullscreen:YES];
+    mediaPlayer = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
+    mediaPlayer.controlStyle = MPMovieControlStyleNone;
+    [mediaPlayer.view setFrame:self.view.bounds];
+    [[self view]addSubview:mediaPlayer.view];
+    //[mpc setFullscreen:YES];
     
-    [mpc play];
+    [mediaPlayer play];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     stringVideoPath = nil;
     urlVideo = nil;
@@ -48,13 +48,13 @@ MPMoviePlayerController *mpc;
 }
 - (void)viewDidUnload
 {
-    mpc = nil;
+    mediaPlayer = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-   
+    
     
      
 }
@@ -64,7 +64,9 @@ MPMoviePlayerController *mpc;
 {
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-   
+    
+    [mediaPlayer.view removeFromSuperview];
+    mediaPlayer = nil;
     [self presentViewController:self.bookShelf animated:YES completion:nil];
 
    
@@ -76,6 +78,7 @@ MPMoviePlayerController *mpc;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    mediaPlayer = nil;
 }
 
 @end

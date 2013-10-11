@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 static NSString *ImagesDir = @"/Images";
+static NSString *Vocabulary =@"/Vocabulary";
 static NSString *InventoryDir = @"/Inventory";
 static NSString *DictionaryDir = @"/Dictionary";
 
@@ -48,5 +49,5 @@ static NSString *DictionaryDir = @"/Dictionary";
 - (NSMutableArray *) getListOfText: (NSString *) pagePath;
 - (NSMutableArray *) getListOfAudio: (NSString *) pagePath; // database_2012_02_27_JW
 - (NSMutableArray *) getListOfZoomSpec: (NSString *) pagePath;
-
+- (NSMutableArray *) getListOfVocabulary:(NSString *) bookTitle;
 @end

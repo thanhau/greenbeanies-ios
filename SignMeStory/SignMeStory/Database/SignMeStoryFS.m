@@ -22,7 +22,9 @@
         fsPath = bundlePath;
         [self setCurrentPath: [[NSMutableString alloc] initWithString:fsPath]];
         //[self generateBookPaths:[NSString stringWithFormat:@"%@%@", fsPath, InventoryDir]];
+        bundlePath = nil;
     }
+    
     return self;
 }
 
@@ -34,6 +36,7 @@
     
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
+        path = nil;
         return nil;
     }
     else {
@@ -48,13 +51,41 @@
     
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
+        path = nil;
         return nil;
     }
     else {
         return [UIImage imageNamed:imagePath];
     }
 }
-
+- (NSMutableArray *) getListOfVocabulary:(NSString *) bookTitle
+{
+    NSMutableArray *listOfVocabulary = [[NSMutableArray alloc] init];
+    
+    int numberOfBook = [bookTitle integerValue];
+    for (int i = 0; i < numberOfBook; i++) {
+        NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
+        NSString *bookTitleString = [NSString stringWithFormat:@"Greenbeanies%i.txt",i+1];
+        NSString *key = [NSString stringWithFormat:@"Greenbeanies%i",i+1];
+        NSString *vocabularyPath = [NSMutableString stringWithFormat:@"%@/%@",Vocabulary,bookTitleString];
+        NSMutableString *path = [NSMutableString stringWithFormat:@"%@%@",fsPath,vocabularyPath];
+        //NSLog(@"%@",path);
+        if ([self checkForPath:path]) {
+            NSError *error;
+            NSString *content = [[NSString alloc]initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+            NSLog(@"%@",content);
+            path = nil;
+            vocabularyPath = nil;
+            [tempDict setObject:content forKey:key];
+            
+            [listOfVocabulary addObject:tempDict];
+        }
+        bookTitleString = nil;
+        key = nil;
+    }
+    return listOfVocabulary;
+   
+}
 - (NSString *) getPageText: (NSString *) pagePath {
     if (![self checkForPath:pagePath]) {
         NSLog(@"%@ doesn't exist", pagePath);
@@ -95,7 +126,8 @@
         if ([[temp objectAtIndex:i] integerValue] > 0)
             nPages++;
     }
-    
+    path = nil;
+    temp = nil;
     return nPages;
 }
 
@@ -248,12 +280,17 @@
         for (int i = 0; i < [backgroundArray count]; i++) {
             UIImage *tempImg = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/%@", path, [sortedBackgroundFileArray objectAtIndex:i]]];
             [imgArray addObject: tempImg];
+            tempImg = nil;
         }
         
         if ([imgArray count] == 0) {
             UIImage *tempImg = [UIImage imageNamed:@"Default.png"];
             [imgArray addObject:tempImg];
+            tempImg = nil;
         }
+        path = nil;
+        backgroundArray = nil;
+        sortedBackgroundFileArray =nil;
         return imgArray;
     }
 }
@@ -276,11 +313,15 @@
         for (int i = 0; i < [textFiledArray count]; i++) {
             NSString *tempStr = [NSString stringWithContentsOfFile: [NSMutableString stringWithFormat:@"%@/%@", path, [sortedTextFileArray objectAtIndex:i]] encoding:NSASCIIStringEncoding error:nil];
             [textArray addObject: tempStr];
+            tempStr = nil;
         }
         
         if ([textArray count] == 0) {
             [textArray addObject:@""];
         }
+        path = nil;
+        textFiledArray = nil;
+        sortedTextFileArray = nil;
         return textArray;
     }
 }
@@ -305,11 +346,15 @@
                 NSString *tempStr = [NSString stringWithContentsOfFile:[NSMutableString stringWithFormat:@"%@/%@",path, [sortedZoomSpecFileArray objectAtIndex:i]] encoding:NSASCIIStringEncoding error:nil];
                 //NSLog(@"%@",tempStr);
                 [zoomSpecArray addObject:tempStr];
+                tempStr = nil;
             }
             //NSLog(@"%@",zoomSpecArray);
             if ([zoomSpecArray count] == 0) {
                 [zoomSpecArray addObject:@""];
             }
+            path = nil;
+            zoomSpecFiledArray = nil;
+            sortedZoomSpecFileArray = nil;
             return zoomSpecArray;
         }
         
@@ -340,7 +385,11 @@
             for (int i = 0; i < [audioFileArray count]; i++) {
                 NSURL *urlAudio = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", path, [sortedAudioFileArray objectAtIndex:i]]];
                 [audioArray addObject: urlAudio];
+                urlAudio = nil;
             }
+            path = nil;
+            audioFileArray = nil;
+            sortedAudioFileArray = nil;
             
         }
         return audioArray;

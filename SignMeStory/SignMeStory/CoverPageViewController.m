@@ -12,6 +12,7 @@
     float x_percent;
     float y_percent;
     MPMoviePlayerController *mpc;
+    CGRect sceneFrame;
 }
 
 @end
@@ -40,7 +41,7 @@
     if (self) {
         storyFS = aStoryFS;
         title = aBookTitle;
-        
+        sceneFrame = [self getScreenFrameForCurrentOrientation];
         UIImage *coverPage = [storyFS getCoverImg: title];
         if (coverPage == nil)  {
             valid = false;
@@ -91,10 +92,7 @@
  * @discussion It creates button that let user listen to the audio
  */
 - (void) addReadToMeButton {
-    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x,
-                                                                          self.backgroundImageView.frame.size.height - 50,
-                                                                          50,
-                                                                          50)];
+    UIButton *readToMeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.size.height - 90, 70, 70)];
     UIImage *readToMeImage = [storyFS getReadToMeImg:title];
     
     [readToMeButton setImage:readToMeImage forState:UIControlStateNormal];
@@ -109,10 +107,7 @@
  * @discussion It creates button that don't let user listen to the audio
  */
 - (void) addReadByMyselfButton {
-    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 2 - 60,
-                                                                              self.backgroundImageView.frame.size.height - 50,
-                                                                              50,
-                                                                              50)];
+    UIButton *readByMyselfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width / 4, self.backgroundImageView.frame.size.height - 90, 70, 70)];
     UIImage *readByMyselfImage = [storyFS getReadByMyselfImg:title];
     
     [readByMyselfButton setImage:readByMyselfImage forState:UIControlStateNormal];
@@ -127,16 +122,13 @@
  * @discussion It creates tutorial button that show video how to use the app
  */
 - (void) addTutorialButton {
-    UIButton *addTutorialButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width - 100,
-                                                                              self.backgroundImageView.frame.size.height - 50,
-                                                                              50,
-                                                                              50)];
+    UIButton *addTutorialButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width - 100, self.backgroundImageView.frame.size.height - 90, 70, 70)];
    
     UIImage *demoIcon = [storyFS getDemoImg:title];
     
     [addTutorialButton setImage:demoIcon forState:UIControlStateNormal];
-    [addTutorialButton addTarget:self action:@selector(displayTutorial) forControlEvents:UIControlEventTouchUpInside];
-    
+    //[addTutorialButton addTarget:self action:@selector(displayTutorial) forControlEvents:UIControlEventTouchUpInside];
+    [addTutorialButton addTarget:self action:@selector(displayListOfVocabulary) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: addTutorialButton];
 }
 
@@ -159,7 +151,7 @@
     [self presentViewController:aNewBook animated:YES completion:nil];
 }
 /*!
- * @function addReadByMyself
+ * @function readByMyself
  * @abstract don't allow the audio work
  * @discussion don't allow the audio work
  */
@@ -177,6 +169,32 @@
     [self presentViewController:aNewBook animated:YES completion:nil];
 
 }
+
+/*!
+ * @function displayListOfVocabulary
+ * @abstract display list of book contain video of sign language
+ * @discussion display list of book contain video of sign language
+ */
+-(void) displayListOfVocabulary
+{
+    UINavigationController *Controller = [[UINavigationController alloc] init];
+    //LoginViewController is a sub class of UITableviewController
+    
+    ListOfBookVocabularyViewController *listOfVocabulary = [[ListOfBookVocabularyViewController alloc] initWithStoryBooksFS:storyFS andTitle:title];
+    [listOfVocabulary setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [listOfVocabulary.view setFrame:self.view.bounds];
+    //[self presentViewController:listOfVocabulary animated:YES completion:nil];
+    
+    Controller.viewControllers=[NSArray arrayWithObject:listOfVocabulary];
+    
+    [self presentModalViewController:Controller animated:YES];
+     
+
+    
+}
+
+
+
 
 /*!
  * @function displayTutorial
@@ -212,7 +230,7 @@
  * @discussion It creates button that exit current book and redirect to the bookshelf
  */
 - (void) addBookShelfButton {
-    UIButton *bookShelfButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 70, 70)];
+    UIButton *bookShelfButton = [[UIButton alloc] initWithFrame:CGRectMake(self.backgroundImageView.frame.size.width - 200, self.backgroundImageView.frame.size.height - 90, 70, 70)];
     UIImage *bookShelfImg = [storyFS getbookshelfImg:title];
     
     [bookShelfButton setImage:bookShelfImg forState:UIControlStateNormal];
@@ -227,6 +245,33 @@
  */
 -(void) quit {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (CGRect)getScreenFrameForCurrentOrientation {
+    return [self getScreenFrameForOrientation:[UIApplication sharedApplication].statusBarOrientation];
+}
+
+- (CGRect)getScreenFrameForOrientation:(UIInterfaceOrientation)orientation {
+    
+    UIScreen *screen = [UIScreen mainScreen];
+    CGRect fullScreenRect = screen.bounds;
+    screen = nil;
+    BOOL statusBarHidden = [UIApplication sharedApplication].statusBarHidden;
+    
+    //implicitly in Portrait orientation.
+    if(orientation == UIInterfaceOrientationLandscapeRight || orientation == UIInterfaceOrientationLandscapeLeft){
+        CGRect temp = CGRectZero;
+        temp.size.width = fullScreenRect.size.height;
+        temp.size.height = fullScreenRect.size.width;
+        fullScreenRect = temp;
+    }
+    
+    if(!statusBarHidden){
+        CGFloat statusBarHeight = 20;//Needs a better solution, FYI statusBarFrame reports wrong in some cases..
+        fullScreenRect.size.height -= statusBarHeight;
+    }
+    
+    return fullScreenRect;
 }
 
 @end

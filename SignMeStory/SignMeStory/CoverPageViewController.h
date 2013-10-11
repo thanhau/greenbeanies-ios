@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StoryBookViewController.h"
+//#import "StoryBookViewController.h"
+#import "SignMeStoryFS.h"
 #import "TestViewController.h"
+#import "ListOfBookVocabularyViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface CoverPageViewController : UIViewController {
@@ -19,7 +21,7 @@
 }
 
 @property (nonatomic) UIImageView * backgroundImageView;
-@property (nonatomic) StoryBookViewController *storyBookViewController;
+//@property (nonatomic) StoryBookViewController *storyBookViewController;
 
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle;
 - (bool) isAValidBook;

@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <QuartzCore/QuartzCore.h>
 #import "SignMeStoryFS.h"
+
 static NSString *X_Percentage = @"X_Percentage";
 static NSString *Y_Percentage = @"Y_Percentage";
 @interface TestViewController : UIViewController<AVAudioPlayerDelegate,UITextViewDelegate,UIWebViewDelegate,UIGestureRecognizerDelegate, UIScrollViewDelegate>
@@ -29,7 +31,7 @@ static NSString *Y_Percentage = @"Y_Percentage";
     CGSize newRectVisible;
     
 }
-@property (nonatomic) UIButton *nextPButton;
+
 @property (nonatomic) UILabel *pageTextLabel;
 @property (nonatomic) UIImageView * backgroundImageView;
 @property (nonatomic) UIImageView * textBackgroundView;
@@ -42,13 +44,13 @@ static NSString *Y_Percentage = @"Y_Percentage";
 @property (nonatomic, strong) NSMutableArray *listOfAudio;
 @property (nonatomic, strong) NSString *pageText;
 @property (nonatomic, strong) UITapGestureRecognizer *singeTap;
-@property (strong, nonatomic) UIToolbar *toolBar;
+
 @property (strong, nonatomic) UIButton *leftButton;
 @property (strong, nonatomic) UIButton *rightButton;
 @property (strong, nonatomic) UIButton *homeButton;
 @property int positionOfText;
 @property (nonatomic) NSString *pagePath;
-@property (nonatomic, strong) NSMutableArray *listOfAllBackgroundImageView;
+
 @property (nonatomic, strong) NSMutableArray *listOfAllText;
 @property (nonatomic, strong) NSMutableArray *listOfAllAudio;
 @property (nonatomic, strong) NSMutableArray *listOfAllZoomSpec;
