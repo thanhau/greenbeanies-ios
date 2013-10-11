@@ -10,7 +10,9 @@
 
 @interface IntroVideoViewController ()
 {
+
 MPMoviePlayerController *mediaPlayer;
+
 }
 @end
 
@@ -29,10 +31,11 @@ MPMoviePlayerController *mediaPlayer;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.bookShelf = [[BookshelfViewController alloc]init];
+    self.bookShelf = [[BookshelfViewController alloc] init];
     NSString *stringVideoPath = [[NSBundle mainBundle]pathForResource:@"Signmeastoryopeningscreen" ofType:@"m4v" inDirectory:@"Dictionary"];
     NSURL *urlVideo = [[NSURL alloc] initFileURLWithPath:stringVideoPath];
   
+
     mediaPlayer = [[MPMoviePlayerController alloc]initWithContentURL:urlVideo];
     mediaPlayer.controlStyle = MPMovieControlStyleNone;
     [mediaPlayer.view setFrame:self.view.bounds];
@@ -40,12 +43,12 @@ MPMoviePlayerController *mediaPlayer;
     //[mpc setFullscreen:YES];
     
     [mediaPlayer play];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     stringVideoPath = nil;
     urlVideo = nil;
-    
- 
 }
+
 - (void)viewDidUnload
 {
     mediaPlayer = nil;
@@ -54,24 +57,18 @@ MPMoviePlayerController *mediaPlayer;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    
-     
+
 }
 
-//
 -(void) moviePlayerDidFinish:(NSNotification *)notification
 {
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+
     
     [mediaPlayer.view removeFromSuperview];
     mediaPlayer = nil;
-    [self presentViewController:self.bookShelf animated:YES completion:nil];
 
-   
-    
-    
+    [self presentViewController:self.bookShelf animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
