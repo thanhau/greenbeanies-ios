@@ -12,6 +12,7 @@
 {
     NSMutableArray *listOfVocabulary;
     MPMoviePlayerController *mpc;
+    NSString* bookTitle;
 }
-- (void) initWithData: (NSString *) data;
+- (void) initWithData: (NSString *) data bookTitle:(NSString*) title;
 @end

@@ -177,7 +177,19 @@
     NSString *temp = [tempDict objectForKey:tempArray[0]];
     
     VocabularyViewController *detailView = [[VocabularyViewController alloc]init];
-    [detailView initWithData:temp];
+    NSString *bookTitle;
+    switch (indexPath.row + 1) {
+            case 1:
+            	bookTitle = @"GreenBeanies-One Silly Cat";
+            	break;
+        	case 2:
+            	bookTitle = @"GreenBeanies-Two Cool Hat";
+            	break;
+            default:
+            	bookTitle = @"Greenbeanies";
+            	break;
+    }
+    [detailView initWithData:temp bookTitle:bookTitle];
     [self.navigationController pushViewController:detailView animated:YES];
 }
 

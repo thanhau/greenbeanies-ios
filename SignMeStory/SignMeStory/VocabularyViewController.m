@@ -37,6 +37,7 @@
 {
     [mpc.view removeFromSuperview];
     mpc = nil;
+    self.navigationController.topViewController.title = bookTitle;
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,7 +71,9 @@
     NSMutableDictionary *tempDict = [listOfVocabulary objectAtIndex:indexPath.row];
     NSArray *tempArray = [tempDict allKeys];
     //NSLog(@"%i",[tempArray count]);
-    cell.textLabel.text = tempArray[0];
+    NSString *word = tempArray[0];
+    cell.textLabel.text = [word uppercaseString];
+    cell.textLabel.textColor = [UIColor greenColor];
     return cell;
 }
 
@@ -141,9 +144,10 @@
     
 
 }
-- (void) initWithData: (NSString *) data
+- (void) initWithData: (NSString *) data bookTitle:(NSString*) title
 {
     listOfVocabulary = [[NSMutableArray alloc]init];
+    bookTitle = title;
     
     data = [data stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
