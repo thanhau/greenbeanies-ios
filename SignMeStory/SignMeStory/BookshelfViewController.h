@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CoverPageViewController.h"
-
+@class CoverPageViewController;
 @interface BookshelfViewController : UIViewController {
     SignMeStoryFS *aStoryFS;
     NSMutableArray *inventory;

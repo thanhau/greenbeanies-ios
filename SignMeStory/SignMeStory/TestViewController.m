@@ -305,6 +305,12 @@
         //NSLog(@"at the last page");
         self.leftButton.hidden = NO;
         self.rightButton.hidden = YES;
+        [NSTimer scheduledTimerWithTimeInterval:3
+                                         target:self
+                                       selector:@selector(goToBookShelf)
+                                       userInfo:nil
+                                        repeats:NO];
+
     }
     
     /*
@@ -645,7 +651,7 @@
         if ((currentPageOfDirectory == [self.listOfAllText count] - 1) && (positionOfText == [self.listOfText count] - 1) ) {
             //self.leftButton.hidden = NO;
             self.rightButton.hidden = YES;
-            [NSTimer scheduledTimerWithTimeInterval:1
+            [NSTimer scheduledTimerWithTimeInterval:3
                                              target:self
                                            selector:@selector(goToBookShelf)
                                            userInfo:nil
@@ -1041,12 +1047,12 @@
 }
 - (void) goToBookShelf
 {
-    /*
+    NSLog(@"go to book shelf");
     BookshelfViewController *bookShelf = [[BookshelfViewController alloc]init];
     [bookShelf setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [bookShelf.view setFrame: self.view.bounds];
     [self presentViewController:bookShelf animated:YES completion:nil];
-     */
+     
     
 }
 @end

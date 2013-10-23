@@ -11,6 +11,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
 #import "SignMeStoryFS.h"
+#import "BookshelfViewController.h"
+
 
 static NSString *X_Percentage = @"X_Percentage";
 static NSString *Y_Percentage = @"Y_Percentage";
