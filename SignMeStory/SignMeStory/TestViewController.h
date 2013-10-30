@@ -59,7 +59,6 @@ static NSString *Y_Percentage = @"Y_Percentage";
 //Array of dictionary  of zoom spec
 @property (nonatomic, strong) NSMutableArray *listOfZoomSpec;
 
-//@property (nonatomic, strong) NSMutableDictionary *dictOfZoomSpec;
 
 @property (nonatomic, retain) NSString *bookTitle;
 @property (nonatomic, strong) NSMutableArray *pageTextArray;

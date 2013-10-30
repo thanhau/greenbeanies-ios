@@ -64,16 +64,20 @@
                                    userInfo:nil
                                     repeats:NO];
      */
+    if (currentPageOfDirectory == 0  && positionOfText == 0) {
+        [self autoZoom];
+    }
 
     if (withSound) {
         if (audioShouldPlay == 0){
+            
             [self playAudioAt:positionOfText];
             audioShouldPlay++;
         }
     }
     [mpc.view removeFromSuperview];
     mpc = nil;
-    //[self playAnimation];
+    
 
     
 }
@@ -106,7 +110,7 @@
     newRectVisible = CGSizeMake(0, 0);
     originalZoomScale = 1;
     newZoomScale = 0.5;
-    //isGoingToNextPage =TRUE;
+    
     [self initBook];
 
     defautSceneFrame = CGRectMake(0, 0, 480, 300);
@@ -127,41 +131,7 @@
         [self.listOfAllText addObject:[storyFS getListOfText:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, i+1]]];
         //[self.listOfAllZoomSpec addObject:[storyFS getListOfZoomSpec:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, i+1]]];
         [self.listOfAllAudio addObject:[storyFS getListOfAudio:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, i+1]]];
-        /*
-        NSMutableArray *pageZoomScaleArray = [storyFS getListOfZoomSpec:[NSString stringWithFormat:@"/%@/%d", self.bookTitle, i+1]];
-        
-        NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
-        if (pageZoomScaleArray != nil) {
-            //NSLog(@"scale page count =  %i",[pageZoomScaleArray count]);
-            for (int k = 0; k < [pageZoomScaleArray count]; k++) {
-                NSString *temp = pageZoomScaleArray[k];
-                temp = [temp stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-                NSArray *tempArray = [temp componentsSeparatedByString:@";"];
-                //NSLog(@"spit count =%i",[tempArray count]);
-                for (int j = 0; j < [tempArray count]; j++) {
-                    //NSLog(@"each = %@",tempArray[j]);
-                    NSString *temp1 = tempArray[j];
-                    temp1 = [temp1 stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-                    temp1 = [temp1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                    NSArray *component = [temp1 componentsSeparatedByString:@":"];
-                    //NSLog(@"%@", component[0]);
-                    //NSLog(@"%@", component[1]);
-                    [tempDict setObject:component[1] forKey:component[0]];
-                }
-                [pageZoomScaleArray replaceObjectAtIndex:k withObject:tempDict];
-            }
-            //NSLog(@"test = %@",pageZoomScaleArray);
-            [self.listOfAllZoomSpec addObject:pageZoomScaleArray];
-            
-        }
-        //NSLog(@"text count = %i at position = %i",[self.listOfAllText[i] count],i);
-        //NSLog(@"zoom count = %i", [self.listOfAllZoomSpec[i] count]);
-
-        */
     }
-    //NSLog(@"dict = %@", self.listOfAllZoomSpec);
-    //NSLog(@"number of text = %@",self.listOfAllText);
-    //NSLog(@"number of background = %@",self.listOfAllBackgroundImageView);
     [self displayPageWithCurrentLocation:currentPageOfDirectory];
 }
 - (void) displayPageWithCurrentLocation:(int)currentLocationOfPageDirectory
@@ -185,6 +155,7 @@
     {
         //[self setListOfAudio: [storyFS getListOfAudio:path]];
         [self setListOfAudio:[self.listOfAllAudio objectAtIndex:currentPageOfDirectory]];
+        //NSLog(@"list of Audio = %i", [self.listOfAllAudio count]);
     }
     // init background animation and chat bubble
     [self initBackgroundAnimation];
@@ -252,7 +223,7 @@
     [self.scrollView scrollRectToVisible:CGRectMake(originalRectVisible.width * percentScaleBetweenDifferentDevice.x, originalRectVisible.height * percentScaleBetweenDifferentDevice.y, sceneFrame.size.width, sceneFrame.size.height) animated:NO];
     tempDir = nil;
     
-    [self autoZoom];
+    //[self autoZoom];
 }
 - (void) changeInfo:(int)currentLocationOfPageDirectory
 {
@@ -280,7 +251,10 @@
     [self.webView loadHTMLString:htmlString baseURL:nil];
     htmlString = nil;
     if (withSound) {
+        
         [self playAudioAt:self.positionOfText];
+        //[self playAudioAt:0];
+        //[self playAudio];
     }
     
     
@@ -410,7 +384,9 @@
     self.scrollView.minimumZoomScale = .1;
     self.scrollView.maximumZoomScale = 2;
     self.scrollView.delegate = self;
-    //self.scrollView.scrollEnabled = NO;
+    self.scrollView.scrollEnabled = NO;
+    
+    
     self.backgroundImageView = [[UIImageView alloc]init];
     [self.backgroundImageView setFrame: CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
     CGSize size = CGSizeMake(sceneFrame.size.width * 2, sceneFrame.size.height *2);
@@ -497,6 +473,8 @@
                 [self.scrollView scrollRectToVisible:contentFrame animated:NO];
             } completion:^(BOOL finished){
                 [self playAnimation];
+                self.scrollView.minimumZoomScale = newZoomScale;
+                self.scrollView.maximumZoomScale = newZoomScale;
             }];
             
         }];
@@ -531,6 +509,8 @@
             
         } completion:^(BOOL finished)  {
             [self playAnimation];
+            self.scrollView.minimumZoomScale = newZoomScale;
+            self.scrollView.maximumZoomScale = newZoomScale;
         }];
         
     }
@@ -547,6 +527,8 @@
             
         } completion:^(BOOL finished)  {
             [self playAnimation];
+            self.scrollView.minimumZoomScale = newZoomScale;
+            self.scrollView.maximumZoomScale = newZoomScale;
         }];
 
     }
@@ -632,7 +614,8 @@
  * @discussion It go to next text when user click on right button
  */
 -(void)goToNextText {
-
+    self.scrollView.minimumZoomScale = .1;
+    self.scrollView.maximumZoomScale = 2;
     self.positionOfText = self.positionOfText + 1;
     
     if (self.positionOfText < [self.listOfText count])
@@ -658,6 +641,7 @@
                                             repeats:NO];
         }
         if (withSound) {
+            
             [self playAudioAt:self.positionOfText];
         }
         NSMutableDictionary* tempDir = [self.listOfZoomSpec objectAtIndex:positionOfText];
@@ -690,7 +674,8 @@
  * @discussion It go to previous text when user click on left button
  */
 -(void)goToPreviousText {
-
+    self.scrollView.minimumZoomScale = .1;
+    self.scrollView.maximumZoomScale = 2;
     self.positionOfText = self.positionOfText - 1;
         
     if (self.positionOfText >= 0)
@@ -751,6 +736,7 @@
     
     float playDelay = .5;
     durationOfAudio = [theAudio duration];
+    [theAudio play];
     [theAudio playAtTime:(theAudio.deviceCurrentTime + playDelay)];
 }
 
@@ -843,8 +829,7 @@
 //Tap Gesture won't happen when use click on the left and right arrow
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
        shouldReceiveTouch:(UITouch *)touch {
-    
-    return ((! [self.leftButton pointInside:[touch locationInView:self.leftButton] withEvent:nil]) && (! [self.rightButton pointInside:[touch locationInView:self.rightButton] withEvent:nil]) && [gestureRecognizer isKindOfClass:[UIPinchGestureRecognizer class]]);
+    return ((! [self.leftButton pointInside:[touch locationInView:self.leftButton] withEvent:nil]) && (! [self.rightButton pointInside:[touch locationInView:self.rightButton] withEvent:nil]) && (gestureRecognizer.numberOfTouches != 2));
 }
 /*!
  * @function webViewDidFinishLoad

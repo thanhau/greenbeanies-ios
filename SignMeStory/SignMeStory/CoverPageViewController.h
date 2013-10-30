@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "StoryBookViewController.h"
+
 #import "SignMeStoryFS.h"
 #import "TestViewController.h"
 #import "ListOfBookVocabularyViewController.h"
@@ -21,7 +21,7 @@
 }
 
 @property (nonatomic) UIImageView * backgroundImageView;
-//@property (nonatomic) StoryBookViewController *storyBookViewController;
+
 
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle;
 - (bool) isAValidBook;

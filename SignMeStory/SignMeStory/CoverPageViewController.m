@@ -39,6 +39,7 @@
 - (id) initWithStoryBooksFS: (SignMeStoryFS *) aStoryFS andTitle:(NSString *) aBookTitle {
     self = [super init];
     if (self) {
+        NSLog(@"money");
         storyFS = aStoryFS;
         title = aBookTitle;
         sceneFrame = [self getScreenFrameForCurrentOrientation];

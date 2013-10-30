@@ -7,12 +7,29 @@
 //
 
 #import "AppDelegate.h"
+#import "SignMeStoryFS.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /*
+    SignMeStoryFS *storyFS = [[SignMeStoryFS alloc] initFS];
     // Override point for customization after application launch.
+    NSMutableString *bundlePath = [NSMutableString stringWithCapacity:4];
+    [bundlePath appendString:[[NSBundle mainBundle] bundlePath]];
+    NSMutableString *fsPath = bundlePath;
+    NSMutableString *path1 = [NSMutableString stringWithFormat:@"%@/Inventory/Greenbeanies/",fsPath];
+     NSMutableString *path2 = [NSMutableString stringWithFormat:@"%@/Inventory/Greenbeanies2/",fsPath];
+    if ([storyFS checkForPath:path1]) {
+        NSLog(@"Path need to delete");
+        [storyFS deleteFileDirectory:path1];
+    }
+    if ([storyFS checkForPath:path2]) {
+        NSLog(@"Path need to delete");
+        [storyFS deleteFileDirectory:path2];
+    }
+     */
     return YES;
 }
 							

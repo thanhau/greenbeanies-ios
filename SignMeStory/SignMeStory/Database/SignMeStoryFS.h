@@ -50,4 +50,6 @@ static NSString *DictionaryDir = @"/Dictionary";
 - (NSMutableArray *) getListOfAudio: (NSString *) pagePath; // database_2012_02_27_JW
 - (NSMutableArray *) getListOfZoomSpec: (NSString *) pagePath;
 - (NSMutableArray *) getListOfVocabulary:(NSString *) bookTitle;
+- (bool) checkForPath: (NSString *) path;
+- (void) deleteFileDirectory: (NSString *) path;
 @end

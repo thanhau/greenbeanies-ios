@@ -177,7 +177,8 @@
     NSString *temp = [tempDict objectForKey:tempArray[0]];
     
     VocabularyViewController *detailView = [[VocabularyViewController alloc]init];
-    NSString *bookTitle;
+    NSString *bookTitle = tempArray[0];
+    /*
     switch (indexPath.row + 1) {
             case 1:
             	bookTitle = @"GreenBeanies-One Silly Cat";
@@ -189,6 +190,7 @@
             	bookTitle = @"Greenbeanies";
             	break;
     }
+    */
     [detailView initWithData:temp bookTitle:bookTitle];
     [self.navigationController pushViewController:detailView animated:YES];
 }
@@ -197,27 +199,4 @@
     
     [self dismissModalViewControllerAnimated:YES];
 }
-/*
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    
-    if ([[segue identifier] isEqualToString:@"Vocabulary"])
-    {
-        NSLog(@"test");
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-       
-        
-
-        VocabularyViewController *detailView = (VocabularyViewController *)[segue destinationViewController];
-        NSMutableDictionary *tempDict = [self.listOfBook objectAtIndex:indexPath.row];
-        NSArray *tempArray = [tempDict allKeys];
-        NSString *temp = [tempDict objectForKey:tempArray[0]];
-        [detailView initWithData:temp];
-        //[detailView populateView:userEmail book:[listOfBook objectAtIndex:indexPath.row]];
-        
-        
-    }
-}
-
-*/
 @end

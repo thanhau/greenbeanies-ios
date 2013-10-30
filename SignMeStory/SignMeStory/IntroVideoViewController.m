@@ -40,7 +40,7 @@ MPMoviePlayerController *mediaPlayer;
     mediaPlayer.controlStyle = MPMovieControlStyleNone;
     [mediaPlayer.view setFrame:self.view.bounds];
     [[self view]addSubview:mediaPlayer.view];
-    //[mpc setFullscreen:YES];
+    [mediaPlayer setFullscreen:YES];
     
     [mediaPlayer play];
 
@@ -77,5 +77,12 @@ MPMoviePlayerController *mediaPlayer;
     // Dispose of any resources that can be recreated.
     mediaPlayer = nil;
 }
-
+// force the orientation to portrait
+-(NSInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 @end

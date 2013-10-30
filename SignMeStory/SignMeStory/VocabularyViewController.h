@@ -3,7 +3,7 @@
 //  SignMeStory
 //
 //  Created by Thanh Au on 10/4/13.
-//  Copyright (c) 2013 YenHsiang Wang. All rights reserved.
+//  Copyright (c) 2013 Thanh Au. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

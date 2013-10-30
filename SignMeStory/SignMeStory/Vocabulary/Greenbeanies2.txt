@@ -2,11 +2,11 @@ sun-http://hidevmobile.com/gbv/gb2/sun.mp4;
 smile-http://hidevmobile.com/gbv/gb2/smile.mp4;
 hungry-http://hidevmobile.com/gbv/gb2/hungry.mp4;
 thirsty-http://hidevmobile.com/gbv/gb2/thirsty.mp4;
-water-http://hidevmobile.com/gbv/gb2/water.mp4
+water-http://hidevmobile.com/gbv/gb2/water.mp4;
 dance-http://hidevmobile.com/gbv/gb2/dance.mp4;
 birds-http://hidevmobile.com/gbv/gb2/bird.mp4;
 butterfly-http://hidevmobile.com/gbv/gb2/butterfly.mp4;
 ran-http://hidevmobile.com/gbv/gb2/run.mp4;
 bee-http://hidevmobile.com/gbv/gb2/bee.mp4;
 jump-http://hidevmobile.com/gbv/gb2/jump.mp4;
-dream-http://hidevmobile.com/gbv/gb2/dream.mp4;
+dream-http://hidevmobile.com/gbv/gb2/dream.mp4

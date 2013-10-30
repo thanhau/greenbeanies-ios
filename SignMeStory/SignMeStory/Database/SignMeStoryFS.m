@@ -23,6 +23,18 @@
         [self setCurrentPath: [[NSMutableString alloc] initWithString:fsPath]];
         //[self generateBookPaths:[NSString stringWithFormat:@"%@%@", fsPath, InventoryDir]];
         bundlePath = nil;
+        /*
+        NSMutableString *path1 = [NSMutableString stringWithFormat:@"%@/Inventory/Greenbeanies/",fsPath];
+        NSMutableString *path2 = [NSMutableString stringWithFormat:@"%@/Inventory/Greenbeanies2/",fsPath];
+        if ([self checkForPath:path1]) {
+            NSLog(@"Path need to delete");
+            [self deleteFileDirectory:path1];
+        }
+        if ([self checkForPath:path2]) {
+            NSLog(@"Path need to delete");
+            [self deleteFileDirectory:path2];
+        }
+        */
     }
     
     return self;
@@ -33,6 +45,15 @@
 - (NSMutableArray *) generateBookPaths {
     
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@%@", fsPath, InventoryDir];
+    NSMutableArray *temp = [[NSMutableArray alloc]initWithArray: [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil]];
+    NSMutableArray *listOfBook = [[NSMutableArray alloc] initWithCapacity:[temp count]];
+    NSLog(@"%@",temp);
+    for (int i = 0; i < [temp count]; i++) {
+        NSString *s = temp[i];
+        if (isnumber([s characterAtIndex:0])) {
+            [listOfBook addObject:temp[i]];
+        }
+    }
     
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
@@ -40,13 +61,16 @@
         return nil;
     }
     else {
-        return [[NSMutableArray alloc]initWithArray: [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil]];
+        //return [[NSMutableArray alloc]initWithArray: [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil]];
+        return listOfBook;
     }
 }
 
+
 // prepare the bookshelf's image from the file system;
 - (UIImage *) getBookShelfBackground {
-    NSString *imagePath = [NSMutableString stringWithFormat:@"%@%@", ImagesDir, @"/bookshelf.png"];
+    //NSString *imagePath = [NSMutableString stringWithFormat:@"%@%@", ImagesDir, @"/bookshelf.png"];
+    NSString *imagePath = [NSMutableString stringWithFormat:@"%@%@", ImagesDir, @"/Bookshelf.jpg"];
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@%@", fsPath, imagePath];
     
     if (![self checkForPath:path]) {
@@ -66,7 +90,21 @@
     for (int i = 0; i < numberOfBook; i++) {
         NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
         NSString *bookTitleString = [NSString stringWithFormat:@"Greenbeanies%i.txt",i+1];
-        NSString *key = [NSString stringWithFormat:@"Greenbeanies%i",i+1];
+        NSString *temp;
+        switch (i + 1) {
+            case 1:
+            	temp = @"GreenBeanies-One Silly Cat";
+            	break;
+        	case 2:
+            	temp = @"GreenBeanies-Two Cool Hat";
+            	break;
+            default:
+            	temp = @"Greenbeanies";
+            	break;
+        }
+
+        NSString *key = temp;
+        temp = nil;
         NSString *vocabularyPath = [NSMutableString stringWithFormat:@"%@/%@",Vocabulary,bookTitleString];
         NSMutableString *path = [NSMutableString stringWithFormat:@"%@%@",fsPath,vocabularyPath];
         //NSLog(@"%@",path);
@@ -133,7 +171,8 @@
 
 
 - (UIImage *) getCoverIcon: (NSString *) bookTitle {
-    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/coverIcon.jpg",fsPath, InventoryDir, bookTitle];
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/coverPage.jpg",fsPath, InventoryDir, bookTitle];
+    NSLog(@"path = %@", path);
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
         return nil;
@@ -146,6 +185,7 @@
 - (UIImage *) getCoverImg: (NSString *) bookTitle {
     
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/coverPage.jpg",fsPath, InventoryDir, bookTitle];
+    NSLog(@"path = %@", path);
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
         return nil;
@@ -232,7 +272,7 @@
 }
 
 - (UIImage *)getCoverIconForBook:  (NSString *) bookTitle  {
-    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/coverIcon.png",fsPath, InventoryDir, bookTitle];
+    NSMutableString *path = [NSMutableString stringWithFormat:@"%@/%@/%@/Other/coverPage.jpg",fsPath, InventoryDir, bookTitle];
     if (![self checkForPath:path]) {
         NSLog(@"%@ doesn't exist", path);
         return nil;
@@ -401,7 +441,20 @@
 }
 
 - (void) deleteFileDirectory: (NSString *) path {
-    [filemgr removeItemAtPath: path error: nil];
+    //[filemgr removeItemAtPath: path error: nil];
+    NSError *error;
+    if ([[NSFileManager defaultManager] isDeletableFileAtPath:path]) {
+        BOOL success = [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+        if (!success) {
+            NSLog(@"Error removing file at path: %@", error.localizedDescription);
+        }
+    }
+    else
+    {
+        NSLog(@"Can not delete");
+    }
+    
+    
 }
 
 @end
