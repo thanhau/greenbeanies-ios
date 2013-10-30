@@ -1,4 +1,0 @@
-originalZoomScale: 1;
-newZoomScale: 1;
-originalRectVisible: 350,300;
-newRectVisible: 350,300
