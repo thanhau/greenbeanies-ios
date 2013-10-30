@@ -1033,11 +1033,16 @@
 - (void) goToBookShelf
 {
     NSLog(@"go to book shelf");
+    IntroVideoViewController *intro = [[IntroVideoViewController alloc]init];
+    [intro setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [intro.view setFrame: self.view.bounds];
+    [self presentViewController:intro animated:YES completion:nil];
+    /*
     BookshelfViewController *bookShelf = [[BookshelfViewController alloc]init];
     [bookShelf setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [bookShelf.view setFrame: self.view.bounds];
     [self presentViewController:bookShelf animated:YES completion:nil];
-     
+     */
     
 }
 @end

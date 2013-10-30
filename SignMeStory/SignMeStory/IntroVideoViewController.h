@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "BookshelfViewController.h"
-
+@class BookshelfViewController;
 @interface IntroVideoViewController : UIViewController
 
 @property (nonatomic, strong, retain) BookshelfViewController *bookShelf;
