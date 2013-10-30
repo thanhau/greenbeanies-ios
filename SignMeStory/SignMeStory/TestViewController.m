@@ -192,7 +192,7 @@
             temp = [temp stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
             NSArray *tempArray = [temp componentsSeparatedByString:@";"];
             //NSLog(@"spit count =%i",[tempArray count]);
-            for (int j = 0; j < [tempArray count]; j++) {
+            for (int j = 0; j < [tempArray count] - 1; j++) {
                 //NSLog(@"each = %@",tempArray[j]);
                 NSString *temp1 = tempArray[j];
                 temp1 = [temp1 stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
@@ -317,7 +317,7 @@
             temp = [temp stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
             NSArray *tempArray = [temp componentsSeparatedByString:@";"];
             //NSLog(@"spit count =%i",[tempArray count]);
-            for (int j = 0; j < [tempArray count]; j++) {
+            for (int j = 0; j < [tempArray count] - 1; j++) {
                 //NSLog(@"each = %@",tempArray[j]);
                 NSString *temp1 = tempArray[j];
                 temp1 = [temp1 stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];

@@ -39,7 +39,7 @@
 {
     self = [super init];
     if (self) {
-        UINavigationBar *navBar = self.navigationController.navigationBar;
+        //UINavigationBar *navBar = self.navigationController.navigationBar;
         /*
         UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Detail"];
         
@@ -112,10 +112,22 @@
     
     // Configure the cell...
     UITableViewCell *cell = [[UITableViewCell alloc]init];
-    NSMutableDictionary *tempDict = [self.listOfBook objectAtIndex:indexPath.row];
-    NSArray *tempArray = [tempDict allKeys];
+    //NSMutableDictionary *tempDict = [self.listOfBook objectAtIndex:indexPath.row];
+    //NSArray *tempArray = [tempDict allKeys];
     //NSLog(@"%i",[tempArray count]);
-    cell.textLabel.text = tempArray[0];
+    NSString *bookTitle;
+    switch (indexPath.row + 1) {
+        case 1:
+            bookTitle = @"GreenBeanies - One Cool Cat";
+            break;
+        case 2:
+            bookTitle = @"GreenBeanies - Two Magical Cats";
+            break;
+        default:
+            bookTitle = @"GreenBeanies";
+            break;
+    }
+    cell.textLabel.text = bookTitle;
     return cell;
 }
 
@@ -181,13 +193,13 @@
     /*
     switch (indexPath.row + 1) {
             case 1:
-            	bookTitle = @"GreenBeanies-One Silly Cat";
+            	bookTitle = @"GreenBeanies - One Cool Cat";
             	break;
         	case 2:
-            	bookTitle = @"GreenBeanies-Two Cool Hat";
+            	bookTitle = @"GreenBeanies - Two Magical Cats";
             	break;
             default:
-            	bookTitle = @"Greenbeanies";
+            	bookTitle = @"GreenBeanies";
             	break;
     }
     */
