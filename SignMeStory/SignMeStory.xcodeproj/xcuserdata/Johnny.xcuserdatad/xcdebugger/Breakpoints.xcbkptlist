@@ -4,16 +4,16 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "SignMeStory/CoverPageViewController.m"
-         timestampString = "402470962.885175"
+         filePath = "SignMeStory/TestViewController.m"
+         timestampString = "404101882.346925"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "174"
-         endingLineNumber = "174"
-         landmarkName = "-readByMyself"
+         startingLineNumber = "224"
+         endingLineNumber = "224"
+         landmarkName = "-displayPageWithCurrentLocation:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -21,12 +21,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SignMeStory/TestViewController.m"
-         timestampString = "402471518.668145"
+         timestampString = "404101922.894882"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "187"
-         endingLineNumber = "187"
-         landmarkName = "-displayPageWithCurrentLocation:"
+         startingLineNumber = "340"
+         endingLineNumber = "340"
+         landmarkName = "-changeInfo:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SignMeStory/VocabularyViewController.m"
+         timestampString = "404791893.704714"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
+         landmarkName = "-initWithData:bookTitle:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

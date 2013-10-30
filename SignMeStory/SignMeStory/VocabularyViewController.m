@@ -153,8 +153,8 @@
     
 
     NSArray *tempArray = [data componentsSeparatedByString:@";"];
-    NSLog(@"spit count =%i",[tempArray count]);
-    for (int j = 0; j < [tempArray count]; j++) {
+    NSLog(@"spit count = %i",[tempArray count]);
+    for (int j = 0; j < [tempArray count] - 1; j++) {
         NSMutableDictionary *tempDict = [[NSMutableDictionary alloc]init];
         NSString *temp1 = tempArray[j];
         temp1 = [temp1 stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
