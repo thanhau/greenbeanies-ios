@@ -544,17 +544,24 @@
 -(void) playAnimation
 {
     if ([self.backgroundImages count] > 1) {
-        if ([self.backgroundImages count] / 10 > 1) {
-            float duration = [self.backgroundImages count] / 10;
-            self.backgroundImageView.animationDuration = duration;
+        if (currentPageOfDirectory == 0  && positionOfText == 0) {
+            self.backgroundImageView.animationDuration = 5;
         }
         else
         {
-            self.backgroundImageView.animationDuration = 1;
+            if ([self.backgroundImages count] / 10 > 1) {
+                float duration = [self.backgroundImages count] / 10;
+                self.backgroundImageView.animationDuration = duration;
+            }
+            else
+            {
+                self.backgroundImageView.animationDuration = 1;
+            }
+            
         }
         self.backgroundImageView.image = [[self backgroundImages ] lastObject];
-        
         [self.backgroundImageView startAnimating];
+            
     }    
     
     
