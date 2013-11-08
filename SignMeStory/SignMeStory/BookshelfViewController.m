@@ -15,6 +15,7 @@
     int bookId;
     MPMoviePlayerController *mpc;
     NSArray *_products;
+    SKProduct *inPurchase;
 }
 @end
 
@@ -189,10 +190,11 @@
         }
         [shelfImg addSubview:bookButton];
     }
-    UIButton *restoreButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 150, 1, 150, 35)];
+    UIButton *restoreButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 145, 1, 150, 35)];
     
     [restoreButton setTitle:@"Restore Purchases" forState:UIControlStateNormal];
 	[restoreButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+    [restoreButton.titleLabel setTextColor:[UIColor blackColor]];
     [restoreButton addTarget:self action:@selector(restoreTapped:) forControlEvents:UIControlEventTouchUpInside];
     [shelfImg addSubview:restoreButton];
 
@@ -209,25 +211,43 @@
 - (void) goToBook:(UIButton *) sender {
     UIButton *buyButton = (UIButton *)sender;
     bool purchased = false;
-    SKProduct *product = nil;
+    inPurchase = nil;
     if (buyButton.tag != -1) {
     	if ([_products count] >= buyButton.tag + 1) {
-        	product = _products[buyButton.tag];
-        	purchased = [[IAPProductsHelper sharedInstance] productPurchased:product.productIdentifier];
+        	inPurchase = _products[buyButton.tag];
+        	purchased = [[IAPProductsHelper sharedInstance] productPurchased:inPurchase.productIdentifier];
     	} else {
         	NSLog(@"An error occured while retrieving the list of purchases.");
         	return;
     	}
     }
-    if (product == nil || purchased == true) {
+    if (inPurchase == nil || purchased) {
     	bookId = [[[sender titleLabel] text] integerValue];
     	bookId = bookId - 1;
     	[[self.coverViewControllers objectAtIndex:bookId] setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     	[self presentViewController:[self.coverViewControllers objectAtIndex:bookId] animated:YES completion:nil];
     } else {
-        NSLog(@"Buying %@...", product.productIdentifier);
-        [[IAPProductsHelper sharedInstance] buyProduct:product];
+        NSLog(@"Buying %@...", inPurchase.productIdentifier);
+        CGSize gateSize = CGSizeMake(285, 250);
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+            gateSize = CGSizeMake(285*2, 250*2);
+        }
+
+        PGView *pgView = [[PGView alloc]initWithSize:gateSize andParentalGate:ParentalGateType3FingerTap];
+        pgView.delegate = self;
+        [self.view addSubview:pgView];
+        [pgView show];
     }
+}
+
+
+- (void) ParentalLockSucceeded: (PGView *)sender
+{
+    [[IAPProductsHelper sharedInstance] buyProduct:inPurchase];
+}
+- (void) ParentalLockCancelled: (PGView *)sender
+{
+    
 }
 
 

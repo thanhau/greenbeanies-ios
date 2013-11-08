@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  CeonaFramework
+
+  Created by Rahul on 19/09/13.
+  Copyright (c) 2013 Rahul. All rights reserved.
+*/
+
+"ParentalGateTitle" = "Grown Ups only!";
+"ParentalGateType3FingerTapDesc" = "Tap with three fingers to continue";
+"ParentalGateTypeQuestionDescription" = "To continue, please prove that you are not a kid by Answering the following question.";
+"ParentalGateTypeQuestionText" = "Which of these numbers are divisible by 3 ?";
