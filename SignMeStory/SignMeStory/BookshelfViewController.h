@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParentalGate/PGView.h>
 #import "CoverPageViewController.h"
 @class CoverPageViewController;
-@interface BookshelfViewController : UIViewController {
+@interface BookshelfViewController : UIViewController <ParentalLockSuccessDelegate> {
     SignMeStoryFS *aStoryFS;
     NSMutableArray *inventory;
 }

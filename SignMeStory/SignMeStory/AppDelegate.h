@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParentalGate/PGView.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

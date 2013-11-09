@@ -30,6 +30,7 @@
         [storyFS deleteFileDirectory:path2];
     }
      */
+    [PGView initWithParentalGateAppKey:@"FE289EDE6D90F69C02FAED09293"];
     return YES;
 }
 							
