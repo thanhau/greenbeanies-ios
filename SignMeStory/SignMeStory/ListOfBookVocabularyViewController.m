@@ -39,7 +39,7 @@
 {
     self = [super init];
     if (self) {
-        UINavigationBar *navBar = self.navigationController.navigationBar;
+
         /*
         UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"Detail"];
         

@@ -12,6 +12,9 @@
 		0047894D17FF1D0A00CF468E /* VocabularyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0047894C17FF1D0900CF468E /* VocabularyViewController.m */; };
 		006F845117D7EA8500760213 /* IntroVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006F845017D7EA8500760213 /* IntroVideoViewController.m */; };
 		006F845317D8339100760213 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 006F845217D8339100760213 /* icon.png */; };
+		007D962818237E8E007A104D /* icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 007D962518237E8E007A104D /* icon-76.png */; };
+		007D962918237E8E007A104D /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 007D962618237E8E007A104D /* icon-120.png */; };
+		007D962A18237E8E007A104D /* icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 007D962718237E8E007A104D /* icon-152.png */; };
 		0095D11B178CD3B600392C21 /* Dictionary in Resources */ = {isa = PBXBuildFile; fileRef = 0095D11A178CD3B600392C21 /* Dictionary */; };
 		009FD95417D91894005D8425 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009FD95317D91893005D8425 /* TestViewController.m */; };
 		22A9A33216E16B7D00DAB32B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A9A33116E16B7D00DAB32B /* libxml2.dylib */; };
@@ -42,6 +45,18 @@
 		B2BB473817FBE7860062F6E4 /* IAPProductsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BB473617FBE7540062F6E4 /* IAPProductsHelper.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		0018B883182368E000869975 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = text.plist;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# builtin-copyPlist\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		0047894317FE862100CF468E /* Vocabulary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Vocabulary; sourceTree = "<group>"; };
 		0047894817FE91B600CF468E /* ListOfBookVocabularyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfBookVocabularyViewController.h; sourceTree = "<group>"; };
@@ -51,6 +66,9 @@
 		006F844F17D7EA8500760213 /* IntroVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroVideoViewController.h; sourceTree = "<group>"; };
 		006F845017D7EA8500760213 /* IntroVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroVideoViewController.m; sourceTree = "<group>"; };
 		006F845217D8339100760213 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		007D962518237E8E007A104D /* icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-76.png"; sourceTree = "<group>"; };
+		007D962618237E8E007A104D /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
+		007D962718237E8E007A104D /* icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-152.png"; sourceTree = "<group>"; };
 		0095D11A178CD3B600392C21 /* Dictionary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dictionary; sourceTree = "<group>"; };
 		009FD95217D91893005D8425 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		009FD95317D91893005D8425 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
@@ -160,6 +178,9 @@
 				009FD95317D91893005D8425 /* TestViewController.m */,
 				0047894817FE91B600CF468E /* ListOfBookVocabularyViewController.h */,
 				0047894917FE91B600CF468E /* ListOfBookVocabularyViewController.m */,
+				007D962518237E8E007A104D /* icon-76.png */,
+				007D962618237E8E007A104D /* icon-120.png */,
+				007D962718237E8E007A104D /* icon-152.png */,
 				0047894B17FF1D0900CF468E /* VocabularyViewController.h */,
 				0047894C17FF1D0900CF468E /* VocabularyViewController.m */,
 				8FEE95F416D87D5C002B8F04 /* Database */,
@@ -216,6 +237,7 @@
 				8FEE95BE16D87B58002B8F04 /* Resources */,
 			);
 			buildRules = (
+				0018B883182368E000869975 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -268,6 +290,9 @@
 				0095D11B178CD3B600392C21 /* Dictionary in Resources */,
 				006F845317D8339100760213 /* icon.png in Resources */,
 				0047894417FE862100CF468E /* Vocabulary in Resources */,
+				007D962818237E8E007A104D /* icon-76.png in Resources */,
+				007D962918237E8E007A104D /* icon-120.png in Resources */,
+				007D962A18237E8E007A104D /* icon-152.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,8 +357,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GraceSigns, LLC (GHHKSYWT57)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -350,11 +374,12 @@
 					"$(SDKROOT)/usr/incude/libxml2",
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C1159F75-0A97-4DFA-906B-FC2ECD429368";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -367,8 +392,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GraceSigns, LLC (GHHKSYWT57)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -378,9 +402,10 @@
 					"$(SDKROOT)/usr/incude/libxml2",
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C1159F75-0A97-4DFA-906B-FC2ECD429368";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -390,11 +415,13 @@
 		8FEE95E816D87B58002B8F04 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Mostafa (N26364DZ39)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SignMeStory/SignMeStory-Prefix.pch";
 				INFOPLIST_FILE = "SignMeStory/SignMeStory-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5B27CD5C-16AE-4812-A26A-ADC4253FC461";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -402,11 +429,13 @@
 		8FEE95E916D87B58002B8F04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Mostafa (N26364DZ39)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SignMeStory/SignMeStory-Prefix.pch";
 				INFOPLIST_FILE = "SignMeStory/SignMeStory-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5B27CD5C-16AE-4812-A26A-ADC4253FC461";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -421,7 +450,7 @@
 				8FEE95E616D87B58002B8F04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		8FEE95E716D87B58002B8F04 /* Build configuration list for PBXNativeTarget "SignMeStory" */ = {
 			isa = XCConfigurationList;
@@ -430,7 +459,7 @@
 				8FEE95E916D87B58002B8F04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
